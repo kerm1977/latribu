@@ -1,0 +1,33 @@
+.title-home{
+	padding-top: 200px;
+	margin: auto;
+}
+
+.title_h1{
+	font-size: 80px;
+}
+
+.title_h2{
+	margin-top: -20px;
+	font-size: 40px;
+	color:rgba(233,82,30,0.5);
+}
+
+@media(max-width: 850px){
+	.title_h1{
+	font-size: 50px;
+	}
+
+	.title_h2{
+		margin-top: -20px;
+		font-size: 15px;
+		color:rgba(233,82,30,0.5);
+	}
+}
+
+
+
+.container_pages{
+	margin-top: 200px;
+	margin-bottom: 200px;
+}

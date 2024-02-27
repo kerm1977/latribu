@@ -1,0 +1,154 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+nav{
+	background-color: rgba(233,82,30,0.5);
+	box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
+	backdrop-filter: blur(10px);
+}
+
+nav ul{
+	width: 100%;
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+nav li{
+	height: 50px;
+}
+
+nav a{
+	height: 100%;
+	padding: 0 30px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	color: white;
+	font-size: 20px;
+}
+
+nav a:hover{
+	background-color: #f0f0f0f;
+}
+
+nav li: first-child{
+	margin-right: auto;
+}
+
+/*.logoimagen img{
+	margin-top: 200px;
+	width: 20%;
+}
+*/
+.letralogo{
+	margin-top: 10px;
+	margin-right: 400px;
+	display: none;
+}
+
+.hideOnDesktop{
+	display: none;
+}
+
+nav ul li span{
+	margin-right: 10px;	
+}
+
+
+.sidebar{
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 250px;
+	z-index: 999;
+	background-color: rgba(233,82,30,0.3);
+	backdrop-filter: blur(10px);
+	box-shadow:-10px 0 10px rgba(0,79,0, 0.1);
+	display: none;	
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	
+}
+
+.logonav{
+	width: 100px;
+	position: center;
+	display: block;
+ 	margin: auto;
+}
+
+.sidebar li{
+	width: 100%;
+
+}
+
+.sidebar a{
+	width: 100%;
+}
+
+.icon-menu{
+	font-size: 25px;
+	display: none;
+}
+
+.hikingNav{
+	font-size: 25px;
+	display: none;
+}
+
+.icon-cross{
+	font-size: 25px;
+}
+
+.menu{
+	display: none;
+}
+
+@media(max-width: 850px){
+	.menu{
+		display: flex;
+		transition: all 3s ease-in;
+	}
+
+	.letralogo{
+		margin-top: 10px;
+		margin-right:54%;
+		display: flex;
+	}
+
+	.hikingNav{
+		font-size: 14px;
+		display: flex;
+		margin-top: 9px;
+	}
+
+	.icon-menu{
+		font-size: 35px;
+		display:flex;
+	}
+
+	.hideOnMobile{
+		display: none;
+	}
+
+	.sidebar li{
+		margin-top: 5px;
+	}
+}
+
+
+@media(max-width: 480px){
+	.sidebar{
+		width: 100%;
+	}
+}
+
+.index{
+	margin-top: 200px;
+}

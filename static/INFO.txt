@@ -1,0 +1,279 @@
+MicroFramework Flask
+=============================
+Tamaño
+Flexibilidad
+Enfoque
+=============================
+
+
+Requerimientos:
+=============================
+-Sublime
+-Python
+-Cmder
+-Git
+-Bootstrap
+-DB Browser SQLITE
+-Vue
+-Crear entorno virtual
+=============================
+
+
+# Crea la carpeta de proyecto
+=============================
+md flask 
+=============================
+
+
+# Entra al directorio creado
+=============================
+cd flask 	
+=============================
+
+
+# Obtiene pip en caso de que no se instale
+=============================
+python get-pip.py 	
+=============================
+
+
+# SOLO EN CASO DE QUE NO RECONOCIERA COMANDOS PIP y para consultar 
+=============================
+pip pip-V 
+=============================
+
+
+# Crea un entorno virtual dentro de carpeta creada arriba llamada flask
+=============================
+python -m venv env
+=============================
+
+
+# Llegar a través de la línea de comando para activar el entorno
+=============================
+cd env // cd scripts // activate //cd.. cd.. 
+=============================
+
+
+# Llegar a través de la línea de comando para desactivar el entorno
+=============================
+cd env // cd scripts // deactivate 
+=============================
+
+
+# Instalar Flask con el env activado
+=============================
+pip install flask #Instala Flask
+=============================
+
+
+# Actualizar pip si es necesario
+=============================
+python.exe -m pip install --upgrade pip
+=============================
+
+
+#Revisa Todas las dependencias instaladas junto a flask
+=============================
+pip list
+=============================
+
+
+# Desde sublime text agregar la carpeta creada con el entorno virtual creado y crear dos folder templates (html’s) y statics para que dentro de statics se creen más carpetas donde viene las imágenes, css, js fuentes.. etc Luego crear un archivo llamado main.py al mismo nivel del env
+# Instala las librerías para  DB 
+=============================
+pip install flask_sqlalchemy 
+=============================
+
+
+#Crea una lista con los requerimientos de flask 
+=============================
+pip freeze > requirements.txt 
+=============================
+
+
+#Re-Instala todos los paquetes creados con pip freeze en un nuevo equipo. 
+pip install -r requirements.txt
+
+
+#Paquetes necesarios para otras capacidades de flask
+=============================
+pip install flask-wtf # Opciones de validación para formularios flask y crear el archivo
+forms.py
+pip install email_validator o pip install wtforms[email]
+pip install wtforms-validators
+pip install Flask-Bcrypt
+pip install flask_mysqldb # Para usar base de dato Mysql
+pip install psycopg2 #Para usar la base de datos postgreSQL
+pip install db-sqlite3 Opcional
+=============================
+
+
+#Crear en la raíz un archivo llamado app.py que contiene toda la lógica de flask y dentro
+=============================
+app.py
+	
+	# -----------------------
+	from flask import Flask
+	from markupsafe import escape
+
+	Invoca el módula app.py a través del __name__
+	app = Flask(__name__)  <= app=Flask(app.py)
+
+
+	#VISTAS ------------------
+		SE PUEDEN CREAR VARIAS RUTAS A UNA SOLA VISTA ASIGNADAS CON DECORADORES
+		@app.route("/")		 <---- DECORADOR 1   
+		@app.route("/home")  <---- DECORADOR 2
+		@app.route("/index") <---- DECORADOR 3
+
+		def home():			<----- FUNCION
+			user = {"username":"Kenneth"} 	<----- VARIABLE ALMACENA NOMBRE COMO DICCIOINARIO
+			lname = {"lastname":"Ruiz"} 	<----- VARIABLE ALMACENA APELLIDO COMO DICCIONARIO
+ 			title = "INICIO" 	<----- VARIABLE ALMACENA TITULO 	
+
+ 			RETORNA Y RENDERIZA EL TEMPLATE CON EL VALOR DE LAS VARIABLES Y EL HTML															
+			return render_template("index.html",user=user, title=title, lname=lname)
+	# -----------------------
+
+
+	#VISTAS CON VARIABLES ------------------
+		SE PUEDEN CREAR VARIAS RUTAS A UNA SOLA VISTA ASIGNADAS CON DECORADORES
+		Y ESTOS VALORES SE COLOCAN DENTRO DEL PATH EN ORDEN SEGUN SE DECLARE
+		DENTRO DE LOS PARÁMETROS DE LA FUNCIÓN Y ADEMÁS SE PUEDE CREAR UNA RUTA
+		DIFERENTE PARA CADA TIPO DE VARIABLE
+
+		Las variables son de tipo:
+		-string
+		-int
+		-float
+		-path <-- Convierte caracteres en strings evitando el scripting 
+
+		@app.route("/pepino/<string:texto>")
+		@app.route("/pepino/<int:numero>")	
+		@app.route("/pepino/<float:numeroflotante>") 
+		
+		def home(texto=None, numero=None, numeroflotante=None):		
+			title = "INICIO" 
+
+			if texto == None and numero == None and numeroflotante == None:
+				return "Hola Pepino"
+			elif texto == None and numero == None:
+				return f"{numeroflotante}"
+			elif texto == None:
+				return f"{numeroflotante} {numero}"
+			else:
+				return f"{texto}{numero}{numeroflotante}"
+
+
+
+			return f"<h1>"Hola, {texto}"</h1>"		
+ 		
+	# -----------------------
+
+		VISTA PARA EVITAR EL SCRIPTING
+		Se aplica en entrada de datos o usuarios
+		@app.route("/code/<path:code>")
+		def code(code):
+			retun f"<code>{escape(code)}</code>"
+
+
+
+
+
+
+
+	# -----------------------
+		if __name__ == "__main__":
+			db.create_all()
+			# db.upgrade_all()
+			# db.drop_all()	#Solo se ejecuta para migrar nuevos campos a la db pero borra el contenido
+			app.run(debug = True, port = 81)  #Trabaja en modo debug sin necesidad de recargar
+
+			# Migraciones Cmder
+				# set FLASK_APP=main.py 	<--Crea un directorio de migraciones
+				# flask db init 			<--
+				# $ flask db stamp head
+				# $ flask db migrate
+				# $ flask db migrate -m "mensaje x"
+				# $ flask db upgrade
+	# -----------------------
+
+
+
+
+filtros en flask
+Todos los filtros son separados por | y el nombre del filtro
+-upper
+-reverse
+-lower
+-capitalize
+
+
+
+{%for enlace in enlaces | reverse%}
+    <a href="">{{enlace | capitalize}}</a>
+{%endfor%}
+
+
+
+
+FECHA---------------------------------------
+---------------------------------------
+---------------------------------------
+	Para que la fecha salga en español
+	
+	import locale
+	locale.setlocale(locale.LC_ALL, '')
+
+
+	# FUNCIÓN FECHA ------------------
+		@app.add_template_filter
+		def fecha(date):
+						# %a %H:%M %d/%m/%y <-- mié. 21:21 07/02/24
+						# %H:%M:%S 
+						# %A, %d. %B %Y %I:%M%p <-- miércoles, 07. febrero 2024 09:22p. m.
+						# %d-%m-%Y  - formato de raya 
+						# %d/%m/%Y  / formato de slash
+			return date.strftime("%A, %d. %B %Y %I:%M%p")
+
+	# EN EL VIEW VIEWS ------------------
+		@app.route("/")
+		@app.route("/home")
+		@app.route("/index")
+		def home():
+			date 	= 	datetime.now()
+			title 	= 	"INICIO"
+			return render_template("index.html", title=title, date=date)
+
+	# HTML -----------------------
+		 <h3>{{date | fecha}}</h3>
+
+
+---------------------------------------
+---------------------------------------
+# -------------------------------------------
+
+
+
+
+
+
+DATOS A PLANTILLAS ------------------------
+---------------------------------------
+---------------------------------------
+
+Para que la fecha salga en español
+import locale
+locale.setlocale(locale.LC_ALL, '')
+
+
+
+
+
+
+
+
+
+
+url_for()

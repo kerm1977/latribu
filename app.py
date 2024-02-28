@@ -20,7 +20,7 @@ from flask import Blueprint
 
 #Permite pasar al idioma local las fechas y alertas
 import locale
-locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, 'es_ES')
 # -----------------------
 
 

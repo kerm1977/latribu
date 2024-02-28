@@ -18,10 +18,7 @@ from time import sleep
 from flask import Blueprint
 
 
-#Permite pasar al idioma local las fechas y alertas
-import locale
-locale.setlocale(locale.LC_ALL, 'es_ES')
-# -----------------------
+
 
 
 
@@ -82,6 +79,10 @@ def load_user(user_id):
 
 
 #FECHA ------------------
+#Permite pasar al idioma local las fechas y alertas
+import locale
+locale.setlocale(locale.LC_ALL, 'es_ES')
+# -----------------------
 @app.add_template_filter
 def fecha(date):		
 						

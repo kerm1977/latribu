@@ -4,7 +4,7 @@
 }
 
 nav{
-	background-color: rgba(233,82,30,0.5);
+	background-color: rgba(233,82,30,0.6);
 	box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
 	backdrop-filter: blur(10px);
 }
@@ -39,16 +39,6 @@ nav li: first-child{
 	margin-right: auto;
 }
 
-/*.logoimagen img{
-	margin-top: 200px;
-	width: 20%;
-}
-*/
-.letralogo{
-	margin-top: 10px;
-	margin-right: 400px;
-	display: none;
-}
 
 .hideOnDesktop{
 	display: none;
@@ -66,7 +56,7 @@ nav ul li span{
 	height: 100vh;
 	width: 250px;
 	z-index: 999;
-	background-color: rgba(233,82,30,0.5);
+	background-color: rgba(233,82,30,0.6);
 	backdrop-filter: blur(10px);
 	box-shadow:-10px 0 10px rgba(0,79,0, 0.1);
 	display: none;	
@@ -76,12 +66,10 @@ nav ul li span{
 	
 }
 
-.logonav{
-	width: 100px;
-	position: center;
-	display: block;
- 	margin: auto;
+.logoimagennav .letralogo{
+	display: none;
 }
+
 
 .sidebar li{
 	width: 100%;
@@ -117,10 +105,19 @@ nav ul li span{
 	}
 
 	.letralogo{
-		margin-top: 10px;
-		margin-right:54%;
-		display: flex;
+		color: white;
 	}
+
+	.text-hiking{
+		color:  black; 
+	}
+
+	.logoimagennav .letralogo{
+		margin-top: 10px;
+		display: inline-block;
+		text-align: left;
+	}
+
 
 	.hikingNav{
 		font-size: 14px;
@@ -150,6 +147,20 @@ nav ul li span{
 		width: 100%;
 	}
 }
+
+@media(max-width: 410px){
+	.logoimagennav .letralogo{
+		display: none;
+		text-align: left;
+	}
+
+	.hikingNav{
+		font-size: 14px;
+		display: none;
+		margin-top: 9px;
+	}
+}
+
 
 .index{
 	margin-top: 200px;

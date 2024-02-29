@@ -48,6 +48,8 @@ img {
 
 .card__container{
   margin-top: 100px;
+  padding: 20px;
+  /*background-color: red*/
 }
 
 
@@ -57,7 +59,7 @@ img {
   margin-bottom: 50px;
 }
 
-.card__img {
+.card__img{
   width: 328px;
   border-radius: 1.5rem;
 }

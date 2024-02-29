@@ -133,3 +133,22 @@
     background-positon-x: 0px;
   }
 }
+
+
+
+
+
+@media(max-width: 480px){
+  .codeTecnology{
+    font-size: 16px;
+  }
+
+  .tec_Ico{
+    padding: 5px;
+  }
+
+  p .copyRight{
+    font-size: 14px;
+  }
+
+}

@@ -145,6 +145,7 @@ nav ul li span{
 
 @media(max-width: 480px){
 	.sidebar{
+		background-color: rgba(233,82,30,0.8);
 		width: 100%;
 	}
 }

@@ -134,7 +134,7 @@ if __name__ == "__main__":
 	db.create_all()
 	# db.upgrade_all()
 	# db.drop_all()	#Solo se ejecuta para migrar nuevos campos a la db pero borra el contenido
-	app.run(debug = True, port = 81) 
+	app.run(debug = True) 
 
 	# Migraciones Cmder
 		# set FLASK_APP=main.py 	<--Crea un directorio de migraciones

@@ -125,6 +125,12 @@ def caminocr():
 	return render_template("caminocr.html", title=title, date=date)
 
 
+@app.route("/videos")
+def videos():
+	date 	= 	datetime.now()
+	title 	= 	"Camino de Costa Rica"
+	return render_template("videos.html", title=title, date=date)
+
 
 
 

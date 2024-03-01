@@ -2,12 +2,16 @@
     <ul class="sidebar">
 
         <li class="mt-5" onclick=cerrarBarra()><a  href="#"><span class="icon-cross"></span></a></li>
+
         <hr class="separador">
         <li class="mt-5"><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
+
         <hr class="sidebarline">
-        <li><a  href="#"><span class="icon-user"> </span>Registro</a></li>
+        <li><a  href="{{url_for('registro')}}"><span class="icon-user"> </span>Registro</a></li>
+        
         <hr class="sidebarline">
         <li><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
+        
         <hr class="sidebarline">
         <li><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
         <hr class="sidebarline">
@@ -19,7 +23,7 @@
         </div>
 
         <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
-        <li class="hideOnMobile"><a  href="#"><span class="icon-user"> </span>Registro</a></li>
+        <li class="hideOnMobile"><a  href="{{url_for('registro')}}"><span class="icon-user"> </span>Registro</a></li>
         <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
         <li class="hideOnMobile"><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
         <li class="hideOnMobile"><a  href="#"><span class="icon-home"> </span>Enlace</a></li>

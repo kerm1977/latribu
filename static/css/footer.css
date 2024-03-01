@@ -10,9 +10,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
-}
-
+  }
+    
 .tec_Ico{
   height: 40px;
   }
@@ -20,15 +19,15 @@
 .tecnology{
   display: inline-flex;
   padding: 5px;
-}
+  }
 
 .codeTecnology{
   font-size: 25px;
-}
+  }
 
 .tecnology img{
   padding: 10px;
-}
+  }
 
 .social-icon,
 .menu {
@@ -38,12 +37,12 @@
   align-items: center;
   margin: 10px 0;
   flex-wrap: wrap;
-}
+  }
 
 .social-icon__item,
 .menu__item {
   list-style: none;
-}
+  }
 
 .social-icon__link {
   font-size: 2rem;
@@ -51,10 +50,11 @@
   margin: 0 10px;
   display: inline-block;
   transition: 0.5s;
-}
+  }
+
 .social-icon__link:hover {
   transform: translateY(-10px);
-}
+  }
 
 .menu__link {
   font-size: 1.2rem;
@@ -65,18 +65,18 @@
   text-decoration: none;
   opacity: 0.75;
   font-weight: 300;
-}
+  }
 
 .menu__link:hover {
   opacity: 1;
-}
+  }
 
 .footer p {
   color: #fff;
   margin: 15px 0 10px 0;
   font-size: 1rem;
   font-weight: 300;
-}
+  }
 
 .wave {
   position: absolute;
@@ -86,35 +86,35 @@
   height: 100px;
   background: url("../img/wave.png");
   background-size: 1000px 100px;
-}
+  }
 
 .wave#wave1 {
   z-index: 1000;
   opacity: 1;
   bottom: 0;
   animation: animateWaves 4s linear infinite;
-}
+  }
 
 .wave#wave2 {
   z-index: 999;
   opacity: 0.5;
   bottom: 10px;
   animation: animate 4s linear infinite !important;
-}
+  }
 
 .wave#wave3 {
   z-index: 1000;
   opacity: 0.2;
   bottom: 15px;
   animation: animateWaves 3s linear infinite;
-}
+  }
 
 .wave#wave4 {
   z-index: 999;
   opacity: 0.7;
   bottom: 20px;
   animation: animate 3s linear infinite;
-}
+  }
 
 @keyframes animateWaves {
   0% {
@@ -150,8 +150,4 @@
   p .copyRight{
     font-size: 14px;
   }
-
-
-
-
 }

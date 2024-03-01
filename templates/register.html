@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %} 
+
+ 
+<div class="wrap">
+	<div class="container_register">	
+	  	<div class="container">
+	    <input type="checkbox" id="check">
+	    <div class="login form">
+	      <header class="text-center">Inicio</header>
+	      <form action="#">
+	        <input type="text" placeholder="Ingrese su email">
+	        <input type="password" placeholder="Ingrese su password">
+	        <a href="#">Olvidó la Contraseña?</a>
+	        <input type="button" class="button" value="Login">
+	      </form>
+	      <div class="signup">
+	        <span class="signup">Aun no tienes cuenta?
+	         <label for="check">Registrate</label>
+	        </span>
+	      </div>
+	    </div>
+
+
+	    <div class="registration form">
+	      <header>Registro</header>
+	      <form action="#">
+	        <input type="text" placeholder="Ingrese su email">
+	        <input type="password" placeholder="Crear un password">
+	        <input type="password" placeholder="Confirmar el password">
+	        <input type="button" class="button" value="Registrarse">
+	      </form>
+	      <div class="signup">
+	        <span class="signup">Aun no tienes cuenta?
+	         <label for="check">Ir a Login</label>
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+{% endblock %}

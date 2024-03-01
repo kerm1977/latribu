@@ -160,6 +160,10 @@ nav ul li span{
 		backdrop-filter: blur(10px);
 		height: 80px;
 	}
+
+	li a{
+		font-size: 25px;
+	}
 }
 
 
@@ -175,6 +179,10 @@ nav ul li span{
 		display: inline-block;
 		font-size: 20px;
 		padding-right: 200px;
+	}
+
+	li a{
+		font-size: 25px;
 	}
 
 	
@@ -195,6 +203,10 @@ nav ul li span{
 	.logoimagennav .letralogo{
 		margin-top: -9px;
 		margin-right: auto;
+	}
+
+	li a{
+		font-size: 25px;
 	}
 }
 
@@ -229,6 +241,10 @@ nav ul li span{
 		display:flex;
 		margin-top: -10px;
 		}
+
+	li a{
+		font-size: 25px;
+	}
 }
 
 
@@ -243,13 +259,17 @@ nav ul li span{
 		display: inline-block;
 		text-align: left;
 		font-size: 16px;
-		margin-left:-25px;
+		margin-left:-15px;
 	}
 
 	.hikingNav{
 		font-size: 10px;
 		display: none;
 		margin-top: 9px;
+	}
+
+	li a{
+		font-size: 25px;
 	}
 }
 
@@ -258,3 +278,21 @@ nav ul li span{
 }
 
 
+/*BREAKEPOINT 348****************/
+/********************************/
+@media(max-width: 348px){
+	.logoimagennav .letralogo{
+		display: none;
+	}
+
+	.hikingNav{
+		font-size: 10px;
+		display: none;
+		margin-top: 9px;
+	}
+
+
+	li a{
+		font-size: 25px;
+	}
+}

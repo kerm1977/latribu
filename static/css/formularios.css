@@ -7,7 +7,7 @@
   	margin-bottom: 200px;
 	}
 
-.container .registration{
+.container_form .registration{
   display: none;
 }
 #check:checked ~ .registration{
@@ -19,7 +19,7 @@
 #check{
   display: none;
 }
-.container .form{
+.container_form .form{
   padding: 2rem;
 }
 .form header{
@@ -73,4 +73,19 @@
 .signup label:hover{
   text-decoration: underline;
 }
+
+
+
+@media(max-width: 480px){
+	.container_register{
+	   	margin: auto;
+	   	max-width: 420px;
+	  	background: #fff;
+	 	border-radius: 7px;
+	  	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+	  	margin-bottom: 200px;
+		}
+	}
+}
+
 

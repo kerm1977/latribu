@@ -7,6 +7,7 @@ nav{
 	background-color: rgba(233,82,30,0.6);
 	box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
 	backdrop-filter: blur(10px);
+	height: 100px;
 }
 
 nav ul{
@@ -68,6 +69,7 @@ nav ul li span{
 
 .logoimagennav .letralogo{
 	display: none;
+
 }
 
 
@@ -98,10 +100,23 @@ nav ul li span{
 	display: none;
 }
 
+
+
+
+
+/*BREAKEPOINT 850****************/
+/********************************/
 @media(max-width: 850px){
 	.menu{
 		display: flex;
 		transition: all 3s ease-in;
+	}
+
+
+	.icon-menu{
+		font-size:38px;
+		display:flex;
+		margin-top: -12px;
 	}
 
 	.letralogo{
@@ -113,11 +128,12 @@ nav ul li span{
 	}
 
 	.logoimagennav .letralogo{
-		margin-top: 10px;
+		margin: auto;
+		margin-top: -9px;	
 		display: inline-block;
-		text-align: left;
+		font-size: 20px;
+		padding-right: 300px;
 	}
-
 
 	.hikingNav{
 		font-size: 14px;
@@ -137,31 +153,107 @@ nav ul li span{
 	.sidebar li{
 		margin-top: 5px;
 	}
+
+	nav{
+		background-color: rgba(233,82,30,0.6);
+		box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
+		backdrop-filter: blur(10px);
+		height: 80px;
+	}
 }
 
 
-@media(max-width: 480px){
+
+
+
+/*BREAKEPOINT 669****************/
+/********************************/
+@media(max-width: 663px){
+	.logoimagennav .letralogo{
+		margin-top: -9px;
+		margin: auto;	
+		display: inline-block;
+		font-size: 20px;
+		padding-right: 200px;
+	}
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+/*BREAKEPOINT 555****************/
+/********************************/
+@media(max-width: 555px){
+	.logoimagennav .letralogo{
+		margin-top: -9px;
+		margin-right: auto;
+	}
+}
+
+
+
+/*BREAKEPOINT 547****************/
+/********************************/
+@media(max-width: 547px){
 	.sidebar{
 		background-color: rgba(233,82,30,0.8);
 		backdrop-filter: blur(15px);
 		width: 100%;
 	}
+
+	nav{
+		background-color: rgba(233,82,30,0.6);
+		box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
+		backdrop-filter: blur(10px);
+		height: 80px;
+	}
+
+
+	.logoimagennav .letralogo{
+		margin-top: -5px;
+		padding-left:120px;
+		display: inline-block;
+		font-size: 20px;
+	}
+
+	.icon-menu{
+		font-size:38px;
+		display:flex;
+		margin-top: -10px;
+		}
 }
 
+
+
+
+
+/*BREAKEPOINT 410****************/
+/********************************/
 @media(max-width: 410px){
 	.logoimagennav .letralogo{
-		display: none;
+		margin-top: -9px;
+		display: inline-block;
 		text-align: left;
+		font-size: 12px;
 	}
 
 	.hikingNav{
-		font-size: 14px;
+		font-size: 10px;
 		display: none;
 		margin-top: 9px;
 	}
 }
 
-
 .index{
 	margin-top: 200px;
 }
+
+

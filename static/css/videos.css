@@ -1,4 +1,9 @@
-.video{
+.video_container{
+	margin: auto;
 	margin-top: 200px;
 	margin-bottom: 400px;
+}
+
+.video_text{
+	text-align: justify;
 }

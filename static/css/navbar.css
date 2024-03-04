@@ -34,10 +34,12 @@ nav a{
 
 nav a:hover{
 	background-color: #f0f0f0f;
+	font-size: 25px;
 }
 
 nav li: first-child{
 	margin-right: auto;
+	font-size: 25px;
 }
 
 
@@ -80,6 +82,17 @@ nav ul li span{
 
 .sidebar a{
 	width: 100%;
+}
+
+
+.sidebar li:hover{
+	width: 100%;
+	font-size: 25px;
+}
+
+.sidebar a:hover{
+	width: 100%;
+	font-size: 25px;
 }
 
 .icon-menu{

@@ -2,10 +2,29 @@
    	margin: auto;
    	max-width: 430px;
   	background: #fff;
- 	border-radius: 7px;
-  	box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+ 	  border-radius: 7px;
+  	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   	margin-bottom: 200px;
 	}
+
+.header_form{
+   color: rgb(128 128 128) !important;
+   font-size: 20px !important;
+}
+
+.header_form label{
+   color: rgb(232, 98, 86) !important;
+   font-size: 30px !important;
+   cursor:pointer;
+}
+
+.header_form label:hover{
+   color: rgb(232, 98, 86) !important;
+   font-size: 32px !important;
+   cursor:pointer;
+}
+
+
 
 .container_form .registration{
   display: none;

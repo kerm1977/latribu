@@ -16,8 +16,10 @@ from flask_ckeditor import CKEditor, CKEditorField #Editor enriquecido con insta
 from wtforms import validators
 from time import sleep
 from flask import Blueprint
+from datetime import datetime
+from pytz import timezone
 
-
+# print(now_time.strftime('%I:%M:%S %p'))
 
 
 
@@ -110,7 +112,7 @@ def fecha(date):
 @app.route("/home")
 @app.route("/index")
 def home():
-	date 	= 	datetime.now()
+	date = datetime.now(timezone('America/Chicago'))
 	user 	= 	{"username":"Kenneth"}
 	lname 	= 	{"lastname":"Ruiz"}
 	enlaces = 	["python","flask","bootstrap","vue"]
@@ -120,26 +122,26 @@ def home():
 
 @app.route("/caminocr")
 def caminocr():
-	date 	= 	datetime.now()
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("caminocr.html", title=title, date=date)
 
 
 @app.route("/videos")
 def videos():
-	date 	= 	datetime.now()
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("videos.html", title=title, date=date)
 
 @app.route("/registro")
 def registro():
-	date 	= 	datetime.now()
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("register.html", title=title, date=date)
 
 @app.route("/login")
 def login():
-	date 	= 	datetime.now()
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("login.html", title=title, date=date)
 
@@ -150,7 +152,7 @@ if __name__ == "__main__":
 	db.create_all()
 	# db.upgrade_all()
 	# db.drop_all()	#Solo se ejecuta para migrar nuevos campos a la db pero borra el contenido
-	app.run(debug = True) 
+	app.run(debug = False) 
 
 	# Migraciones Cmder
 		# set FLASK_APP=main.py 	<--Crea un directorio de migraciones

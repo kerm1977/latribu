@@ -88,6 +88,10 @@
   background-size: 1000px 100px;
   }
 
+body.dark .wave {
+  display: none;
+  }
+
 .wave#wave1 {
   z-index: 1000;
   opacity: 1;

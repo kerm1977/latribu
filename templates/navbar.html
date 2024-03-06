@@ -1,4 +1,4 @@
-<nav class="fixed-top navbar">
+<nav class="fixed-top navbar ">
     <ul class="sidebar">
 
         <li class="mt-5" onclick=cerrarBarra()><a  href="#"><span class="icon-cross"></span></a></li>
@@ -13,7 +13,7 @@
         <li><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
         
         <hr class="sidebarline">
-        <li><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
+  
         <hr class="sidebarline">
     </ul>
 
@@ -26,7 +26,12 @@
         <li class="hideOnMobile"><a  href="{{url_for('registro')}}"><span class="icon-user"> </span>Registro</a></li>
         <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
         <li class="hideOnMobile"><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
-        <li class="hideOnMobile"><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
+        <li>
+            <button class="switch" id="switch">
+                <span class="icon-brightness-contrast"></span>
+                <span class="icon-star-full"></span>
+            </button>
+        </li>
         <li class="menu" onclick=mostrarBarra()><a href="#"><span class="icon-menu" height="20"></span></a></li>
     </ul>
     

@@ -10,6 +10,11 @@ nav{
 	height: 90px;
 }
 
+body.dark nav{
+	background-color: rgba(45,44,53,0.3);
+} 
+
+
 nav ul{
 	width: 100%;
 	list-style: none;
@@ -66,7 +71,10 @@ nav ul li span{
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
-	
+}
+
+body.dark .sidebar{
+	background-color: rgba(45,44,53,0.3);
 }
 
 .logoimagennav .letralogo{
@@ -137,7 +145,7 @@ nav ul li span{
 	}
 
 	.text-hiking{
-		color:  black; 
+		color:  GREY; 
 	}
 
 	.logoimagennav .letralogo{
@@ -145,7 +153,7 @@ nav ul li span{
 		margin-top: -9px;	
 		display: inline-block;
 		font-size: 20px;
-		padding-right: 300px;
+		padding-right: 250px;
 	}
 
 	.hikingNav{
@@ -191,7 +199,7 @@ nav ul li span{
 		margin: auto;	
 		display: inline-block;
 		font-size: 20px;
-		padding-right: 200px;
+		padding-right: 100px;
 	}
 
 	li a{
@@ -243,8 +251,8 @@ nav ul li span{
 
 
 	.logoimagennav .letralogo{
-		margin-top: -5px;
-		padding-left:120px;
+		margin-top: 2px;
+		padding-left:160px;
 		display: inline-block;
 		font-size: 20px;
 	}
@@ -272,7 +280,7 @@ nav ul li span{
 		display: inline-block;
 		text-align: left;
 		font-size: 16px;
-		margin-left:-15px;
+		margin-left:-10px;
 	}
 
 	.hikingNav{

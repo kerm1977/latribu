@@ -82,7 +82,11 @@ img {
 .card__description {
   display: block;
   font-size: var(--small-font-size);
-  margin-bottom: .25rem;
+  margin-bottom: .30rem;
+}
+
+body.dark .card__description{
+  color: orange;
 }
 
 .card__title {

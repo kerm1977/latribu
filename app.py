@@ -18,6 +18,8 @@ from time import sleep
 from flask import Blueprint
 from datetime import datetime
 from pytz import timezone
+from flask import json
+from werkzeug.exceptions import HTTPException
 
 # print(now_time.strftime('%I:%M:%S %p'))
 
@@ -32,7 +34,9 @@ from pytz import timezone
 
 
 # SQLITE3 DB ------------
+# Crea una instancia de Flask
 app = Flask(__name__)
+
 #Editor enriquecido
 ckeditor = CKEditor(app)
 
@@ -105,7 +109,10 @@ def fecha(date):
 
 
 
-#VIEWS ------------------
+# #VIEWS ------------------
+# Viables que se pueden utilizar en jinja
+# safe, capitalize, lower, upper, title,trim,striptags
+#trim Elimina los espacios finales
 
 # HOME
 @app.route("/")
@@ -145,6 +152,19 @@ def login():
 	title 	= 	"Camino de Costa Rica"
 	return render_template("login.html", title=title, date=date)
 
+@app.errorhandler(404)
+# Error página no encontrada
+def page_not_found(e):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	return render_template('404.html',date=date), 404
+
+@app.errorhandler(500)
+# Servidor no encontrada
+def server_not_found(e):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	return render_template('500.html',date=date), 500
+
+
 
 # -----------------------
 if __name__ == "__main__":
@@ -152,7 +172,7 @@ if __name__ == "__main__":
 	db.create_all()
 	# db.upgrade_all()
 	# db.drop_all()	#Solo se ejecuta para migrar nuevos campos a la db pero borra el contenido
-	app.run(debug = False) 
+	app.run(debug = True) 
 
 	# Migraciones Cmder
 		# set FLASK_APP=main.py 	<--Crea un directorio de migraciones

@@ -1,7 +1,5 @@
 #IMPORTS ----------------
-from flask import session, Flask, abort, g
-from datetime import datetime, timedelta
-from flask import request, make_response, redirect, render_template, url_for, flash
+from flask import request, make_response, redirect, render_template, url_for, flash, session, Flask, abort, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
@@ -16,15 +14,12 @@ from flask_ckeditor import CKEditor, CKEditorField #Editor enriquecido con insta
 from wtforms import validators
 from time import sleep
 from flask import Blueprint
-from datetime import datetime
+from datetime import datetime, timedelta
 from pytz import timezone
 from flask import json
 from werkzeug.exceptions import HTTPException
 
 # print(now_time.strftime('%I:%M:%S %p'))
-
-
-
 
 
 

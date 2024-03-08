@@ -24,6 +24,7 @@
 
 <body>
     
+      
     {% include "navbar.html" %}
     <!-- <div class="container logoimagen">
        <img class="logonav" src="{{ url_for('static', filename='img/logo800.png') }}" alt="image" >
@@ -31,6 +32,7 @@
     <!-- CONTENIDO DE HERENCIA -->
     {% block content %}
     {% endblock %}
+    {% include 'flash.html' %} 
     {% include "footer.html" %}        
 
 

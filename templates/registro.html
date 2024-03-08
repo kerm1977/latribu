@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %} 
+
+	<!-- LOGIN -->
+<div class="wrap">
+	<div class="container_register">	
+		<div class="container_form">
+		    <input type="checkbox" id="check">
+
+		    <div class="login form">
+		      <header class="text-center header_form">Inicio | <label for="check" class="text-success">Ir a Registro</label></header>
+		      
+		<form class="form-signin" action="" method="POST" name="form">
+            {{form.hidden_tag()}}
+
+	        <input type="text" placeholder="Ingrese su email">
+	        <input type="password" placeholder="Ingrese su password" id="pass">
+	        <i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostar</i>
+	        <hr>
+
+	        <a href="#">Olvidó la Contraseña?</a>
+	        <input type="button" class="button" value="Login">
+		</form>
+
+      	<div class="signup">
+	        <span class="signup">Aun no tienes cuenta?
+	         <label for="check">Registrate</label>
+	        </span>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+<!-- REGISTRO -->
+	    <div class="registration form">
+	      <header class="text-center header_form">Registrate | <label for="check" class="text-success">Ir a Login</label></header>
+
+
+	    <form class="form-signin" action="" method="POST" name="form">
+            {{form.hidden_tag()}}
+
+           	
+            <input type="text" placeholder="Ingrese su Usuario" name="username">
+            <input type="text" placeholder="Ingrese su email" name="email">
+            <input type="text" placeholder="Ingrese su Primer Apellido" name="apellido">
+            <input type="text" placeholder="Ingrese su Segundo Apellido" name="apellido2">
+            <input type="text" placeholder="Residencia" name="residencia">
+            <input type="text" placeholder="Teléfono" name="telefono">
+            <input type="text" placeholder="Teléfono de Emergencia" name="telefono2">
+            <input type="text" placeholder="Celular" name="celular">
+            <input type="text" placeholder="Alergias" name="alergias">
+            <input type="text" placeholder="Enfermedades Crónicas" name="cronico">
+            <input type="text" placeholder="Medicamentos" name="medicamentos">
+            <input type="text" placeholder="Nacimiento" name="nacimiento">
+	        <input type="password" placeholder="Ingrese su password" id="pass1" name="password">
+	        <input type="password" placeholder="Confirmar el password" id="pass2" name="confirmpassword">
+	        <i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostrar</i>
+
+	        <hr>
+	        <input type="submit" class="button" value="Registrarse" name="Registrarme">
+	       <!--  <button type="submit" name="Registrarme" >Registrarme</button> -->
+	      </form>
+	      <div class="signup">
+	        <span class="signup">Aun no tienes cuenta?
+	         <label for="check">Ir a Login</label>
+	        </span>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+
+{% endblock %}

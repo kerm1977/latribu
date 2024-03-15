@@ -18,6 +18,7 @@ from datetime import datetime, timedelta
 from pytz import timezone
 from flask import json
 from werkzeug.exceptions import HTTPException
+from flask_session import Session
 
 # print(now_time.strftime('%I:%M:%S %p'))
 
@@ -28,39 +29,48 @@ from werkzeug.exceptions import HTTPException
 
 
 
-
-app = Flask(__name__)
-
-
-#Editor enriquecido
-ckeditor = CKEditor(app)
-
 # SQLITE3 DB ------------
-# -----------------------
-# /::::::::::::::::::::/
-# -----------------------
+# Crea una instancia de Flask
 app = Flask(__name__)
+
 #Editor enriquecido
 ckeditor = CKEditor(app)
 
+import os
+# #Ruta de la DB
+# #CONECTOR - RUTA ABSOLUTA
+dbdir = "sqlite:///db.db"
+app.config["SESSION_TYPE"] = "filesystem"
+app.config['SESSION_FILE_DIR'] = os.path.join(app.root_path, "cache")
+app.config['SESSION_FILE_THRESHOLD'] = 1000
+Session(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = dbdir
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 
 
-
-
-
-
-
-
-# DB SQLITE
-# import os
-# dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db.db" #CONECTOR - RUTA ABSOLUTA
+# #Ruta de la DB
+# #CONECTOR - RUTA ABSOLUTA
+# dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db.db"
 # app.config['SQLALCHEMY_DATABASE_URI'] = dbdir
 
 
-#DB MYSQL 
-												#-U  -P -UBICACION -NOMBRE DB		
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db" 
+# # PYTHONANYWHERE
+# import mysql.connector
+# mydb = mysql.connector.connect(
+# 	host		= "LaTribuHiking.mysql.pythonanywhere-services.com",
+# 	user 		= "LaTribuHiking",
+# 	password 	= "root",
+# 	database    = "LaTribuHiking$db"
+# )
+
+# mycursor = conn.cursor()
+# mycursor.execute("SELECT * FROM User")
+# myresult = mycursor.fechall()
+# for x in myresult:
+# 	print(x)
 
 
 

@@ -63,6 +63,13 @@ ckeditor = CKEditor(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db" 
 
 
+#DB PYTHONANYWHERE
+												           #-U         	 -P                      -UBICACION                          -NOMBRE DB
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
+
+
+
+
 
 # OTRA CONFIGURACIÓN
 db = SQLAlchemy(app)

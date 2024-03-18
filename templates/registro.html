@@ -2,17 +2,18 @@
 {% block content %} 
 
 	<!-- LOGIN -->
-<div class="wrap">
-	<div class="container_register">	
-		<div class="container_form">
-		    <input type="checkbox" id="check">
+	{% include 'flash.html' %}
+	<div class="wrap">
+		<div class="container_register">	
+			<div class="container_form">
+		    	<input type="checkbox" id="check">
 
 		    <div class="login form">
 		      <header class="text-center header_form">Inicio | <label for="check" class="text-success">Ir a Registro</label></header>
 		      
 		<form class="form-signin" action="" method="POST" name="form">
             {{form.hidden_tag()}}
-
+          
 	        <input type="text" placeholder="Ingrese su email">
 	        <input type="password" placeholder="Ingrese su password" id="pass">
 	        <i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostar</i>
@@ -38,12 +39,13 @@
 
 
 <!-- REGISTRO -->
-	    <div class="registration form">
+ 	    <div class="registration form">
 	      <header class="text-center header_form">Registrate | <label for="check" class="text-success">Ir a Login</label></header>
 
 
 	    <form class="form-signin" action="" method="POST" name="form">
             {{form.hidden_tag()}}
+         
 
            	
             <input type="text" placeholder="Ingrese su Usuario" name="username">

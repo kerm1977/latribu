@@ -6,14 +6,13 @@
             <div class="hide">
             <!-- Estos son mensajes flashed que vienen desde main.py -->
                     {% with messages = get_flashed_messages(with_categories=true) %}
-                        {%if messages %}
-                            {%for category, message in messages%}
-                                <div class="notification notifications is-{{ category }}" >
-                                <button  value="Cancel" class="delete" id="msn" type="button"  aria-label="delete" onclick="closeWin()"></button>
-                                {{ message }}
-                                </div>  
-                            {% endfor %}
-                        {% endif %}
+                      {% if messages %}
+                        <div class="alert alert-{{ messages.0.0 }}" role="alert">
+                          {% for category, message in messages %}
+                            {{ message }} </br>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
                     {% endwith %}
                 </div>
          </div>

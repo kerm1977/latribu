@@ -30,9 +30,9 @@
        <img class="logonav" src="{{ url_for('static', filename='img/logo800.png') }}" alt="image" >
     </div> -->
     <!-- CONTENIDO DE HERENCIA -->
+    {% include 'flash.html' %} 
     {% block content %}
     {% endblock %}
-    {% include 'flash.html' %} 
     {% include "footer.html" %}        
 
 

@@ -52,18 +52,18 @@ ckeditor = CKEditor(app)
 
 
 
-# DB SQLITE
+# DB LOCAL SQLITE ------------------------------------------------------------
 # import os
 # dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db.db" #CONECTOR - RUTA ABSOLUTA
 # app.config['SQLALCHEMY_DATABASE_URI'] = dbdir
 
 
-#DB MYSQL 
+#DB LOCAL MYSQL ---------------------------------------------------------------
 												#-U  -P -UBICACION -NOMBRE DB		
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db" 
 
 
-#DB PYTHONANYWHERE
+#DB PYTHONANYWHERE MYSQL  ------------------------------------------------------
 												           #-U         	 -P                      -UBICACION                          -NOMBRE DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
 
@@ -153,12 +153,12 @@ class User(db.Model, UserMixin):
 	telefono			= 	db.Column(db.String(15),	unique=False, 	nullable=True)
 	telefonoE			= 	db.Column(db.String(15),	unique=False, 	nullable=True)
 	celular				= 	db.Column(db.String(15),	unique=False, 	nullable=False)
-	password 			= 	db.Column(db.String(60),	unique=True, 	nullable=False)
-	confirmpassword		= 	db.Column(db.String(60),	unique=True, 	nullable=False)
-	alergias			= 	db.Column(db.String(100),	unique=False, 	nullable=False)
-	cronico				= 	db.Column(db.String(100),	unique=False, 	nullable=False)
-	medicamentos		= 	db.Column(db.String(100),	unique=False, 	nullable=False)
-	nacimiento			= 	db.Column(db.String(20),	unique=False, 	nullable=False)
+	password 			= 	db.Column(db.String(60),	unique=False, 	nullable=False)
+	confirmpassword		= 	db.Column(db.String(60),	unique=False, 	nullable=False)
+	alergias			= 	db.Column(db.String(100),	unique=False, 	nullable=True)
+	cronico				= 	db.Column(db.String(100),	unique=False, 	nullable=True)
+	medicamentos		= 	db.Column(db.String(100),	unique=False, 	nullable=True)
+	nacimiento			= 	db.Column(db.String(20),	unique=False, 	nullable=True)
 
 	imagen_perfil		= 	db.Column(db.String(20),	nullable=False, default="default.jpg")
 	date_added			= 	db.Column(db.DateTime,		nullable=False,	default=datetime.utcnow)
@@ -365,7 +365,6 @@ def server_not_found(e):
 @app.route("/registro", methods=["GET","POST"]) 
 def registro():
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	title 	= 	"Camino de Costa Rica"
 	titulo="Registro"
 	form = formularioRegistro()
 

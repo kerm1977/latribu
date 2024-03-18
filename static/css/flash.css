@@ -1,5 +1,4 @@
-/*.container-main{
-	margin-top: 200px;
+.container-main{
 	display: flex;
 	justify-content: center;
 }
@@ -9,14 +8,9 @@
 	justify-content: center;
 	position: fixed;
 	z-index: 999;
-	margin: auto;
-}
-
-.flash-msn{
-	display: flex;
-	justify-content: center;
 	align-items: center;
 	width: 800px;
+	margin: auto;
 }
 
 
@@ -25,4 +19,3 @@
     text-align: center;
     }
 }
-*/

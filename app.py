@@ -67,6 +67,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db"
 												           #-U         	 -P                      -UBICACION                          -NOMBRE DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
 
+# -----------------------
 
 
 
@@ -76,7 +77,6 @@ db = SQLAlchemy(app)
 app.app_context().push()
 migrate = Migrate(app,db,render_as_batch=True)
 
-
 # CLAVE SECRETA
 bcrypt 	= Bcrypt(app)
 pw_hash = bcrypt.generate_password_hash("SECRET_KEY")
@@ -84,15 +84,6 @@ bcrypt.check_password_hash(pw_hash, "SECRET_KEY")
 app.config['SECRET_KEY'] = pw_hash
 # print(f"La Clave secreta es {pw_hash}")
 # -----------------------
-
-
-
-
-
-
-
-
-
 
 # MANEJO DE SESIONES ----
 login_manager = LoginManager()
@@ -152,7 +143,7 @@ class User(db.Model, UserMixin):
 	email 				= 	db.Column(db.String(120),	unique=True, 	nullable=False)
 	telefono			= 	db.Column(db.String(15),	unique=False, 	nullable=True)
 	telefonoE			= 	db.Column(db.String(15),	unique=False, 	nullable=True)
-	celular				= 	db.Column(db.String(15),	unique=False, 	nullable=False)
+	celular				= 	db.Column(db.String(15),	unique=False, 	nullable=True)
 	password 			= 	db.Column(db.String(60),	unique=False, 	nullable=False)
 	confirmpassword		= 	db.Column(db.String(60),	unique=False, 	nullable=False)
 	alergias			= 	db.Column(db.String(100),	unique=False, 	nullable=True)
@@ -334,32 +325,34 @@ def home():
 	title 	= 	"INICIO"
 	return render_template("index.html",user=user, title=title, lname=lname, enlaces=enlaces, date=date)
 
+#PERMANENCIA
+@app.before_request
+def before_request():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=5)
 
+# LOGOUT
+@app.route("/logout")
+@login_required #Solo se puede editar con login
+def logout():
+   	logout_user()
+   	flash("Sesión finalizada","warning")
+   	return redirect(url_for("login"))
+
+#CAMINO DE CR
 @app.route("/caminocr")
+@login_required #Solo se puede editar con login
 def caminocr():
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("caminocr.html", title=title, date=date)
 
-
+#MULTIMEDIA
 @app.route("/videos")
 def videos():
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
 	return render_template("videos.html", title=title, date=date)
-
-
-@app.errorhandler(404)
-# Error página no encontrada
-def page_not_found(e):
-	date 	= 	datetime.now(timezone('America/Chicago'))
-	return render_template('404.html',date=date), 404
-
-@app.errorhandler(500)
-# Servidor no encontrada
-def server_not_found(e):
-	date 	= 	datetime.now(timezone('America/Chicago'))
-	return render_template('500.html',date=date), 500
 
 # REGISTRO
 @app.route("/registro", methods=["GET","POST"]) 
@@ -401,9 +394,8 @@ def registro():
 			db.session.add(user)
 			db.session.commit()
 			flash(f"Cuenta creada por {form.username.data.upper()} {form.apellido.data.upper()}", "success")
-			return redirect(url_for("registro"))
+			return redirect(url_for("login"))
 	return render_template("registro.html", titulo=titulo, form=form, date=date)
-
 
 # LOGIN
 @app.route("/login", methods=["GET","POST"]) 
@@ -423,9 +415,32 @@ def login():
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			login_user(user)
 			flash(f"Hola {user.username.upper()}", "alert-primary")
-			return redirect(url_for("login"))
+			return redirect(url_for("home"))
 		flash("Contraseña o Usuario invalidos", "danger")
-	return render_template("login.html", vtitulo=titulo, form=form, date=date)
+	return render_template("login.html", titulo=titulo, form=form, date=date)
+
+#_______________________
+# ALERTA DE ERRORES
+# Error URL Invalida
+@app.errorhandler(404)
+# Error página no encontrada
+def page_not_found(e):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	return render_template('404.html',date=date), 404
+
+# Error Servidor Interno
+@app.errorhandler(500)
+# Servidor no encontrada
+def server_not_found(e):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	return render_template('500.html',date=date), 500
+# -----------------------
+
+
+
+
+
+
 
 
 # -----------------------

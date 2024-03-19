@@ -7,7 +7,7 @@
             <!-- Estos son mensajes flashed que vienen desde main.py -->
                     {% with messages = get_flashed_messages(with_categories=true) %}
                       {% if messages %}
-                        <div class="alert alert-{{ messages.0.0 }}" role="alert">
+                            <div class="alert alert-{{ messages.0.0 }}" role="alert"  id="msn">
                           {% for category, message in messages %}
                             {{ message }} </br>
                           {% endfor %}

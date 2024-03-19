@@ -1,7 +1,37 @@
 {% extends "base.html" %}
 {% block content %} 
 
+	<!-- LOGIN -->
+	{% include 'flash.html' %}
+<div class="wrap">
+	<div class="container_register">	
+		<div class="container_form">
+		
 
+		    <div class="login form">
+		     	<header class="text-center header_form">Inicio | <a class="text-danger" href="{{url_for('registro')}}">REGISTRARME</a></header>
+		      
+				<form class="form-signin" action="" method="POST" name="form">
+			        {{form.hidden_tag()}}
+			          
+			        {{form.email(placeholder="Usuario",  id="email").lower()}}
+	        		{{form.password(placeholder="Password",  id="password", type="password" )}}
+	        		 <i class="icon is-small is-right icon-eye" onclick="myFunction1()"> Mostrar</i>
+
+	        		<hr>
+
+				    <a href="#">Olvidó la Contraseña?</a>
+				    
+				</form>
+
+		      	<div class="signup">
+			        <a class="texr-dark" href="{{url_for('registro')}}"><span class="text-dark">Aun no tienes cuenta?</span>
+			        </a>
+				</div>
+			</div>
+	 	</div>
+	</div>
+</div>
 
 
 {% endblock %}

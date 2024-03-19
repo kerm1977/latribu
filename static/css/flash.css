@@ -17,5 +17,6 @@
 .hide{
     margin-top: 110px;
     text-align: center;
+    cursor: pointer;
     }
 }

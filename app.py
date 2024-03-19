@@ -227,9 +227,9 @@ class formularioRegistro(FlaskForm):
 	apellido2 			= 	StringField		('apellido2', validators=[Length(min=3, max=20)])
 	residencia			= 	StringField		('residencia', validators=[Length(min=3, max=100)])
 	email 				= 	EmailField		('email', 	validators=[DataRequired(), Email()])
-	telefono			= 	IntegerField	('telefono', [validators.NumberRange(min=8, max=12, message="Digite un valor entre 8 y 12")])
-	telefonoE			= 	IntegerField	('emergencia', [validators.NumberRange(min=8, max=12, message="Digite un valor entre 8 y 12")])
-	celular				= 	IntegerField	('celular', [validators.NumberRange(min=8, max=12, message="Digite un valor entre 8 y 12")])
+	telefono			= 	IntegerField	('telefono', [validators.NumberRange(min=8, max=12, message="Digite un Teléfono")])
+	telefonoE			= 	IntegerField	('emergencia', [validators.NumberRange(min=8, max=12, message="Digite un Teléfono de emergencia")])
+	celular				= 	IntegerField	('celular', [validators.NumberRange(min=8, max=12, message="Digite un Celular")])
 	password 			= 	PasswordField	('password',validators=[DataRequired(), Length(min=8, max=20)]) 
 	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
 	alergias			= 	StringField		('alergias', validators=[DataRequired(), Length(min=3, max=100)])
@@ -253,7 +253,7 @@ class formularioLogin(FlaskForm):
 	email 				= 	StringField		('email', validators=[DataRequired(), Email()])
 	password 			= 	PasswordField	('password', validators=[DataRequired()]) 
 	rememberme 			= 	BooleanField	('checkbox')
-	submit 				= 	SubmitField		('Ingresar')
+	submit  			= 	SubmitField		('Ingresar')
 
 # Formulario de posteo
 class PostForm(FlaskForm):
@@ -365,7 +365,7 @@ def server_not_found(e):
 @app.route("/registro", methods=["GET","POST"]) 
 def registro():
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	titulo="Registro"
+	titulo="Registro | Inicio"
 	form = formularioRegistro()
 
 	if request.method == "POST":
@@ -404,6 +404,28 @@ def registro():
 			return redirect(url_for("registro"))
 	return render_template("registro.html", titulo=titulo, form=form, date=date)
 
+
+# LOGIN
+@app.route("/login", methods=["GET","POST"]) 
+def login():
+	titulo="Inicio "
+	form = formularioLogin()
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	if request.method == "POST":
+		# Caducidad de sesion con timedelta (from datetime import datetime, timedelta) para que funcione
+		# session.permanent = True
+		# app.permanent_session_lifetime = timedelta(seconds=30)
+		# session.modified = True
+		# flash("CADUCADO", "alert-warning")
+		# return redirect("login")
+
+		user = User.query.filter_by(email=form.email.data.lower()).first()
+		if user and bcrypt.check_password_hash(user.password, form.password.data):
+			login_user(user)
+			flash(f"Hola {user.username.upper()}", "alert-primary")
+			return redirect(url_for("login"))
+		flash("Contraseña o Usuario invalidos", "danger")
+	return render_template("login.html", vtitulo=titulo, form=form, date=date)
 
 
 # -----------------------

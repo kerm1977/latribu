@@ -31,7 +31,7 @@ body.dark .container_register{
 
 
 
-.container_form .registration{
+/*.container_form .registration{
   display: none;
 }
 #check:checked ~ .registration{
@@ -39,7 +39,7 @@ body.dark .container_register{
 }
 #check:checked ~ .login{
   display: none;
-}
+}*/
 #check{
   display: none;
 }

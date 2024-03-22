@@ -6,7 +6,7 @@
 .position{
 	display: flex;
 	justify-content: center;
-	position: fixed;
+	/*position: fixed;*/
 	z-index: 999;
 	align-items: center;
 	width: 800px;
@@ -16,6 +16,7 @@
 
 .hide{
     margin-top: 110px;
+    margin-bottom: -200px;
     text-align: center;
     cursor: pointer;
     }

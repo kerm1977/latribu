@@ -1,6 +1,11 @@
+.container-forms{
+  margin: auto;
+}
+
 .container_register{
    	margin: auto;
-   	max-width: 430px;
+    padding: auto;
+   	max-width: 500px;
   	background: #fff;
  	  border-radius: 7px;
   	box-shadow: 0 5px 10px rgba(0,0,0,0.1);
@@ -103,7 +108,8 @@ body.dark .container_register{
 @media(max-width: 480px){
 	.container_register{
 	   	margin: auto;
-	   	max-width: 420px;
+      padding: auto;
+	   	max-width: 100%;
 	  	background: #fff;
 	 	 border-radius: 7px;
 	  	box-shadow: 0 5px 10px rgba(0,0,0,0.3);

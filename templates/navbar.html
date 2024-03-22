@@ -3,36 +3,51 @@
 
         <li class="mt-5" onclick=cerrarBarra()><a  href="#"><span class="icon-cross"></span></a></li>
 
-        <hr class="separador">
-        <li class="mt-5"><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
+        {%if current_user.is_authenticated%}
+            <hr class="separador">
+            <li><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
+            <li><a  href="{{url_for('home')}}"><span class="icon-meter"></span>Dashboard</a></li>
+            <li><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
+            <li><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span>Cerrar</a></li>
+        {%else%}
+            <li class=""><a  href="{{url_for('login')}}"><span class="icon-user"> </span>Usuario</a></li>
+            <li class=""><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
+        {%endif%}
 
-        <hr class="sidebarline">
-        <li><a  href="{{url_for('registro')}}"><span class="icon-user"> </span>Registro</a></li>
-        
-        <hr class="sidebarline">
-        <li><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
-        
-        <hr class="sidebarline">
-  
-        <hr class="sidebarline">
     </ul>
 
     <ul>
+        {%if current_user.is_authenticated%}
+            <li class="logout"><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span>Cerrar</a></li>
+        {%endif%}
+
         <div class="container logoimagennav">
             <h1 class="letralogo text-nowrap ">LA TRIBU <small class="hikingNav "></small> <strong class="text-hiking">HIKING</strong> |<strong class=""> Costa Rica</strong></small></h1>
         </div>
 
-        <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
-        <li class="hideOnMobile"><a  href="{{url_for('login')}}"><span class="icon-user"> </span>Usuario</a></li>
-        <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-home"> </span>Videos</a></li>
-        <li class="hideOnMobile"><a  href="#"><span class="icon-home"> </span>Enlace</a></li>
-        <li>
+        {%if current_user.is_authenticated%}
+            <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-meter"></span>Dashboard</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
+            <!-- <li class="hideOnMobile"><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span></a></li> -->
+             <li>
             <button class="switch" id="switch">
                 <span class="icon-brightness-contrast"></span>
                 <span class="icon-star-full"></span>
             </button>
-        </li>
+             </li>
+        {%else%}
+            <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('login')}}"><span class="icon-user"> </span>Usuario</a></li>
+        {%endif%}
+    
+
+
+
+       
+       
         <li class="menu" onclick=mostrarBarra()><a href="#"><span class="icon-menu" height="20"></span></a></li>
     </ul>
     
 </nav>
+

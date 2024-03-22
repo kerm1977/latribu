@@ -11,13 +11,19 @@
 	margin-bottom: 200px;
 }
 
+.container_justify{
+	text-align: justify;
+}
+
+.icon-whatsapp{
+	color: #25d366;
+	}
 
 @media(max-width: 768px){
 	.container_info{
 		text-align: justify;
 		margin: auto;
 	}
-
 }
 
 @media(max-width: 575px){

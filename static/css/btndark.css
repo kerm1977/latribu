@@ -70,6 +70,16 @@ body{
 @media(max-width: 850px){
 	.switch{
 		margin-top: 5px;
+		margin-left: -80
+		transition: .8s ease all;
+	}
+}
+
+/*BREAKEPOINT 850****************/
+/********************************/
+@media(max-width: 394px){
+	.switch{
+		margin-top: 5px;
 		transition: .8s ease all;
 	}
 }

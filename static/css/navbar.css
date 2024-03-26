@@ -28,6 +28,8 @@ nav li{
 	height: 50px;
 }
 
+
+
 nav a{
 	height: 100%;
 	padding: 0 30px;
@@ -81,18 +83,17 @@ body.dark .sidebar{
 
 .logoimagennav .letralogo{
 	display: none;
-
 }
 
+.sidebar li a{
+		width: 100%;
+		font-size: 20px;
+		}
 
 .sidebar li{
-	width: 100%;
-
-}
-
-.sidebar a{
-	width: 100%;
-}
+		width: 100%;
+		padding-top: -100px;
+		}		
 
 
 .sidebar li:hover{
@@ -105,9 +106,15 @@ body.dark .sidebar{
 	font-size: 25px;
 }
 
+
+.sidebar ul li span{
+	padding-bottom: -800px;
+}
+
 .icon-menu{
 	font-size: 25px;
 	display: none;
+
 }
 
 .hikingNav{
@@ -140,7 +147,7 @@ body.dark .text-hiking{
 	}
 
 	.logout{
-		display: flex;
+		display: none;
 	}
 
 	.icon-menu{
@@ -191,9 +198,8 @@ body.dark .text-hiking{
 		height: 80px;
 	}
 
-	li a{
-		font-size: 25px;
-	}
+
+	
 }
 
 
@@ -343,8 +349,7 @@ body.dark .text-hiking{
 	}
 
 	.logout{
-		display: flex;
-		margin-right: 100px;
+		display: none;
 	}
 }
 
@@ -381,8 +386,7 @@ body.dark .text-hiking{
 	}
 
 	.logout{
-		display: flex;
-		margin-right: 200px;
+		display: none;
 	}
 
 }
@@ -416,9 +420,8 @@ body.dark .text-hiking{
 		color:  ORANGE; 
 	}
 
-	li .logout{
-		display: inline-block;
-		margin-left: 150px;
+	.logout{
+		display: none;
 	}
 
 }
@@ -452,8 +455,7 @@ body.dark .text-hiking{
 	}
 
 	.logout{
-		display: inline-block;
-		margin-right: 600px;
+		display: none;
 	}
 
 }

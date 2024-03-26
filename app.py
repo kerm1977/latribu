@@ -1,5 +1,6 @@
 #IMPORTS ----------------
-from flask import request, make_response, redirect, render_template, url_for, flash, session, Flask, abort, g
+from flask import request, make_response, redirect, render_template, url_for, flash, Flask, abort, g
+from flask.globals import session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
@@ -30,7 +31,7 @@ from werkzeug.exceptions import HTTPException
 
 
 app = Flask(__name__)
-
+# app.permanent_session_lifetime = timedelta(minutes=1)
 
 #Editor enriquecido
 ckeditor = CKEditor(app)
@@ -52,22 +53,27 @@ ckeditor = CKEditor(app)
 
 
 
-# DB LOCAL SQLITE ------------------------------------------------------------
+# DB SQLITE
 # import os
 # dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db.db" #CONECTOR - RUTA ABSOLUTA
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = dbdir
+	#host = "LaTribuHiking.mysql.pythonanywhere-services.com",
+	#user = "LaTribuHiking",
+	#password = "latribu1977",
+	#database = "LaTribuHiking$db"
 
 
-#DB LOCAL MYSQL ---------------------------------------------------------------
-												#-U  -P -UBICACION -NOMBRE DB		
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db" 
+#DB MYSQL LOCAL
+														 #-U  -P  -UBICACION -NOMBRE DB
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db"
 
 
-#DB PYTHONANYWHERE MYSQL  ------------------------------------------------------
-												           #-U         	 -P                      -UBICACION                          -NOMBRE DB
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
 
-# -----------------------
+#DB MYSQL PYTHONANYWHERE
+												                 #-U          -P                      -UBICACION                          -NOMBRE DB
+#app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
+
 
 
 
@@ -326,10 +332,12 @@ def home():
 	return render_template("index.html",user=user, title=title, lname=lname, enlaces=enlaces, date=date)
 
 #PERMANENCIA
-@app.before_request
-def before_request():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=5)
+# @app.before_request
+# def before_request():
+#     session.permanent = True
+#     # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1)
+#     app.permanent_session_lifetime = timedelta(minutes=1)
+ 
 
 # LOGOUT
 @app.route("/logout")
@@ -404,18 +412,18 @@ def login():
 	form = formularioLogin()
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	if request.method == "POST":
-		# Caducidad de sesion con timedelta (from datetime import datetime, timedelta) para que funcione
-		# session.permanent = True
-		# app.permanent_session_lifetime = timedelta(seconds=30)
-		# session.modified = True
-		# flash("CADUCADO", "alert-warning")
-		# return redirect("login")
-
 		user = User.query.filter_by(email=form.email.data.lower()).first()
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
+			# Caducidad de sesion con timedelta (from datetime import datetime, timedelta) para que funcione
+			session.permanent = True
+			app.permanent_session_lifetime = timedelta(minutes=5)
+			session.modified = True
 			login_user(user)
 			flash(f"Hola {user.username.upper()}", "alert-primary")
 			return redirect(url_for("home"))
+		else:
+			flash("CADUCADO", "alert-warning")
+			return redirect("login")
 		flash("Contraseña o Usuario invalidos", "danger")
 	return render_template("login.html", titulo=titulo, form=form, date=date)
 

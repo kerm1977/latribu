@@ -7,7 +7,7 @@
 	</div>
 
 
-	<div class="">
+	<div class="dashboard">
 		<div class="container cdcr">
 		<div class="row">
 			<div class="col-sm-12 col-md-6">
@@ -40,9 +40,10 @@
 			</div>
 
 			<div class="col-sm-12 col-md-6">
-				
-				<a class="has-background-danger-light"><span class=" icomoon-dash-ico fas fa-solid fa-address-book"></span>Administrador de Usuarios</a>
-			  	<ul class="ul_dash">
+				<div class="admin_dash">
+				<ul class="ul_dash">
+				<a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico fas fa-solid fa-address-book"></span> <strong>Administrador de Usuarios</strong></a>
+			  	
 			        <li><a class="a_dash" href="{{url_for('registro')}}"><span class="icomoon-dash-ico icon-user-plus"></span> Agregar usuarios</a></li>
 			        <li><a class="a_dash" href="{{url_for('contacts')}}"><span class="icomoon-dash-ico icon-user-minus"></span> Borrar y editar usuarios</a>
 		      	</ul>
@@ -51,12 +52,13 @@
 				<ul class="ul_dash">
 				    <!-- <li><a>Team Settings</a></li> -->
 				    <li>
-				      <a class="has-background-danger-light"><span class=" icomoon-dash-ico icon-quill"></span>Administrador de Posts</a>
+				      <a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico icon-quill"></span> <strong>Administrador de Posts</strong></a>
 				    <li><a class="a_dash" href="{{url_for('add_post')}}"><span class="icomoon-dash-ico icon-pencil"></span> Crear Posts</a></li>
 				    <li><a class="a_dash" href="{{url_for('post')}}"><span class="icomoon-dash-ico icon-bin"></span> Borrar y editar Posts</a></li>
 				    <li><a class="a_dash" href="{{url_for('advanceSearch')}}"><span class="icomoon-dash-ico icon-binoculars"></span> Buscar Posts</a></li>
 				    <li><a class="a_dash" href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span><strong>Cerrar Sesion</strong></a></li>
 				</ul>
+			</div>
 			</div>
 		</div>
 		</div>

@@ -1,3 +1,7 @@
+.dashboard{
+	font-size: 18px;
+}
+
 .container_dash{
 	margin-top: 20px;
 	}
@@ -17,9 +21,31 @@
 	text-align: justify;
 }
 
-/*BREAKEPOINT 850****************/
+.admin_dash{
+	margin-top: 220px;
+}
+
+/*BREAKEPOINT 766****************/
 /********************************/
-@media(max-width:575px){
-	.container_dash{
-		margin: auto;
+@media(max-width:767px){
+	.dashboard{
+		font-size: 20px;
 	}
+
+	.dashboard ul{
+		font-size: 20px;
+	}
+
+	.dashboard ul li{
+		font-size: 20px;
+	}
+
+	.dashboard ul li a{
+		font-size: 20px;
+		line-height: 2.2;
+	}
+
+	.admin_dash{
+		margin-top: 20px;
+	}
+}

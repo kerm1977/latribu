@@ -224,13 +224,13 @@ class formularioRegistro(FlaskForm):
 	apellido2 			= 	StringField		('apellido2', validators=[Length(min=3, max=20)])
 	residencia			= 	StringField		('residencia', validators=[Length(min=3, max=100)])
 	email 				= 	EmailField		('email', 	validators=[DataRequired(), Email()])
-	telefono			= 	IntegerField	('telefono', [validators.NumberRange(min=8, max=12, message="Digite un Teléfono")])
-	telefonoE			= 	IntegerField	('emergencia', [validators.NumberRange(min=8, max=12, message="Digite un Teléfono de emergencia")])
-	celular				= 	IntegerField	('celular', [validators.NumberRange(min=8, max=12, message="Digite un Celular")])
+	telefono			= 	StringField		('telefono', [validators.NumberRange(message="Digite un Teléfono")])
+	telefonoE			= 	StringField		('emergencia', [validators.NumberRange(message="Digite un Teléfono de emergencia")])
+	celular				= 	StringField		('celular', [validators.NumberRange(message="Digite un Celular")])
 	password 			= 	PasswordField	('password',validators=[DataRequired(), Length(min=8, max=20)]) 
 	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
 	alergias			= 	StringField		('alergias', validators=[DataRequired(), Length(min=3, max=100)])
-	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()])
+	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[(1,"Group1"),(2,"Group2")],)
 	cronico				= 	StringField		('cronica', validators=[DataRequired(), Length(min=3, max=100)])
 	medicamentos		= 	StringField		('medicamentos', validators=[DataRequired(), Length(min=3, max=100)])
 	nacimiento			= 	StringField		('nacimiento', validators=[DataRequired(), Length(min=3, max=60)])		
@@ -254,7 +254,7 @@ class formularioLogin(FlaskForm):
 
 # Formulario de posteo
 class PostForm(FlaskForm):
-	titulo = CKEditorField("Titulo", validators=[DataRequired()])
+	titulo 		= CKEditorField("Titulo", validators=[DataRequired()])
 	descripcion = StringField("Breve Descripción", validators=[DataRequired()], widget=TextArea())	
 	# content = StringField("Contenido", validators=[DataRequired()], widget=TextArea())
 	content 	= CKEditorField("Descripción", validators=[DataRequired()])
@@ -338,6 +338,125 @@ def home():
 #     # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1)
 #     app.permanent_session_lifetime = timedelta(minutes=1)
  
+# DASHBOARD
+@app.route("/dashboard", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def dashboard():
+	title = "Configuración"
+	date = datetime.now(timezone('America/Chicago'))
+	return render_template("dashboard.html", title=title, date=date)
+
+# ADVANCE SEARCH
+@app.route("/advanceSearch")
+def advanceSearch():
+	posts = Posts.query.all()
+	return render_template("advanceSearch.html", posts=posts)
+
+# LISTA DE CONTACTOS
+@app.route("/contacts")
+@login_required #Solo se puede editar con login
+def contacts():
+	values=User.query.all()
+	users= len(values)
+	titulo = "Inicio"
+	date = datetime.now(timezone('America/Chicago'))
+	return render_template("contacts.html", titulo=titulo, values=values, users=users,date=date)
+
+#ACTUALIZAR CONTACTOS
+@app.route("/update/<int:id>", methods=["GET","POST"])
+def update(id):
+	date = datetime.now(timezone('America/Chicago'))
+	form = formularioRegistro()
+	values=User.query.all()
+	users= len(values)
+	actualizar_registro = User.query.get_or_404(id)
+	if request.method == "POST":
+		actualizar_registro.username = request.form["username"]
+		actualizar_registro.apellido = request.form["apellido"]
+		actualizar_registro.apellido2 = request.form["apellido2"]
+		actualizar_registro.residencia = request.form["residencia"]
+		actualizar_registro.email = request.form["email"]
+		actualizar_registro.telefono = request.form["telefono"]
+		actualizar_registro.telefonoE = request.form["telefonoE"]
+		actualizar_registro.celular = request.form["celular"]
+		actualizar_registro.alergias = request.form["alergias"]
+		actualizar_registro.tiposangre = request.form["tiposangre"]
+		actualizar_registro.cronico = request.form["cronico"]
+		actualizar_registro.medicamentos = request.form["medicamentos"]
+		actualizar_registro.nacimiento = request.form["nacimiento"]
+		try:
+			db.session.commit()
+			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} {form.residencia.data.title()} {form.telefono.data.title()} {form.telefonoE.data.title()} {form.celular.data.title()} {form.telefono.data.title()} {form.tiposangre.data.title()} {form.tiposangre.data.title()} {form.cronico.data.title()} {form.medicamentos.data.title()} {form.nacimiento.data.title()} ha sido modificad@", "success")
+			return render_template("contacts.html", form=form, date=date, actualizar_registro=actualizar_registro, values=values, users=users)
+		except IntegrityError:
+			db.session.rollback()
+			flash(f"{form.email.data} YA EXISTE", "danger")
+			return render_template("update_profile.html", form=form, date=date, actualizar_registro=actualizar_registro)	
+		except:
+			db.session.commit()
+			flash("Hubo un error al intentar modificar el registro", "warning")
+			return render_template("update.html", form=form, date=date, actualizar_registro=actualizar_registro)
+	else:
+		return render_template("update.html", form=form, date=date, actualizar_registro=actualizar_registro)
+
+# ACTUALIZAR PERFIL SOLO SI ESTÁ LOGUEADO DASHBOARD
+@app.route("/update_profile/<int:id>", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def update_profile(id):
+	form = formularioRegistro()
+	values=User.query.all()
+	users= len(values)
+	date = datetime.now(timezone('America/Chicago'))
+	actualizar_registro = User.query.get_or_404(id)
+	if request.method == "POST":
+		actualizar_registro.username 		= 	request.form["username"]
+		actualizar_registro.apellido 		= 	request.form["apellido"]
+		actualizar_registro.apellido2 		= 	request.form["apellido2"]
+		actualizar_registro.residencia 		= 	request.form["residencia"]
+		actualizar_registro.email 			= 	request.form["email"]
+		actualizar_registro.telefono 		= 	request.form["telefono"]
+		actualizar_registro.telefonoE 		= 	request.form["telefonoE"]
+		actualizar_registro.celular 		= 	request.form["celular"]
+		actualizar_registro.alergias 		= 	request.form["alergias"]
+		actualizar_registro.tiposangre 		= 	request.form["tiposangre"]
+		actualizar_registro.cronico 		= 	request.form["cronico"]
+		actualizar_registro.medicamentos 	= 	request.form["medicamentos"]
+		actualizar_registro.nacimiento 		= 	request.form["nacimiento"]
+		
+	
+		try:
+			db.session.commit()
+			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "success")
+			return render_template("dashboard.html", form=form, actualizar_registro=actualizar_registro, values=values, users=users)
+		except IntegrityError:
+			db.session.rollback()
+			flash(f"{form.email.data} YA EXISTE", "danger")
+			return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
+		except:
+			flash("Hubo un error al intentar modificar el registro", "warning")
+			return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
+	else:
+		return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
+
+# BORRAR CONTACTOS
+@app.route("/delete/<int:id>")
+@login_required
+def delete(id):
+	id_delete=id
+	borrar_registro = User.query.get_or_404(id)
+	
+	try:
+		db.session.delete(borrar_registro)
+		db.session.commit()
+		flash(f"El usuario fué Eliminado", "warning")
+		return redirect(url_for("contacts"))
+		return render_template("contacts.html", borrar_registro = borrar_registro)
+	except:
+		db.session.commit()
+		flash("Hubo un error al intentar borrar este registro", "danger")
+		return render_template("delete.html", borrar_registro=borrar_registro, id_delete=id_delete)
+	
+	return render_template("delete.html")
 
 # LOGOUT
 @app.route("/logout")
@@ -426,6 +545,92 @@ def login():
 			return redirect("login")
 		flash("Contraseña o Usuario invalidos", "danger")
 	return render_template("login.html", titulo=titulo, form=form, date=date)
+
+# CREAR POSTS
+@app.route("/add-post", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def add_post():
+	form = PostForm() #PostForm es la clase modelo creada en la parte superior 	
+	if request.method == "POST":
+		poster = current_user.id
+		post = Posts(
+			titulo			=		form.titulo.data, 
+			description		=		form.description.data, 
+			content			=		form.content.data, 
+			poster_id 		=		poster, 
+			slug			=		form.slug.data)
+
+		#Limpia el formulario
+		form.title.data 	= 		""
+		form.description.data = 	""
+		form.content.data 	= 		""
+		form.slug.data 		= 		""
+
+		#Agregar el formulario a la db
+		db.session.add(post)
+		db.session.commit() 
+
+		flash("Publicado correctamente", "success")
+		return redirect("post")
+	return render_template("add_Post.html", form=form)	
+
+# EDITAR POSTS
+@app.route("/posts/edit/<int:id>", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def edit_post(id):
+	post = Posts.query.get_or_404(id)
+	form = PostForm() #PostForm es la clase modelo creada en la parte superior 
+	if request.method == "POST":
+		post.titulo			=		form.titulo.data 
+		post.description	=		form.description.data
+		post.content		=		form.content.data 
+		post.slug			=		form.slug.data
+		
+		#Actualizar la base de datos
+		db.session.add(post)
+		db.session.commit()
+		flash("El post ha sido modificado")
+		return redirect(url_for('post', id=post.id))
+	
+	form.titulo.data		= 		post.titulo
+	form.description.data 	= 		post.description
+	form.content.data 		= 		post.content
+	form.slug.data 			= 		post.slug
+	return render_template("edit_post.html", form=form)
+
+# BORRAR POSTS
+@app.route("/posts/delete/<int:id>")
+@login_required #Solo se puede editar con login
+def delete_post(id):
+	borrar_post = Posts.query.get_or_404(id)
+
+	try:
+		db.session.delete(borrar_post)
+		db.session.commit()
+		flash(f"El Post fué Eliminado", "success")
+		return redirect(url_for("post"))
+		return render_template("post.html", borrar_post = borrar_post)
+	except:
+		db.session.commit()
+		flash("Hubo un error al intentar borrar este Post", "danger")
+		return render_template("post.html", borrar_registro=borrar_registro, id_delete=id_delete)
+	else:
+		return render_template("post.html")
+			
+# VISUALIZAR POSTS
+@app.route("/post")
+@login_required #Solo se puede editar con login
+def post():
+	post = Posts.query.order_by(Posts.date_posted)
+	return render_template("post.html", post=post)
+
+# LEER POST INDIVIDUALMENTE
+@app.route("/posts/<int:id>")
+#@login_required
+def posts(id):
+	post = Posts.query.get_or_404(id)
+	return render_template("posts.html", post=post)
+
 
 #_______________________
 # ALERTA DE ERRORES

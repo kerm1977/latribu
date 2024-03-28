@@ -6,7 +6,7 @@
         {%if current_user.is_authenticated%}
             <hr class="separador">
             <li><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
-            <li><a  href="{{url_for('home')}}"><span class="icon-meter"></span>Dashboard</a></li>
+            <li><a  href="{{url_for('dashboard')}}"><span class="icon-meter"></span>Dashboard</a></li>
             <li><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
             <li><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span>Cerrar</a></li>
         {%else%}
@@ -27,7 +27,7 @@
 
         {%if current_user.is_authenticated%}
             <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
-            <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-meter"></span>Dashboard</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('dashboard')}}"><span class="icon-meter"></span>Dashboard</a></li>
             <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
             <!-- <li class="hideOnMobile"><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span></a></li> -->
              <li>

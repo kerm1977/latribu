@@ -1,9 +1,10 @@
-.wrap{
+.container_title{
 	margin-top: 200px;
+	text-align: center;
 }
 
-.container_title{
-	margin: auto;
+.wrap{
+	margin-top: 200px;
 }
 
 .container_info{
@@ -33,6 +34,7 @@
 	color: white;
 
 }
+
 
 .icon-whatsapp{
 	color: #25d366;

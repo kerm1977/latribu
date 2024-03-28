@@ -1,0 +1,14 @@
+.container_dash{
+	margin-top: 20px;
+	}
+
+.ul_dash{
+    list-style: none;
+}
+
+.a_dash{
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+

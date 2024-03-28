@@ -41,7 +41,7 @@ img {
 }
 
 /*=============== CARD ===============*/
-.container {
+.container_card {
   display: grid;
   place-items: center;
 }

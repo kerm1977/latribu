@@ -153,10 +153,10 @@ class User(db.Model, UserMixin):
 	password 			= 	db.Column(db.String(60),	unique=False, 	nullable=False)
 	confirmpassword		= 	db.Column(db.String(60),	unique=False, 	nullable=False)
 	alergias			= 	db.Column(db.String(100),	unique=False, 	nullable=True)
+	tiposangre 			= 	db.Column(db.String(100),	unique=False, 	nullable=True)
 	cronico				= 	db.Column(db.String(100),	unique=False, 	nullable=True)
 	medicamentos		= 	db.Column(db.String(100),	unique=False, 	nullable=True)
 	nacimiento			= 	db.Column(db.String(20),	unique=False, 	nullable=True)
-
 	imagen_perfil		= 	db.Column(db.String(20),	nullable=False, default="default.jpg")
 	date_added			= 	db.Column(db.DateTime,		nullable=False,	default=datetime.utcnow)
 	# El usuario puede tener muchos posts y "Posts" es el nombre de la clase a la que se va a referenica
@@ -230,7 +230,7 @@ class formularioRegistro(FlaskForm):
 	password 			= 	PasswordField	('password',validators=[DataRequired(), Length(min=8, max=20)]) 
 	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
 	alergias			= 	StringField		('alergias', validators=[DataRequired(), Length(min=3, max=100)])
-	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[(1,"Group1"),(2,"Group2")],)
+	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[("No Indico"),("No Recibo Transfuciones"),("A+"),("A-"),("B+"),("B-"),("AB+"),("AB-"),("O+"),("O-")],)
 	cronico				= 	StringField		('cronica', validators=[DataRequired(), Length(min=3, max=100)])
 	medicamentos		= 	StringField		('medicamentos', validators=[DataRequired(), Length(min=3, max=100)])
 	nacimiento			= 	StringField		('nacimiento', validators=[DataRequired(), Length(min=3, max=60)])		

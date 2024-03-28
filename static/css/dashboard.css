@@ -12,3 +12,14 @@
   padding: 2px 1px 0;
 }
 
+.p_dash{
+	width: 100%;
+	text-align: justify;
+}
+
+/*BREAKEPOINT 850****************/
+/********************************/
+@media(max-width:575px){
+	.container_dash{
+		margin: auto;
+	}

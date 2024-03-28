@@ -229,11 +229,11 @@ class formularioRegistro(FlaskForm):
 	celular				= 	StringField		('celular', [validators.NumberRange(message="Digite un Celular")])
 	password 			= 	PasswordField	('password',validators=[DataRequired(), Length(min=8, max=20)]) 
 	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
-	alergias			= 	StringField		('alergias', validators=[DataRequired(), Length(min=3, max=100)])
+	alergias			= 	StringField		('alergias', validators=[Length(min=3, max=100)])
 	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[("No Indico"),("No Recibo Transfuciones"),("A+"),("A-"),("B+"),("B-"),("AB+"),("AB-"),("O+"),("O-")],)
-	cronico				= 	StringField		('cronica', validators=[DataRequired(), Length(min=3, max=100)])
-	medicamentos		= 	StringField		('medicamentos', validators=[DataRequired(), Length(min=3, max=100)])
-	nacimiento			= 	StringField		('nacimiento', validators=[DataRequired(), Length(min=3, max=60)])		
+	cronico				= 	StringField		('cronica', validators=[ Length(min=3, max=100)])
+	medicamentos		= 	StringField		('medicamentos', validators=[Length(min=3, max=100)])
+	nacimiento			= 	StringField		('nacimiento', validators=[Length(min=3, max=60)])		
 	submit 				= 	SubmitField		('Registrarme')
 
 	def validate_email(self, email):

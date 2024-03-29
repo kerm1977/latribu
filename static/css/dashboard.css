@@ -2,6 +2,10 @@
 	font-size: 18px;
 }
 
+.line_dash{
+	display: none;
+}
+
 .container_dash{
 	margin-top: 20px;
 	}
@@ -22,7 +26,7 @@
 }
 
 .admin_dash{
-	margin-top: 220px;
+	margin-top: 95px;
 }
 
 /*BREAKEPOINT 766****************/
@@ -46,6 +50,10 @@
 	}
 
 	.admin_dash{
-		margin-top: 20px;
+		margin-top: 40px;
+	}
+
+	.line_dash{
+		display: flex;
 	}
 }

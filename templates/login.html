@@ -11,8 +11,16 @@
 		<div class="container container_register">	
 			<div class="container_form">
 			    <div class="login form">
-			     	<header class="text-center header_form">Inicio <a class="text-danger" href="{{url_for('registro')}}"><h5>REGISTRARME</h5></a></header>
-			      
+			    	{% if current_user.is_authenticated %}
+			    	<a class="text-success text-center" href="{{url_for('dashboard')}}"><h5>VOLVER A DASHBOARD</h5></a></header>
+					<p class="text-center">
+			     		<h5 class="text-center">Estás logeado con {{current_user.email}}</h5> 
+			     	</p>
+			     	<hr>
+			     	<br>
+			     	<a class="a_dash" href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span><strong> Cerrar Sesion</strong></a>
+			      	{%else%}
+			      	<header class="text-center header_form">Inicio <a class="text-danger" href="{{url_for('registro')}}"><h5>REGISTRARME</h5></a></header>
 					<form class="form-signin" action="" method="POST" name="form">
 				        {{form.hidden_tag()}}
 				          
@@ -28,6 +36,8 @@
 				    <div class="signup">
 					    <a class="texr-dark" href="{{url_for('registro')}}"><span class="text-dark">Aun no tienes cuenta?</span></a>
 					</div>
+					{%endif%}
+
 				</div>
 		 	</div>
 		</div>

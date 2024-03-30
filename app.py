@@ -19,9 +19,11 @@ from datetime import datetime, timedelta
 from pytz import timezone
 from flask import json
 from werkzeug.exceptions import HTTPException
+import pymysql.cursors
+# from mysql.connector import
 
 # print(now_time.strftime('%I:%M:%S %p'))
-
+# pip uninstall -y -r  fichero
 
 
 
@@ -65,13 +67,17 @@ ckeditor = CKEditor(app)
 
 
 #DB MYSQL LOCAL
-														 #-U  -P  -UBICACION -NOMBRE DB
+				 #-U  -P  -UBICACION -NOMBRE DB
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db"
 
 
 
-#DB MYSQL PYTHONANYWHERE
-												                 #-U          -P                      -UBICACION                          -NOMBRE DB
+#DB MYSQL PYTHONANYWHERE INSTALAR
+#pip uninstall mysql-connector-python-8.0.6
+#pip install mysql-connector-python
+# pip3  install mysql-connector-python
+# pip3  install mysql-connector		
+											                 #-U          -P                      -UBICACION                          -NOMBRE DB
 #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
 
 
@@ -222,7 +228,7 @@ class formularioRegistro(FlaskForm):
 	username 			= 	StringField		('username', validators=[DataRequired(), Length(min=3, max=20)]) 
 	apellido 			= 	StringField		('apellido', validators=[Length(min=3, max=20)]) 
 	apellido2 			= 	StringField		('apellido2', validators=[Length(min=3, max=20)])
-	residencia			= 	StringField		('residencia', validators=[Length(min=3, max=100)])
+	residencia			= 	SelectField		('residencia', choices=[("Cartago"),("San José"),("Alajuela"),("Heredia"),("Limón"),("Guanacaste"),("Puntarenas")])
 	email 				= 	EmailField		('email', 	validators=[DataRequired(), Email()])
 	telefono			= 	StringField		('telefono', [validators.NumberRange(message="Digite un Teléfono")])
 	telefonoE			= 	StringField		('emergencia', [validators.NumberRange(message="Digite un Teléfono de emergencia")])

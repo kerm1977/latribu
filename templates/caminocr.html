@@ -3,7 +3,7 @@
 
 <div class="wrap">
 	<div class="container cdcr">
-		<img class="mb-5 imgcdcr" src="{{ url_for('static', filename='img/LogoDCR.png')}}" alt="">
+		<img class="imgcdcr" src="{{ url_for('static', filename='img/LogoDCR.png')}}" alt="">
 
 
 		<div class="container_title">
@@ -46,26 +46,25 @@
 
 		<p>Si deseas participar con La Tribu de Caminos de Costa Rica puedes registrarte en el enlace: <a href='{{url_for("registro")}}'>Registrarte</a></p>
 		</div>	
-	</div>
-</div>
 
 
 <div class="container-flex container_cdcr">
 	<div class="container">
-
-		<h1 class="text-center">Proximas Etapas:</h1>
 		<div class="row">
+			<h1 class="text-center">Proximas Etapas:</h1>
 			<div class="col-xs-12 col-md-4">
-				<img src="{{url_for('static', filename='img/7.png')}}" class="rounded" alt="Cinque Terre">
+				<img src="{{url_for('static', filename='img/7.png')}}" class="rounded imgs_cdcr" alt="Cinque Terre">
 			</div>
 			<div class="col-xs-12 col-md-4">
-				<img src="{{url_for('static', filename='img/8.png')}}" class="rounded" alt="Cinque Terre"> 
+				<img src="{{url_for('static', filename='img/8.png')}}" class="rounded imgs_cdcr" alt="Cinque Terre"> 
 			</div>
 			<div class="col-xs-12 col-md-4">
-				<img src="{{url_for('static', filename='img/9.png')}}" class="rounded" alt="Cinque Terre"> 
+				<img src="{{url_for('static', filename='img/9.png')}}" class="rounded imgs_cdcr" alt="Cinque Terre"> 
 			</div>
 		</div>
 	</div>
 </div>
+</div>
+
 
 {% endblock %}

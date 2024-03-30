@@ -41,7 +41,13 @@
 	}
 
 .imgcdcr{
-		width: 18%;	
+	width: 18%;
+	margin: auto;
+	}
+
+.imgs_cdcr{
+	width: 80%;
+	margin: auto;
 	}
 
 @media(max-width: 920px){

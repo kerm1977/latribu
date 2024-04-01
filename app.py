@@ -229,12 +229,12 @@ class formularioRegistro(FlaskForm):
 	apellido 			= 	StringField		('apellido', validators=[Length(min=3, max=20)]) 
 	apellido2 			= 	StringField		('apellido2', validators=[Length(min=3, max=20)])
 	residencia			= 	SelectField		('residencia', choices=[("Cartago"),("San José"),("Alajuela"),("Heredia"),("Limón"),("Guanacaste"),("Puntarenas")])
-	email 				= 	EmailField		('email', 	validators=[DataRequired(), Email()])
+	email 				= 	EmailField		('email', 	validators=[DataRequired(message="Digite un Email")])
 	telefono			= 	StringField		('telefono', [validators.NumberRange(message="Digite un Teléfono")])
 	telefonoE			= 	StringField		('emergencia', [validators.NumberRange(message="Digite un Teléfono de emergencia")])
 	celular				= 	StringField		('celular', [validators.NumberRange(message="Digite un Celular")])
-	password 			= 	PasswordField	('password',validators=[DataRequired(), Length(min=8, max=20)]) 
-	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
+	password 			= 	PasswordField	('password',validators=[DataRequired(message='Se Requiere Password'), Length(min=8, max=20)]) 
+	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(message='Se Requiere Confirmación de Password'), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
 	alergias			= 	StringField		('alergias', validators=[Length(min=3, max=100)])
 	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[("No Indico"),("No Recibo Transfuciones"),("A+"),("A-"),("B+"),("B-"),("AB+"),("AB-"),("O+"),("O-")],)
 	cronico				= 	StringField		('cronica', validators=[ Length(min=3, max=100)])
@@ -268,8 +268,8 @@ class PostForm(FlaskForm):
 	altura 		= IntegerField("Altimetría")
 	lugar		= StringField("Nombre del Lugar", validators=[DataRequired()])
 	finaliza	= StringField("Finaliza", validators=[DataRequired()])
-	etapa		= SelectField("Etapa #", validators=[DataRequired()])
-	capacidad	= SelectField("Capacidad de Transporte", validators=[DataRequired()])
+	etapa		= SelectField("Etapa #", validators=[DataRequired()], choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11"),("12"),("13"),("14"),("15"),("16")])
+	capacidad	= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
 	hora		= TimeField("Hora de Inicio", validators=[DataRequired()])
 	salida		= StringField("Salimos de:", validators=[DataRequired()]) 
 	dificultad	= StringField("Dificultad:", validators=[DataRequired()])
@@ -278,10 +278,10 @@ class PostForm(FlaskForm):
 	coordinador = StringField("Guía", validators=[DataRequired()])	
 	precio		= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
 	limite_pago	= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
-	parqueo 	= SelectField("Parqueo", validators=[DataRequired()])
-	mascotas	= SelectField("Acepta Mascotas", validators=[DataRequired()])				
-	duchas		= SelectField("Hay Duchas", validators=[DataRequired()])
-	banos		= SelectField("Servicios Sanitarios", validators=[DataRequired()])
+	parqueo 	= SelectField("Parqueo", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	mascotas	= SelectField("Acepta Mascotas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])				
+	duchas		= SelectField("Hay Duchas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	banos		= SelectField("Servicios Sanitarios", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
 	poster_id 	= StringField("Autor", validators=[DataRequired()])
 	slug 		= StringField("Detalle", validators=[DataRequired()])
 	submit 		= SubmitField("Crear")
@@ -498,7 +498,11 @@ def registro():
 		username = User.query.filter_by(username=request.form["username"]).first()
 		email = User.query.filter_by(email=request.form["email"]).first()
 		
-		if {form.password.data} != {form.confirmpassword.data}:
+		if {form.password.data} is None:
+			flash(f"El Mail no puede quedar vacio", "danger")
+		elif {form.password.data} is None and {form.confirmpassword.data} is None:
+			flash(f"El password no puede quedar vacio", "danger")
+		elif {form.password.data} != {form.confirmpassword.data}:
 			flash(f"La contraseña y la verificación NO son iguales", "danger")
 		elif email:
 			flash("""Email ya existen. intente con otro""", "warning")
@@ -517,9 +521,9 @@ def registro():
 				celular				=		form.celular.data,
 				password 			=		hashed_password, 
 				confirmpassword 	=		hashed_password,
-				alergias			=		form.alergias.data,
-				cronico				=		form.cronico.data,
-				medicamentos		=		form.medicamentos.data,
+				alergias			=		form.alergias.data.title(),
+				cronico				=		form.cronico.data.title(),
+				medicamentos		=		form.medicamentos.data.title(),
 				nacimiento			=		form.nacimiento.data,
 				#  nombre			= 			campo
 				)

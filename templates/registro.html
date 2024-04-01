@@ -18,7 +18,8 @@
 
            	
             <input type="text" placeholder="Ingrese su Usuario" name="username">
-            <input type="text" placeholder="Ingrese su email" name="email">
+            <!-- <input type="text" placeholder="Ingrese su email" name="email" id="email"> -->
+            {{form.email(placeholder="Email",  id="email").lower()}}
             <input type="text" placeholder="Ingrese su Primer Apellido" name="apellido" class="d-none">
             <input type="text" placeholder="Ingrese su Segundo Apellido" name="apellido2" class="d-none">
             <input type="text" placeholder="Residencia" name="residencia" class="d-none">

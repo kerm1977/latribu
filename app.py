@@ -21,16 +21,12 @@ from flask import json
 from werkzeug.exceptions import HTTPException
 import pymysql.cursors
 # from mysql.connector import
-
 # print(now_time.strftime('%I:%M:%S %p'))
 # pip uninstall -y -r  fichero
 
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=1)
@@ -46,14 +42,9 @@ app = Flask(__name__)
 #Editor enriquecido
 ckeditor = CKEditor(app)
 
-
-
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 
 # DB SQLITE
 # import os
@@ -80,9 +71,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db"
 											                 #-U          -P                      -UBICACION                          -NOMBRE DB
 #app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://LaTribuHiking:latribu1977@LaTribuHiking.mysql.pythonanywhere-services.com/LaTribuHiking$db"
 
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 
 # OTRA CONFIGURACIÓN
 db = SQLAlchemy(app)
@@ -107,13 +98,9 @@ def load_user(user_id):
 	return User.query.get(int(user_id))
 # MANEJO DE SESIONES ----
 
-
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 
 #FECHA ------------------
 #Permite pasar al idioma local las fechas y alertas
@@ -131,14 +118,9 @@ def fecha(date):
 	return date.strftime("%A, %d de %B %Y ")
 # -----------------------
 
-
-
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 
 #TABLAS -----------------
 # -----------------------
@@ -203,13 +185,9 @@ class Posts(db.Model):
 
 # -----------------------
 
-
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 # MODELOS FORMULARIO TABLAS LOGIN Y DE REGISTRO 
 # -----------------------
 # /::::::::::::::::::::/
@@ -290,18 +268,6 @@ class PostForm(FlaskForm):
 	
 	# BORRAR SOLO referenciado
 	# 			=	db.Column(db.Float)
-
-	
-	
-	
-	
-
-
-	
-	
-	
-	
-	
 	# date_posted			=	db.Column(db.DateTime, default=datetime.utcnow)
 	# slug 				= 	db.Column(db.String(255))
 
@@ -312,14 +278,9 @@ class SearchForm(FlaskForm):
   	submit 				= 	SubmitField		('Buscar')
 # -----------------------
 
-
-
-
-
-
-
-
-
+##########################################################################
+##########################################################################
+##########################################################################
 # #VIEWS ------------------
 # Viables que se pueden utilizar en jinja
 # safe, capitalize, lower, upper, title,trim,striptags
@@ -377,22 +338,22 @@ def update(id):
 	users= len(values)
 	actualizar_registro = User.query.get_or_404(id)
 	if request.method == "POST":
-		actualizar_registro.username = request.form["username"]
-		actualizar_registro.apellido = request.form["apellido"]
-		actualizar_registro.apellido2 = request.form["apellido2"]
-		actualizar_registro.residencia = request.form["residencia"]
-		actualizar_registro.email = request.form["email"]
-		actualizar_registro.telefono = request.form["telefono"]
-		actualizar_registro.telefonoE = request.form["telefonoE"]
-		actualizar_registro.celular = request.form["celular"]
-		actualizar_registro.alergias = request.form["alergias"]
-		actualizar_registro.tiposangre = request.form["tiposangre"]
-		actualizar_registro.cronico = request.form["cronico"]
-		actualizar_registro.medicamentos = request.form["medicamentos"]
-		actualizar_registro.nacimiento = request.form["nacimiento"]
+		actualizar_registro.username 		= request.form["username"]
+		actualizar_registro.apellido 		= request.form["apellido"]
+		actualizar_registro.apellido2 		= request.form["apellido2"]
+		actualizar_registro.residencia 		= request.form["residencia"]
+		actualizar_registro.email 			= request.form["email"]
+		actualizar_registro.telefono 		= request.form["telefono"]
+		actualizar_registro.telefonoE 		= request.form["telefonoE"]
+		actualizar_registro.celular 		= request.form["celular"]
+		actualizar_registro.alergias 		= request.form["alergias"]
+		actualizar_registro.tiposangre 		= request.form["tiposangre"]
+		actualizar_registro.cronico 		= request.form["cronico"]
+		actualizar_registro.medicamentos 	= request.form["medicamentos"]
+		actualizar_registro.nacimiento 		= request.form["nacimiento"]
 		try:
 			db.session.commit()
-			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} {form.residencia.data.title()} {form.telefono.data.title()} {form.telefonoE.data.title()} {form.celular.data.title()} {form.telefono.data.title()} {form.tiposangre.data.title()} {form.tiposangre.data.title()} {form.cronico.data.title()} {form.medicamentos.data.title()} {form.nacimiento.data.title()} ha sido modificad@", "success")
+			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "success")
 			return render_template("contacts.html", form=form, date=date, actualizar_registro=actualizar_registro, values=values, users=users)
 		except IntegrityError:
 			db.session.rollback()

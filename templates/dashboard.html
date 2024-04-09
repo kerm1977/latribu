@@ -3,6 +3,9 @@
 <div class="wrap">
 	<div class="container cdcr">
 		<h2 class="text-center">Configuración General</h2>
+		<h4 class="text-center text-success">{{ current_user.username | title }}
+			{{current_user.apellido | title}}
+			{{current_user.apellido2 | title}}</h4>			
 		<hr>	
 
 	</div>
@@ -40,39 +43,36 @@
 				{% endif %}
 			</div>
 
-			<div class="col-sm-12 col-md-6">
-
-
-
-				<div class="admin_dash">
-			<ul class="ul_dash">
-				
-				<!-- si el mail es cualquiera de los 2 muestra las dos opciones  -->
-				{%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
-				<a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico fas fa-solid fa-address-book"></span> <strong>Administrador de Usuarios</strong></a>
-				<hr class="line_dash">      
-  				<li><a class="a_dash" href="{{url_for('registro')}}"><span class="icomoon-dash-ico icon-user-plus"></span> Agregar amigo o familiar</a></li>
-			    <li><a class="a_dash" href="{{url_for('contacts')}}"><span class="icomoon-dash-ico icon-user-minus"></span> Borrar y editar usuarios</a>
-			    
-			    <!-- sino solo muestra agregar amigo o familiar -->
-			    {%else%}
-			    	
-			    {%endif%}
-		      	</ul>
-			  	<br>
-
+			
+		<div class="col-sm-12 col-md-6">
+			<div class="admin_dash">
 				<ul class="ul_dash">
-				    <!-- <li><a>Team Settings</a></li> -->
-				    <li>
-				      <a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico icon-quill"></span> <strong>Administrador de Posts</strong></a>
-				      <hr class="line_dash">
-				    <li><a class="a_dash" href="{{url_for('add_post')}}"><span class="icomoon-dash-ico icon-pencil"></span> Crear Posts</a></li>
-				    <li><a class="a_dash" href="{{url_for('post')}}"><span class="icomoon-dash-ico icon-bin"></span> Borrar y editar Posts</a></li>
-				    <li><a class="a_dash" href="{{url_for('advanceSearch')}}"><span class="icomoon-dash-ico icon-binoculars"></span> Buscar Posts</a></li>
-				    <br>
-				    <li><a class="a_dash" href="{{url_for('logout')}}"><span class="text-danger icomoon-dash-ico icon-switch"></span><strong class="text-danger"> Cerrar Sesion</strong></a></li>
-				</ul>
-			</div>
+					
+					<!-- si el mail es cualquiera de los 2 muestra las dos opciones  -->
+					{%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
+					<a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico fas fa-solid fa-address-book"></span> <strong>Administrador de Usuarios</strong></a>
+					<hr class="line_dash">      
+	  				<li><a class="a_dash" href="{{url_for('registro')}}"><span class="icomoon-dash-ico icon-user-plus"></span> Agregar amigo o familiar</a></li>
+				    <li><a class="a_dash" href="{{url_for('contacts')}}"><span class="icomoon-dash-ico icon-user-minus"></span> Borrar y editar usuarios</a>
+				    
+				    <!-- sino solo muestra agregar amigo o familiar -->
+				    {%else%}
+				    	
+				    {%endif%}
+			      	</ul>
+			  	<br>
+					<ul class="ul_dash">
+					    <!-- <li><a>Team Settings</a></li> -->
+					    <li>
+					      <a class="has-background-danger-light a_dash"><span class=" icomoon-dash-ico icon-quill"></span> <strong>Administrador de Posts</strong></a>
+					      <hr class="line_dash">
+					    <li><a class="a_dash" href="{{url_for('add_post')}}"><span class="icomoon-dash-ico icon-pencil"></span> Crear Posts</a></li>
+					    <li><a class="a_dash" href="{{url_for('post')}}"><span class="icomoon-dash-ico icon-bin"></span> Borrar y editar Posts</a></li>
+					    <li><a class="a_dash" href="{{url_for('advanceSearch')}}"><span class="icomoon-dash-ico icon-binoculars"></span> Buscar Posts</a></li>
+					    <br>
+					    <li><a class="a_dash" href="{{url_for('logout')}}"><span class="text-danger icomoon-dash-ico icon-switch"></span><strong class="text-danger"> Cerrar Sesion</strong></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		</div>

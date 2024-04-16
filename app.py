@@ -405,6 +405,36 @@ def update_profile(id):
 	else:
 		return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
 
+# CARD
+@app.route("/card", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def card():
+	form = formularioRegistro()
+	values=User.query.all()
+	users= len(values)
+	date = datetime.now(timezone('America/Chicago'))
+	if request.method == "POST":
+		actualizar_registro.username 		= 	request.form["username"]
+		actualizar_registro.apellido 		= 	request.form["apellido"]
+		actualizar_registro.apellido2 		= 	request.form["apellido2"]
+		actualizar_registro.residencia 		= 	request.form["residencia"]
+		actualizar_registro.email 			= 	request.form["email"]
+		actualizar_registro.telefono 		= 	request.form["telefono"]
+		actualizar_registro.telefonoE 		= 	request.form["telefonoE"]
+		actualizar_registro.celular 		= 	request.form["celular"]
+		actualizar_registro.alergias 		= 	request.form["alergias"]
+		actualizar_registro.tiposangre 		= 	request.form["tiposangre"]
+		actualizar_registro.cronico 		= 	request.form["cronico"]
+		actualizar_registro.medicamentos 	= 	request.form["medicamentos"]
+		actualizar_registro.nacimiento 		= 	request.form["nacimiento"]
+	else:
+		return render_template("card.html", form=form, date=date)
+
+
+
+
+
+
 # BORRAR CONTACTOS
 @app.route("/delete/<int:id>")
 @login_required

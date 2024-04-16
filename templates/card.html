@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %} 
+<div class="wrap">
+	<div class="container">
+		{% if current_user.is_authenticated %}
+			<h4>Mi Perfil</h4>
+			<br> 
+			<hr>
+
+			
+		<ul class="ul_dash">
+	  		<li><strong>NOMBRE: </strong>{{ current_user.username | title }}</li> 
+	  		<li><strong>PRIMER APELLIDO:</strong> {{current_user.apellido | title}}</li>	
+			<li><strong>SEGUNDO APELLIDO:</strong> {{current_user.apellido2 | title}}</li>
+	  		<li><strong>EMAIL: </strong> {{current_user.email}}</li>
+	  		<li><strong>RESIDENCIA: </strong>{{current_user.residencia | title }}</li>
+	  		<li><strong>TELEFONO: </strong>{{current_user.telefono}}</li>
+	  		<li><strong>TELEFONO EMERGENCIA: </strong>{{current_user.telefonoE}}</li>
+	  		<li><strong>CELULAR: </strong>{{current_user.celular}}</li>
+	  		<li><strong>ALERGIAS: </strong>{{current_user.alergias | title }}</li>
+	  		<li><strong>TIPO DE SANGRE: </strong>{{current_user.tiposangre | title }}</li>
+	  		<li><strong>ENFERMEDADES CRÓNICAS: </strong>{{current_user.cronico | title }}</li>
+	  		<li><strong>MEDICAMENTOS: </strong>{{current_user.medicamentos | title }}</li>
+	  		<li><strong>FECHA NACIMIENTO: </strong>{{current_user.nacimiento | title }}</li>
+		</ul>
+	{% endif %}
+	</div>
+		
+		
+	</div>	
+{% endblock %}

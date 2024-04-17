@@ -41,8 +41,7 @@
 				  		<li><strong>FECHA NACIMIENTO: </strong>{{current_user.nacimiento | title }}</li>
 			  		</ul>
 				{% endif %}
-				<hr>	
-				<a href="{{url_for('card')}}"><span><h2 class="text-center text-info">GENERAR CARNET</h2></span></a>
+				
 			</div>
 
 			
@@ -71,6 +70,8 @@
 					    <li><a class="a_dash" href="{{url_for('add_post')}}"><span class="icomoon-dash-ico icon-pencil"></span> Crear Posts</a></li>
 					    <li><a class="a_dash" href="{{url_for('post')}}"><span class="icomoon-dash-ico icon-bin"></span> Borrar y editar Posts</a></li>
 					    <li><a class="a_dash" href="{{url_for('advanceSearch')}}"><span class="icomoon-dash-ico icon-binoculars"></span> Buscar Posts</a></li>
+					    <hr>	
+						<a href="{{url_for('card')}}"><span><h2 class="text-center text-info">GENERAR CARNET</h2></span></a>
 					    <br>
 					    <li><a class="a_dash" href="{{url_for('logout')}}"><span class="text-danger icomoon-dash-ico icon-switch"></span><strong class="text-danger"> Cerrar Sesion</strong></a></li>
 					</ul>

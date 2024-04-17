@@ -1,29 +1,52 @@
 {% extends "base.html" %}
 {% block content %} 
 <div class="wrap">
-	<div class="container">
-		{% if current_user.is_authenticated %}
-			<h4>Mi Perfil</h4>
-			<br> 
-			<hr>
+	<div class="container cont_card">
+		<div class="image_tp_card">
 
-			
-		<ul class="ul_dash">
-	  		<li><strong>NOMBRE: </strong>{{ current_user.username | title }}</li> 
-	  		<li><strong>PRIMER APELLIDO:</strong> {{current_user.apellido | title}}</li>	
-			<li><strong>SEGUNDO APELLIDO:</strong> {{current_user.apellido2 | title}}</li>
-	  		<li><strong>EMAIL: </strong> {{current_user.email}}</li>
-	  		<li><strong>RESIDENCIA: </strong>{{current_user.residencia | title }}</li>
-	  		<li><strong>TELEFONO: </strong>{{current_user.telefono}}</li>
-	  		<li><strong>TELEFONO EMERGENCIA: </strong>{{current_user.telefonoE}}</li>
-	  		<li><strong>CELULAR: </strong>{{current_user.celular}}</li>
-	  		<li><strong>ALERGIAS: </strong>{{current_user.alergias | title }}</li>
-	  		<li><strong>TIPO DE SANGRE: </strong>{{current_user.tiposangre | title }}</li>
-	  		<li><strong>ENFERMEDADES CRÓNICAS: </strong>{{current_user.cronico | title }}</li>
-	  		<li><strong>MEDICAMENTOS: </strong>{{current_user.medicamentos | title }}</li>
-	  		<li><strong>FECHA NACIMIENTO: </strong>{{current_user.nacimiento | title }}</li>
-		</ul>
-	{% endif %}
+
+			{% if current_user.is_authenticated %}
+				<h4 class="title_card">{{ current_user.username | title }} {{current_user.apellido | title}} {{current_user.apellido2 | title}}</h4>
+				<p class="text-center tel_emergencia"><strong>TELEFONO EMERGENCIA 1: </strong><span class="icon-whatsapp"></span> + {{current_user.telefonoE}}</p>
+
+				<img class="img_card" src="{{ url_for('static', filename='img/card.jpg') }}" alt="">
+		
+				<div class="ts_container">	
+					<div class="tipo_sangre"></div>
+					<div class="title_ts">Tipo de Sangre</div> <h1 class="text_ts text-center">{{current_user.tiposangre | title }}</h1>
+					</div>
+
+
+				<hr>
+
+
+				
+			<ul class="ul_dash">
+		  		{%if current_user.residencia or current_user.telefono or current_user.celular%}	
+			  		<li><strong>Residencia: </strong>{{current_user.residencia | title }}</li>
+		  			<li><strong>Mi Teléfono: </strong>{{current_user.telefono}}</li>
+		  			<li><strong>TELEFONO EMERGENCIA 2: </strong>{{current_user.celular}}</li>
+		  			<br>
+		  		{%else%}
+		  		{%endif%}		
+
+		  		<h4><span class="icon-aid-kit"></span> Perfil de salud:</h4>
+
+		  		<div class="listaSalud">
+			  		<li><strong>ALERGIAS: </strong>{{current_user.alergias | title }}</li>
+			  		<!-- <li><strong>TIPO DE SANGRE: </strong>{{current_user.tiposangre | title }}</li> -->
+			  		<li><strong>ENFERMEDADES CRÓNICAS: </strong>{{current_user.cronico | title }}</li>
+			  		<li><strong>MEDICAMENTOS: </strong>{{current_user.medicamentos | title }}</li>
+		  		</div>
+
+			<hr>
+				<div class="">FECHA NACIMIENTO: </strong>{{current_user.nacimiento | title }}</li>	
+				<div class="text_footer">EMAIL: {{current_user.email}}</div>
+
+
+			</ul>
+			{% endif %}
+		</div>
 	</div>
 		
 		

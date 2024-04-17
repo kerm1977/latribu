@@ -46,7 +46,7 @@
 				</div>
 			  <!-- <p class="help is-success">Nombre de Usuario Correcto</p> -->
 		</div>
-
+		<br>
 
 
 
@@ -65,7 +65,7 @@
 			</div>
 			<!-- <p class="help is-success">Nombre de Usuario Correcto</p> -->
 			</div>
-
+			<br>	
 
 
 
@@ -85,7 +85,7 @@
 			  </div>
 			  <!-- <p class="help is-success">Nombre de Usuario Correcto</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -105,7 +105,7 @@
 			  </div>
 			  <!-- <p class="help is-success">Nombre de Usuario Correcto</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -125,7 +125,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -145,7 +145,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -156,9 +156,9 @@
 
 <!-- MODIFICAR TELEFONO EMERGENCIA -->
 			<div class="field">
-			  <label class="label">MODIFICAR TELEFONO EMERGENCIA</label>
+			  <label class="label">MODIFICAR TELEFONO EMERGENCIA #1</label>
 			  <div class="control has-icons-left has-icons-right">
-			    {{form.telefonoE(placeholder="Teléfono Emergencia", class="form-control", value=actualizar_registro.telefonoE, id="telefonoE")}}
+			    {{form.telefonoE(placeholder="Teléfono Emergencia #1", class="form-control", value=actualizar_registro.telefonoE, id="telefonoE")}}
 			    <span class="icon is-small is-left">
 			      <i class=""></i>
 			    </span>
@@ -166,7 +166,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>			
-
+			<br>
 
 
 
@@ -175,9 +175,9 @@
 
 <!-- MODIFICAR CELULAR-->
 			<div class="field">
-			  <label class="label">MODIFICAR CELULAR</label>
+			  <label class="label">MODIFICAR TELEFONO EMERGENCIA #2</label>
 			  <div class="control has-icons-left has-icons-right">
-			    {{form.celular(placeholder="Celular", class="form-control", value=actualizar_registro.celular, id="celular")}}
+			    {{form.celular(placeholder="Teléfono Emergencia #2", class="form-control", value=actualizar_registro.celular, id="celular")}}
 			    <span class="icon is-small is-left">
 			      <i class=""></i>
 			    </span>
@@ -185,7 +185,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -205,7 +205,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -225,7 +225,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -241,7 +241,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 
@@ -256,7 +256,7 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 <!-- MODIFICAR MEDICAMENTOS-->
@@ -270,21 +270,22 @@
 			  </div>
 			  <!-- <p class="help is-danger">This email is invalid</p> -->
 			</div>
-
+			<br>
 
 
 <!-- BOTON ACTUALIZAR -->
   			<hr>
-            <button type="submit" name="Registrarme" action="{{ url_for('dashboard')}}" class="btn btn-success is-light mt-5 mr-5">ACTUALIZAR DATOS</button>
-            <button class="btn btn-warning"><a href="{{ url_for('dashboard')}}">SALIR</a></button>
-                   	
+  		<div class="btn-line mt-4">
+            <button type="submit" name="Registrarme" action="{{ url_for('dashboard')}}" class="btn btn-success is-light">ACTUALIZAR DATOS</button>
+            <button class="btn btn-danger"><a href="{{ url_for('dashboard')}}">SALIR</a></button>
+        </div>       	
         </form>
         </div>
 	        
 	    <div class="col-xs-12 col-md-6">
 	    	<h2 class="text-center">Información</h2>
 			
-			<p>Es importante que la persona participante de nuestro grupo rellene todos los datos que se le solicitan para poder reccionar ante situaciones especiales o de emergencia. </p>
+			<p>Es importante que la persona participante de nuestro grupo rellene todos los datos que se le solicitan para poder reccionar ante situaciones especiales o de emergencia. Además tome en cuenta que cada vez que modifique algún dato verifique que ninguna casilla fue modificada de manera accidental,  principalmente el tipo de Sangre y los teléfonos de referencia. </p>
 
 			<p><span class="text-danger">Ante la Ley de Protección de la Persona frente al tratamiento de sus datos personales
 			<strong>Nº 8968</strong></span> nos comprometemos a resguardar esta información y será manipulada únicamente bajo condiciones estrictamente de salud o alguna acción que ponga en riesgo la integridad del participante.</p>
@@ -293,7 +294,7 @@
  			{{current_user.apellido | title}}</strong></p>
 
  			<p>No omita indicar si permite o no transfuciones de sangre y el tipo de sangre correcto.</p>
- 			<p>Además si tiene enfermedades crónicas o alergias de algún tipo que sea importante conocer no omita colocar esa información.</p>
+ 			<p>Además si tiene enfermedades crónicas o alergias de algún tipo que sea importante conocer,  no omita colocar esa información.</p>
 
 
 

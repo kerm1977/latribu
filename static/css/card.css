@@ -1,8 +1,165 @@
 .image_tp_card{
-	border-radius: 50px; 
+	background-color: #df4b27;
+	border-radius: 35px; 
 	width: 50%;
 	height: 50%;
 	margin: auto;	
-	position: relative;
+	position: relative;.
+	text-align: center;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+.img_card{
+	width: 25%;
+	margin: auto;
 }
 
+.icon-whatsapp{
+	color: white;
+	padding-left: 10px;
+}
+
+.listaSalud{
+	font-size: 20px;
+}
+
+.title_card{
+	text-align: center;
+	padding-top: 30px;
+	width: 100%;
+}
+
+
+.text_footer{
+	text-align: right;
+	margin-right: 40px;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: black;
+}
+
+.tipo_sangre{
+	display: flex;
+	padding: 15px;
+}
+
+.ts_container{
+	margin: auto;
+	background-color: black;
+}
+
+
+.title_ts{
+	background-color: #df4b27;
+	padding-left: 10px;
+	font-size: 20px;  
+}
+
+.text_ts{
+	background-color: #df4b27;
+	font-size: 3.5rem;
+	padding-left: 25px;
+}
+
+.tel_emergencia{
+	font-size: 20px;
+}
+
+
+@media(max-width: 991px){
+	.cont_card{
+		margin: auto;
+	}
+
+	.title_ts{
+		background-color: grey;
+		padding-left: 10px;
+		font-size: 20px;  
+		color: white;
+	}		
+
+  	.image_tp_card{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts{
+    	font-size: 3.5; /* 40px/16=2.5em */  
+    	/*font-size: 1.875em; /* 30px/16=1.875em */ 
+    	/*font-size: 0.875em; /* 14px/16=0.875em */
+  	}
+
+  	.ts_container{
+		width: 100%;
+	}
+
+
+}
+
+
+
+@media(max-width: 767px){
+	.cont_card{
+		margin: auto;
+	}		
+
+  	.image_tp_card{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts{
+    	font-size: 3.5; /* 40px/16=2.5em */  
+    	/*font-size: 1.875em; /* 30px/16=1.875em */ 
+    	/*font-size: 0.875em; /* 14px/16=0.875em */
+  	}
+
+  	.ts_container{
+		width: 100%;
+	}
+
+
+}
+
+
+@media(max-width: 480px){
+	.cont_card{
+		margin: auto;
+	}		
+
+  	.image_tp_card{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts{
+		padding-top: 20px;
+    	font-size: 40px; 
+  }
+
+  .text_footer{
+	text-align: center;
+	margin-right: 40px;
+	padding-bottom: 20px;
+	font-size: 15px;
+	color: black;
+	}
+}
+
+
+@media(max-width: 320px){
+	.cont_card{
+		margin: auto;
+	}		
+
+  	.image_tp_card{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts{
+		padding-top: 20px;
+    	font-size: 30px; 
+  }
+}

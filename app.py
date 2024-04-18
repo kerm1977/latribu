@@ -394,7 +394,6 @@ def update_profile(id):
 		try:
 			db.session.commit()
 			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "success")
-			return render_template("dashboard.html", form=form, actualizar_registro=actualizar_registro, values=values, users=users)
 		except IntegrityError:
 			db.session.rollback()
 			flash(f"{form.email.data} YA EXISTE", "danger")
@@ -402,6 +401,7 @@ def update_profile(id):
 		except:
 			flash("Hubo un error al intentar modificar el registro", "warning")
 			return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
+		return render_template("dashboard.html", date=date, form=form, actualizar_registro=actualizar_registro, values=values, users=users)	
 	else:
 		return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
 
@@ -673,9 +673,3 @@ if __name__ == "__main__":
 		# $ flask db migrate -m "mensaje x"
 		# $ flask db upgrade
 # -----------------------
-
-
-
-
-
-

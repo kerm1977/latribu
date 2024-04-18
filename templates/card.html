@@ -13,13 +13,12 @@
 		
 				<div class="ts_container">	
 					<div class="tipo_sangre"></div>
-					<div class="title_ts">Tipo de Sangre</div> <h1 class="text_ts text-center">{{current_user.tiposangre | title }}</h1>
-					</div>
+					<div class="title_ts">Tipo de Sangre</div> <h1 class="text_ts text-center">{{current_user.tiposangre | upper }}</h1>
+				</div>
 
 
 				<hr>
-
-
+			
 				
 			<ul class="ul_dash">
 		  		{%if current_user.residencia or current_user.telefono or current_user.celular%}	

@@ -313,6 +313,17 @@ def dashboard():
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("dashboard.html", title=title, date=date)
 
+
+# DESCRIPCION DEL SITIO
+@app.route("/siteDescript")
+@login_required #Solo se puede editar con login
+def siteDescript():
+	title = "Configuración"
+	date = datetime.now(timezone('America/Chicago'))
+	return render_template("siteDescript.html", title=title, date=date)
+
+
+
 # ADVANCE SEARCH
 @app.route("/advanceSearch")
 def advanceSearch():

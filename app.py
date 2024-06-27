@@ -183,12 +183,22 @@ class Posts(db.Model):
 	# Donde user.id es la clase del modelo llamada  class User y .id el id de esa clase
 	poster_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
+
+# AGREGAR ETIQUETAS EN FOMULARIO DEL CURSO HTML
+class Tags(db.Model):
+	#Al agregar un campo hay que migrarlo a la DB y aquí se crean los campos del usuario
+	id 					=	db.Column(db.Integer, 	primary_key=True)
+	etiqueta			= 	db.Column(db.Text, unique=False, nullable=False)
+	descripcion			= 	db.Column(db.Text, unique=False,	nullable=True)
+	atributos			= 	db.Column(db.Text, unique=False,	nullable=True)
+	date_added			= 	db.Column(db.DateTime,	nullable=False,	default=datetime.utcnow)
+
 # -----------------------
 
 ##########################################################################
 ##########################################################################
 ##########################################################################
-# MODELOS FORMULARIO TABLAS LOGIN Y DE REGISTRO 
+# MODELOS FORMULARIO TABLAS 
 # -----------------------
 # /::::::::::::::::::::/
 # -----------------------
@@ -238,44 +248,46 @@ class formularioLogin(FlaskForm):
 
 # Formulario de posteo
 class PostForm(FlaskForm):
-	titulo 		= CKEditorField("Titulo", validators=[DataRequired()])
-	descripcion = StringField("Breve Descripción", validators=[DataRequired()], widget=TextArea())	
-	# content = StringField("Contenido", validators=[DataRequired()], widget=TextArea())
-	content 	= CKEditorField("Descripción", validators=[DataRequired()])
-	kilometros 	= IntegerField("Distancia | Millas", validators=[DataRequired()])
-	altura 		= IntegerField("Altimetría")
-	lugar		= StringField("Nombre del Lugar", validators=[DataRequired()])
-	finaliza	= StringField("Finaliza", validators=[DataRequired()])
-	etapa		= SelectField("Etapa #", validators=[DataRequired()], choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11"),("12"),("13"),("14"),("15"),("16")])
-	capacidad	= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
-	hora		= TimeField("Hora de Inicio", validators=[DataRequired()])
-	salida		= StringField("Salimos de:", validators=[DataRequired()]) 
-	dificultad	= StringField("Dificultad:", validators=[DataRequired()])
-	capacidad	= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
-	sinpe		= IntegerField("Número Sinpe Autorizado", validators=[DataRequired()])
-	coordinador = StringField("Guía", validators=[DataRequired()])	
-	precio		= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
-	limite_pago	= IntegerField("Capacidad de Transporte", validators=[DataRequired()])
-	parqueo 	= SelectField("Parqueo", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
-	mascotas	= SelectField("Acepta Mascotas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])				
-	duchas		= SelectField("Hay Duchas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
-	banos		= SelectField("Servicios Sanitarios", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
-	poster_id 	= StringField("Autor", validators=[DataRequired()])
-	slug 		= StringField("Detalle", validators=[DataRequired()])
-	submit 		= SubmitField("Crear")
+	titulo 				= 	CKEditorField	("Titulo", validators=[DataRequired()])
+	descripcion 		= 	StringField		("Breve Descripción", validators=[DataRequired()], widget=TextArea())	
+	# content 			= 	StringField		("Contenido", validators=[DataRequired()], widget=TextArea())
+	content 			= 	CKEditorField	("Descripción", validators=[DataRequired()])
+	kilometros 			= 	IntegerField	("Distancia | Millas", validators=[DataRequired()])
+	altura 				= 	IntegerField	("Altimetría")
+	lugar				= 	StringField		("Nombre del Lugar", validators=[DataRequired()])
+	finaliza			= 	StringField		("Finaliza", validators=[DataRequired()])
+	etapa				= 	SelectField		("Etapa #", validators=[DataRequired()], choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11"),("12"),("13"),("14"),("15"),("16")])
+	capacidad			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
+	hora				= 	TimeField		("Hora de Inicio", validators=[DataRequired()])
+	salida				= 	StringField		("Salimos de:", validators=[DataRequired()]) 
+	dificultad			= 	StringField		("Dificultad:", validators=[DataRequired()])
+	capacidad			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
+	sinpe				= 	IntegerField    ("Número Sinpe Autorizado", validators=[DataRequired()])
+	coordinador 		= 	StringField		("Guía", validators=[DataRequired()])	
+	precio				= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
+	limite_pago			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
+	parqueo 			= 	SelectField		("Parqueo", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	mascotas			= 	SelectField		("Acepta Mascotas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])				
+	duchas				= 	SelectField		("Hay Duchas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	banos				= 	SelectField		("Servicios Sanitarios", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	poster_id 			= 	StringField		("Autor", validators=[DataRequired()])
+	slug 				= 	StringField		("Detalle", validators=[DataRequired()])
+	submit 				= 	SubmitField		("Crear")
 
-		
-	
-	# BORRAR SOLO referenciado
-	# 			=	db.Column(db.Float)
-	# date_posted			=	db.Column(db.DateTime, default=datetime.utcnow)
-	# slug 				= 	db.Column(db.String(255))
+# Formulario de Registro
+class TagForm(FlaskForm):
+	etiqueta 			= 	StringField		('etiqueta', validators=[DataRequired()]) 
+	descripcion			= 	CKEditorField	('descripcion', validators=[DataRequired()]) 
+	atributos 			= 	StringField		('atributos', validators=[DataRequired()])			
+	submit 				= 	SubmitField		("Crear")
 
 # Formulario de búsqueda
 class SearchForm(FlaskForm):
  # CAMPOS EN DB			   TIPO DE DATO		NOMBRE DE CAMPO EN HTML Y VALIDACIONES
   	searched			= 	StringField		('Buscar', validators=[DataRequired()])	
-  	submit 				= 	SubmitField		('Buscar')
+
+
+  	
 # -----------------------
 
 ##########################################################################
@@ -340,7 +352,7 @@ def contacts():
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("contacts.html", titulo=titulo, values=values, users=users,date=date)
 
-#ACTUALIZAR CONTACTOS
+# ACTUALIZAR CONTACTOS
 @app.route("/update/<int:id>", methods=["GET","POST"])
 def update(id):
 	date = datetime.now(timezone('America/Chicago'))
@@ -440,11 +452,6 @@ def card():
 		actualizar_registro.nacimiento 		= 	request.form["nacimiento"]
 	else:
 		return render_template("card.html", form=form, date=date)
-
-
-
-
-
 
 # BORRAR CONTACTOS
 @app.route("/delete/<int:id>")
@@ -566,17 +573,17 @@ def add_post():
 	if request.method == "POST":
 		poster = current_user.id
 		post = Posts(
-			titulo			=		form.titulo.data, 
-			description		=		form.description.data, 
-			content			=		form.content.data, 
-			poster_id 		=		poster, 
-			slug			=		form.slug.data)
+			titulo				=		form.titulo.data, 
+			description			=		form.description.data, 
+			content				=		form.content.data, 
+			poster_id 			=		poster, 
+			slug				=		form.slug.data)
 
 		#Limpia el formulario
-		form.title.data 	= 		""
-		form.description.data = 	""
-		form.content.data 	= 		""
-		form.slug.data 		= 		""
+		form.title.data 		= 		""
+		form.description.data 	= 		""
+		form.content.data 		= 		""
+		form.slug.data 			= 		""
 
 		#Agregar el formulario a la db
 		db.session.add(post)
@@ -642,6 +649,59 @@ def post():
 def posts(id):
 	post = Posts.query.get_or_404(id)
 	return render_template("posts.html", post=post)
+
+
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# HTML ETIQUETA
+@app.route("/html5")
+@login_required #Solo se puede editar con login
+def html5():
+	values=Tags.query.all()
+	date = datetime.now(timezone('America/Chicago'))
+	return render_template("html5.html", values=values, date=date)
+
+# LISTA DE CONTACTOS
+# @app.route("/contacts")
+# @login_required #Solo se puede editar con login
+# def contacts():
+# 	values=User.query.all()
+# 	users= len(values)
+# 	titulo = "Inicio"
+# 	date = datetime.now(timezone('America/Chicago'))
+# 	return render_template("contacts.html", titulo=titulo, values=values, users=users,date=date)
+
+# CREAR ETIQUETA
+@app.route("/tag_post", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def tag_post():
+	date = datetime.now(timezone('America/Chicago'))
+	form = TagForm() #TagForm es la clase modelo creada en la parte superior de	los modelos
+	if request.method == "POST":
+		tag = Tags(
+			etiqueta			=		form.etiqueta.data, 
+			descripcion			=		form.descripcion.data, 
+			atributos			=		form.atributos.data)
+
+		#Limpia el formulario
+		form.etiqueta.data 		= 		""
+		form.descripcion.data 	= 		""
+		form.atributos.data 	= 		""
+	
+		#Agregar el formulario a la db
+		db.session.add(tag)
+		db.session.commit() 
+
+		flash("Publicado correctamente", "success")
+		return redirect("html5")
+	return render_template("tag_Post.html", form=form, date=date)	
+
+
+
+
+
+
 
 
 #_______________________

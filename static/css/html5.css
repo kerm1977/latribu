@@ -1,13 +1,10 @@
-
-.html5{
+.container-tag{
 	margin-top: 200px;	
-}
-
-.container-html5{
-	margin: auto;
-}
+	}
 
 .table-tag{
-	margin: auto;	
+	margin: 12px;
+	width: 90%;
+	padding: 10px;
+	font-size: 12px;
 }
-

@@ -3,36 +3,31 @@
 <!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
 			formatos etc sin eso sale la etiqueta pura -->
 
-<div class="container tag_post">
+<div class="container container_tags">
+	<div class="tag_post">
 
-		<div class="container posts ">
-			<div class="column">
-				<form action="" method="POST">
-					{{ form.hidden_tag() }}
+		<h1 class="text-center">Mis Etiquetas</h1>
 
-					{{ form.etiqueta.label(class="label") }}
-					{{ form.etiqueta(class="form-control") }}
-					<hr>
-					{{ form.descripcion.label(class="label") }}
-					{{ form.descripcion(class="form-control is-normal", rows="5") }}
-					<br>
-					{{ form.atributos.label(class="label") }}
-					{{ form.atributos(class="form-control") }}
-					<hr>
-					{{ form.submit(class="button is-success is-ligh mt-5")}}
-				</form>
+		<form action="" method="POST">
+			{{ form.hidden_tag() }}
 
-				{{ckeditor.load()}}
+			<label for="etiqueta" class="form-label">Etiqueta</label>
+				{{ form.etiqueta(class="form-control") }}
+				<hr>
+				<label for="descripcion" class="form-label">Descripción</label>
+				{{ form.descripcion(class="form-control is-normal", rows="5") }}
+				<br>
+				<label for="atributos" class="form-label">Atributos</label>
+				{{ form.atributos(class="form-control") }}
+				<hr>
+				{{ form.submit(class="button is-success is-ligh mt-5")}}
+			</form>
+			{{ckeditor.load()}}
 
-				<!-- En el formulario en vez de StringField tiene que estar CKEditorField -->
-				<!-- y en formulario de ingreso de dato que es html5.html dentro de jinja tiene que ir acompañado de safe eje: items.descripcion|safe -->
-				{{ckeditor.config(name="descripcion", height=50)}}
-				
-				
-			</div>
-		</div>
-
+			<!-- En el formulario en vez de StringField tiene que estar CKEditorField -->
+			<!-- y en formulario de ingreso de dato que es html5.html dentro de jinja tiene que ir acompañado de safe eje: items.descripcion|safe -->
+			{{ckeditor.config(name="descripcion", height=200)}}
+	</div>
 </div>
-
 
 {% endblock %}

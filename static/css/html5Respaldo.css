@@ -1,0 +1,53 @@
+.container-tag{
+	margin-top: 200px;	
+	/*background-color: red;*/
+	justify-content: center;
+	}
+
+.h1-tag{
+	margin-top: 200px;
+	}
+
+.table-tag{
+
+	.h1-tag{
+		text-align: center;
+		font-size: 12px;
+	}
+
+	/*background-color: red;*/
+	margin: 12px;
+	width: 100%;
+	padding: 10px;
+	font-size: 12px;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+	.h1-tag{
+		margin-top: 200px;
+	}
+
+	.header-tag{
+		text-align: center;
+		font-size: 10px;
+	}
+} 
+
+
+@media screen and (max-width: 575px) {
+	.header-tag{
+		text-align: center;
+		font-size: 10px;
+	}
+
+
+	.table-tag{
+		width: 90%;
+		font-size: 10px;
+	}
+
+	.table-content{
+
+	}
+} 

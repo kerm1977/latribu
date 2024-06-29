@@ -1,10 +1,15 @@
-.container-tag{
-	margin-top: 200px;	
-	}
+.container-best{
+	margin-top: 200px
+}
 
-.table-tag{
-	margin: 12px;
-	width: 90%;
-	padding: 10px;
-	font-size: 12px;
+.container .container-best{
+	margin: auto;
+	width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+	.container-best{
+		margin: auto;
+		width: 100%;	
+	}
 }

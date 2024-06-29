@@ -4,7 +4,7 @@
 }
 
 nav{
-	background-color: rgba(233,82,30,0.6);
+	background-color: rgba(233,82,30,0.6) !important;
 	box-shadow: 3px 3px 5px rgba(0,0,0, 0.1 );
 	backdrop-filter: blur(10px);
 	height: 90px;
@@ -67,7 +67,7 @@ nav ul li span{
 	height: 100vh;
 	width: 250px;
 	z-index: 999;
-	background-color: rgba(233,82,30,0.6);
+	background-color: rgba(233,82,30,0.6) !important;
 	backdrop-filter: blur(20px);
 	box-shadow:-10px 0 10px rgba(0,79,0, 0.1);
 	display: none;	

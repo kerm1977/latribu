@@ -1,40 +1,19 @@
 {% extends "base.html" %}
 {% block content %} 
 
-
-<div class="container">
-	<div class="container-tag">
-		<header><h1 class="text-center">Etiquetas de HTML</h1></header>
-
-		<a href="{{url_for('tag_post')}}"><div class="btn btn-success">AGREGAR ETIQUETA</div></a>
-		
-
-		<table class="table table-bordered table-tag">
-		  <thead>
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">ETIQUETA</th>
-		      <th scope="col">DETALLE</th>
-		      <th scope="col">ATRIBUTOS</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-
-		  	{%for items in values%}
-		  	<tr>
-		      <th scope="row">{{items.id}}</th>
-		      <td>{{items.etiqueta}}</td>
-		      <td>{{items.descripcion|safe}}</td>
-		      <td>{{items.atributos}}</td>
-		    </tr>
-			{%endfor%}
-	  	</tbody>
-		</table>
-
+	<div class="container">
 	
+		<h1 class="text-center container-head-title">Etiquetas de HTML</h1>
+	
+		{%for items in values%}
+			ETIQUETA: {{items.etiqueta}}
+			<p>
+			    DESCRIPCION:{{items.descripcion|safe}}
+			    Los Atributos| <small>{{items.atributos}}</small>
+			</p>
+			<hr>
+		{%endfor%}
+
 	</div>
-</div>
-
-
 
 {% endblock %}

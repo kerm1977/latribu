@@ -12,26 +12,71 @@
 		<header class="text-center header_form">FORMULARIO DE REGISTRO <br>
 		<a class="text-danger text-center" href="{{url_for('login')}}"> Volver a Login</a></header>
 	    
-	    <form class="form-signin" action="" method="POST" name="form">
+	    <form class="form-signin needs-validation" id="formulario" action="" method="POST" name="form" novalidate>
             {{form.hidden_tag()}}
-         
 
-           	
-            <input type="text" placeholder="Ingrese su Usuario" name="username">
+           
+           <!-- INPUT USUARUI -->
+           	<input type="text" placeholder="Ingrese su Usuario" name="username" maxlength="15" pattern="[a-zA-Z]+" required>
+           	<div class="valid-feedback"></div>
+           	<div class="invalid-feedback">El Usuario no puede quedar vacio y solo se aceptan letras</div>
+           	<br>
+
+
+
+           	<!-- INPUT EMAIL -->
             <!-- <input type="text" placeholder="Ingrese su email" name="email" id="email"> -->
             {{form.email(placeholder="Email",  id="email").lower()}}
-            <input type="text" placeholder="Ingrese su Primer Apellido" name="apellido" class="d-none">
-            <input type="text" placeholder="Ingrese su Segundo Apellido" name="apellido2" class="d-none">
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">El Email no puede quedar vacio <br></div>
+            <br>
+
+
+            <!-- INPUT APELLIDO1 -->
+            <input type="text" placeholder="Ingrese su Primer Apellido" name="apellido" class="d-none"  pattern="[a-zA-Z]+" maxlength="10">
+
+
+            <!-- INPUT APELLIDO2 -->
+            <input type="text" placeholder="Ingrese su Segundo Apellido" name="apellido2" class="d-none"  pattern="[a-zA-Z]+" maxlength="10">
             <input type="text" placeholder="Residencia" name="residencia" class="d-none">
-            <input type="text" placeholder="Teléfono" name="telefono" class="d-none">
-            <input type="text" placeholder="Teléfono de Emergencia" name="telefono2" class="d-none">
-            <input type="text" placeholder="Celular" name="celular">
+
+
+            <!-- INPUT TELÉFONO 1 -->
+            <input type="text" placeholder="Teléfono" name="telefono" class="d-none" id="txtNumero" 
+			  maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)">
+		
+             <!-- INPUT TELÉFONO 2 -->	
+            <input type="text" placeholder="Teléfono de Emergencia" name="telefono2" class="d-none" id="txtNumero" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)">
+	
+			<!-- INPUT TELÉFONO 3 -->
+            <input type="text" placeholder="Celular" name="celular" id="txtNumero"
+			minlength="8" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)"  required>
+			<div class="valid-feedback"></div>
+            <div class="invalid-feedback">Este Celular parece ser invalido<br></div>
+            <br>
+
+
+
+
             <input type="text" placeholder="Alergias" name="alergias" class="d-none">
             <input type="text" placeholder="Enfermedades Crónicas" name="cronico" class="d-none">
             <input type="text" placeholder="Medicamentos" name="medicamentos" class="d-none">
             <input type="text" placeholder="Nacimiento" name="nacimiento" class="d-none">
-	        <input type="password" placeholder="Ingrese su password" id="password1" name="password">
-	        <input type="password" placeholder="Confirmar el password" id="password2" name="confirmpassword">
+	        
+	        <input type="password" placeholder="Ingrese su password" id="password1" name="password" required>
+		        <div class="valid-feedback"></div>
+		        <div class="invalid-feedback">
+		        	El Password no puede quedar vacio <br>
+		        </div>
+		        <br>
+
+
+	        <input type="password" placeholder="Confirmar el password" id="password2" name="confirmpassword" required>
+		       	<div class="valid-feedback"></div>
+		        <div class="invalid-feedback"> La confirmación no puede quedar vacia <br>
+		        </div>
+		        <br>
+	
 
 	        <i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostrar</i>
 

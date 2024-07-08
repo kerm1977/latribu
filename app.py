@@ -502,14 +502,13 @@ def registro():
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	titulo="Registro | Inicio"
 	form = formularioRegistro()
+	pw = request.form.get("password")
 
 	if request.method == "POST":
 		username = User.query.filter_by(username=request.form["username"]).first()
-		email = User.query.filter_by(email=request.form["email"]).first()
-		
-		if {form.password.data} is None:
-			flash(f"El Mail no puede quedar vacio", "danger")
-		elif {form.password.data} is None and {form.confirmpassword.data} is None:
+		email = User.query.filter_by(email=request.form["email"]).first()	
+
+		if {form.password.data} is None and {form.confirmpassword.data} is None:
 			flash(f"El password no puede quedar vacio", "danger")
 		elif {form.password.data} != {form.confirmpassword.data}:
 			flash(f"La contraseña y la verificación NO son iguales", "danger")

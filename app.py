@@ -325,7 +325,6 @@ def dashboard():
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("dashboard.html", title=title, date=date)
 
-
 # DESCRIPCION DEL SITIO
 @app.route("/siteDescript")
 @login_required #Solo se puede editar con login
@@ -333,8 +332,6 @@ def siteDescript():
 	title = "Configuración"
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("siteDescript.html", title=title, date=date)
-
-
 
 # ADVANCE SEARCH
 @app.route("/advanceSearch")
@@ -349,6 +346,7 @@ def contacts():
 	values=User.query.all()
 	users= len(values)
 	titulo = "Inicio"
+	
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("contacts.html", titulo=titulo, values=values, users=users,date=date)
 
@@ -483,7 +481,7 @@ def logout():
 
 #CAMINO DE CR
 @app.route("/caminocr")
-@login_required #Solo se puede editar con login
+#@login_required #Solo se puede editar con login
 def caminocr():
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	title 	= 	"Camino de Costa Rica"
@@ -559,7 +557,7 @@ def login():
 			flash(f"Hola {user.username.upper()}", "alert-primary")
 			return redirect(url_for("home"))
 		else:
-			flash("CADUCADO", "alert-warning")
+			flash("El Usuario o Contraseña están mal escritos o ya existe otro igual", "warning")
 			return redirect("login")
 		flash("Contraseña o Usuario invalidos", "danger")
 	return render_template("login.html", titulo=titulo, form=form, date=date)
@@ -568,19 +566,20 @@ def login():
 @app.route("/add-post", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def add_post():
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	form = PostForm() #PostForm es la clase modelo creada en la parte superior 	
 	if request.method == "POST":
 		poster = current_user.id
 		post = Posts(
 			titulo				=		form.titulo.data, 
-			description			=		form.description.data, 
+			descripcion			=		form.descripcion.data, 
 			content				=		form.content.data, 
 			poster_id 			=		poster, 
 			slug				=		form.slug.data)
 
 		#Limpia el formulario
-		form.title.data 		= 		""
-		form.description.data 	= 		""
+		form.titulo.data 		= 		""
+		form.descripcion.data 	= 		""
 		form.content.data 		= 		""
 		form.slug.data 			= 		""
 
@@ -590,7 +589,7 @@ def add_post():
 
 		flash("Publicado correctamente", "success")
 		return redirect("post")
-	return render_template("add_Post.html", form=form)	
+	return render_template("add_Post.html", form=form, date=date)	
 
 # EDITAR POSTS
 @app.route("/posts/edit/<int:id>", methods=["GET","POST"])
@@ -639,8 +638,9 @@ def delete_post(id):
 @app.route("/post")
 @login_required #Solo se puede editar con login
 def post():
+	date = datetime.now(timezone('America/Chicago')) 
 	post = Posts.query.order_by(Posts.date_posted)
-	return render_template("post.html", post=post)
+	return render_template("post.html", post=post, date=date)
 
 # LEER POST INDIVIDUALMENTE
 @app.route("/posts/<int:id>")

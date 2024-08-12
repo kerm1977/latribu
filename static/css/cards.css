@@ -40,7 +40,7 @@
 .img-card:hover{
   border-radius: 50px;
   transition: 0.4s;
-  box-shadow: 0.1px 1px #ffffff, -0.1em 0 0.5em #df4b27;
+  /*box-shadow: 0.1px 1px #ffffff, -0.1em 0 0.5em #df4b27;*/
 }
 
 /*MEDIAQUERIES***************************************************/

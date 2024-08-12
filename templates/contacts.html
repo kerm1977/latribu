@@ -4,71 +4,83 @@
 
 <div class="wrap">
 <div class="container">
-  <span>Cantidad de Personas registradas {{users}}</span>
+  <span>CANTIDAD DE CONTACTOS - <strong>{{users}}</strong></span>
     <hr/>
   <div class="row">
-   
-    {%for items in values%}
-      <div class="col-xs-12 col-md-4 ">
-      
-      <div class="bg-white rounded shadow-sm py-5 px-4 mt-2">
-      <!-- IMAGEN -->
-      <img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100px" class="img-fluid rounded-circle mb-   img-thumbnail shadow-sm">
-      
-      {%if current_user.id == items.id %}
-        <h5 class="mb-0">{{items.username.title()}} {{items.apellido.title()}} {{items.apellido2.title()}}</h5>
-        
-        <p class="">{{items.email}}</p>  
-        
-        <span class="small text-uppercase text-muted"><h3>CONECTADO</h3></span>
-      {%else%}
-        <p class="">{{items.username.title()}} {{items.apellido.title()}} {{items.apellido2.title()}}</p>
-        <p class="">{{items.email}}</p>
-      {%endif%}  
-        <hr>
-      {%if items.telefono%}    
-      <ul class="social mb-0 list-inline mt-3">
-        <li class="list-inline-item"><a href="#" class=""><span class=" icomoon-contacts-ico icon-mobile"></span> {{items.telefono}}</a></li>
-      </ul>
-      {%else%} 
-      {%endif%}
 
-    {%if items.celular%}
-    <ul class="social mb-0 list-inline mt-3"> 
-      <li class="list-inline-item">
-        <a href="#" class="">
-        <span class="icomoon-contacts-ico icon-mobile2"></span>
-        {{items.celular}}</a>
-      </li>
-    </ul>  
-    {%else%} 
-    {%endif%}  
+    <table class="table table-striped">
+
     
-    <br>
+       <thead>
+        <tr>
+          <th scope="col">
+            #
+          </th>
+          <th scope="col">NOMBRE</th>
+          <th scope="col">APELLIDO 1</th>
+          <th scope="col">APELLIDO 2</th>
+          <th scope="col">TELEFONO</th>
+          <th scope="col">EMERGENCIA</th>
+          <th scope="col">EDICION</th>
+          <th scope="col">BORRAR</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+       
+        {% for items in values %}
+          <tr>
+            <th scope="row">
+            
+            </th>
 
-    <span class="icomoon-contacts-ico icon-phone text-danger"> TELEFONO DE EMERGENCIA</span>
 
-    <ul class="social mb-0 list-inline mt-3">
-      <h2> {{items.telefonoE}}</h2> 
-    </ul> 
-    {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}        
-      {%if current_user.id == items.id%}
-        <a href="{{url_for('registro')}}" class="btn">Agregar Usuario</a>
-        <a href="{{url_for('update', id=items.id)}}"class="btn">Editar Contacto<i hidden>{{items.id}}</i></a>
-      {%elif current_user.id != items.id %}
-        <a href="{{url_for('registro')}}" class="btn"> Agregar Usuario</a>
-        <a href="{{url_for('update', id=items.id)}}"class="btn"> Editar Contacto<i hidden>{{items.id}}</i></a>
-        <a href="{{url_for('delete', id=items.id)}}" class="btn" onclick="return ConfirmDelete()"> Borrar Contacto<i hidden></i></a>
-      {%else%}       
-      {%endif%}
-      </div><!-- estilo -->
-    </div><!-- col -->
-    {%endif%} 
-  {%endfor%}
-   
- 
-  </div> <!-- row -->
-</div> <!-- container -->
+            <td>{{items.username.title()}}</td>
+            <td>{{items.apellido.title()}}</td>
+            <td>{{items.apellido2.title()}}</td>
+            <td>{{items.celular}}</td>
+            <td>{{items.telefonoE}}</td>
+
+            <!-- CELDA DE EDITAR -->
+            <td>
+              {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}        
+                  {%if current_user.id == items.id%}
+                  <!-- AGREGAR USUARIO -->
+                  <a href="{{url_for('registro')}}" class="btn icon-plus"></a>
+                  <!-- EDITAR USUARIO -->
+                  <a href="{{url_for('update', id=items.id)}}"class="btn icon-pencil2"><i hidden>{{items.id}}</i></a>
+                  {%elif current_user.id != items.id %}
+                    <!-- AGREGAR USUARIO -->
+                    <a href="{{url_for('registro')}}" class="btn icon-plus"></a>
+                    <!-- EDITAR USUARIO -->
+                    <a href="{{url_for('update', id=items.id)}}"class="btn icon-pencil2"><i hidden>{{items.id}}</i></a>
+                    {%else%}       
+                  {%endif%}
+                {%endif%} 
+            </td>
+
+            <!-- CELDA DE BORRAR -->
+            <td>
+                {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}        
+                  {%if current_user.id == items.id%}
+                  {%elif current_user.id != items.id %}
+                    <!-- BORRAR USUARIO -->
+                    <a href="{{url_for('delete', id=items.id)}}" class="btn icon-bin2" onclick="return ConfirmDelete()"><i hidden></i></a>
+                  {%else%}       
+                  {%endif%}
+                {%endif%} 
+
+            </td>
+
+
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
 </div>
-
+</div>
 {% endblock %}
+
+

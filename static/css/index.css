@@ -1,5 +1,5 @@
 .container_title{
-	margin-top: 200px;
+	margin-top: 100px;
 	text-align: center;
 }
 
@@ -15,7 +15,6 @@
 .container_justify{
 	text-align: justify;
 }
-
 
 .container_list{
 	justify-content: left;
@@ -33,7 +32,6 @@
 	padding: 20px;
 	color: white;
 }
-
 
 .icon-whatsapp{
 	color: #25d366;
@@ -62,7 +60,7 @@
 
 @media(max-width: 768px){
 	.container_info{
-		margin-top: 200px;
+		/*margin-top: 200px;*/
 		text-align: justify;
 		margin: auto;
 	}

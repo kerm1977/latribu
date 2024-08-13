@@ -14,7 +14,7 @@
        <thead>
         <tr>
           <th scope="col">
-            #
+            VER
           </th>
           <th scope="col">NOMBRE</th>
           <th scope="col">APELLIDO 1</th>
@@ -31,7 +31,7 @@
         {% for items in values %}
           <tr>
             <th scope="row">
-            
+            <a href="{{url_for('update', id=items.id)}}"><span class="icon-eye"></span></a>
             </th>
 
 
@@ -45,10 +45,10 @@
             <td>
               {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}        
                   {%if current_user.id == items.id%}
-                  <!-- AGREGAR USUARIO -->
-                  <a href="{{url_for('registro')}}" class="btn icon-plus"></a>
-                  <!-- EDITAR USUARIO -->
-                  <a href="{{url_for('update', id=items.id)}}"class="btn icon-pencil2"><i hidden>{{items.id}}</i></a>
+                    <!-- AGREGAR USUARIO -->
+                    <a href="{{url_for('registro')}}" class="btn icon-plus"></a>
+                    <!-- EDITAR USUARIO -->
+                    <a href="{{url_for('update', id=items.id)}}"class="btn icon-pencil2"><i hidden>{{items.id}}</i></a>
                   {%elif current_user.id != items.id %}
                     <!-- AGREGAR USUARIO -->
                     <a href="{{url_for('registro')}}" class="btn icon-plus"></a>
@@ -71,8 +71,6 @@
                 {%endif%} 
 
             </td>
-
-
           </tr>
         {% endfor %}
 

@@ -1,8 +1,8 @@
 .image_tp_card{
 	background-color: #df4b27;
 	border-radius: 35px; 
-	width: 50%;
-	height: 50%;
+/*	width: 50%;
+	height: 50%;*/
 	margin: auto;	
 	position: relative;.
 	text-align: center;
@@ -98,8 +98,52 @@
 }
 
 
+@media(max-width: 1199px){
+.image_tp_card{
+	margin-top: 50px;
+	background-color: #df4b27;
+	border-radius: 35px; 
+	width: 500px;
+	/*height:500px;*/
+	/*margin: auto;	*/
+	position: relative;.
+	text-align: center;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+	.update_form{
+		width: 60%;
+		margin: auto;	
+		position: relative;
+	}
+
+}
+
+
+
 
 @media(max-width: 767px){
+
+	.image_tp_card{
+		margin-top: 50px
+		background-color: #df4b27;
+		border-radius: 35px; 
+		width: 400px;
+		/*height: 400px;*/
+		/*margin: auto;	*/
+		position: relative;.
+		text-align: center;
+		color: white;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+	.update_form{
+		width: 80%;
+		margin: auto;	
+		position: relative;
+	}
+
 	.cont_card{
 		margin: auto;
 	}		

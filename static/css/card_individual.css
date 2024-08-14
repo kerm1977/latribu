@@ -1,0 +1,209 @@
+.image_tp_card1{
+	background-color: #df4b27;
+	border-radius: 35px; 
+	width: 700px;
+	/*height: 50%;*/
+	margin: auto;	
+	position: relative;.
+	text-align: center;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+.img_card1{
+	width: 25%;
+	margin: auto;
+}
+
+.icon-whatsapp{
+	color: white;
+	padding-left: 10px;
+}
+
+.listaSalud1{
+	font-size: 20px;
+}
+
+.title_card1{
+	text-align: center;
+	padding-top: 30px;
+	width: 100%;
+}
+
+
+.text_footer1{
+	text-align: right;
+	margin-right: 40px;
+	padding-bottom: 20px;
+	font-size: 20px;
+	color: black;
+}
+
+.tipo_sangre1{
+	display: flex;
+	padding: 15px;
+}
+
+.ts_container1{
+	margin: auto;
+	background-color: black;
+}
+
+
+.title_ts1{
+	background-color: #df4b27;
+	padding-left: 10px;
+	font-size: 20px;  
+}
+
+.text_ts1{
+	background-color: #df4b27;
+	font-size: 3.5rem;
+	padding-left: 25px;
+}
+
+.tel_emergencia1{
+	font-size: 20px;
+}
+
+
+@media(max-width: 991px){
+	.cont_card1{
+		margin: auto;
+	}
+
+	.title_ts1{
+		background-color: grey;
+		padding-left: 10px;
+		font-size: 20px;  
+		color: white;
+	}		
+
+  	.image_tp_card1{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts1{
+    	font-size: 3.5; /* 40px/16=2.5em */  
+    	/*font-size: 1.875em; /* 30px/16=1.875em */ 
+    	/*font-size: 0.875em; /* 14px/16=0.875em */
+  	}
+
+  	.ts_container1{
+		width: 100%;
+	}
+
+
+}
+
+
+@media(max-width: 1199px){
+.image_tp_card1{
+	margin-top: 50px;
+	background-color: #df4b27;
+	border-radius: 35px; 
+	width: 500px;
+	/*height:500px;*/
+	/*margin: auto;	*/
+	position: relative;.
+	text-align: center;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+	.update_form1{
+		width: 60%;
+		margin: auto;	
+		position: relative;
+	}
+
+}
+
+
+
+
+@media(max-width: 767px){
+
+	.image_tp_card1{
+		margin-top: 50px
+		background-color: #df4b27;
+		border-radius: 35px; 
+		width: 400px;
+		/*height: 400px;*/
+		/*margin: auto;	*/
+		position: relative;.
+		text-align: center;
+		color: white;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+	}
+
+	.update_form1{
+		width: 80%;
+		margin: auto;	
+		position: relative;
+	}
+
+	.cont_card1{
+		margin: auto;
+	}		
+
+  	.image_tp_card1{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts1{
+    	font-size: 3.5; /* 40px/16=2.5em */  
+    	/*font-size: 1.875em; /* 30px/16=1.875em */ 
+    	/*font-size: 0.875em; /* 14px/16=0.875em */
+  	}
+
+  	.ts_container1{
+		width: 100%;
+	}
+
+
+}
+
+
+@media(max-width: 480px){
+	.cont_card1{
+		margin: auto;
+	}		
+
+  	.image_tp_card1{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts1{
+		padding-top: 20px;
+    	font-size: 40px; 
+  }
+
+  .text_footer1{
+	text-align: center;
+	margin-right: 40px;
+	padding-bottom: 20px;
+	font-size: 15px;
+	color: black;
+	}
+}
+
+
+@media(max-width: 320px){
+	.cont_card1{
+		margin: auto;
+	}		
+
+  	.image_tp_card1{
+	  	width: 100%;
+	    font-size: 12px;
+	}
+
+	.text_ts1{
+		padding-top: 20px;
+    	font-size: 30px; 
+  }
+}

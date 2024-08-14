@@ -3,11 +3,26 @@
 
 
 <div class="wrap">
-<div class="container">
+
+<div class="container mb-5">
+  <form class="search">
+    <div class="search__wrapper">
+      <input id="buscador" type="text" name="buscador" placeholder="BUSCAR" class="search__field">
+      <button type="submit" class="fa fa-search search__icon"></button>
+    </div>
+  </form>
+</div>
+
+<br>
+
+
+<div class="container mt-5">
   <span>CANTIDAD DE CONTACTOS - <strong>{{users}}</strong></span>
+</div>
+
+<div class="container">
     <hr/>
   <div class="row">
-
     <table class="table table-striped">
 
     
@@ -29,7 +44,7 @@
       <tbody>
        
         {% for items in values %}
-          <tr>
+          <tr class="search_article" >
             <th scope="row">
             <a href="{{url_for('update', id=items.id)}}"><span class="icon-eye"></span></a>
             </th>

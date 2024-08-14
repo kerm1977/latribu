@@ -1,26 +1,24 @@
 {% extends "base.html" %}
 {% block content %} 
 <div class="wrap">
-	<div class="container cont_card">
-		<div class="image_tp_card">
-
-
+	<div class="container cont_card1">
+		<div class="image_tp_card1">
 			{% if current_user.is_authenticated %}
-				<h4 class="title_card">{{ current_user.username | title }} {{current_user.apellido | title}} {{current_user.apellido2 | title}}</h4>
-				<p class="text-center tel_emergencia"><strong>TELEFONO EMERGENCIA 1: </strong><span class="icon-whatsapp"></span> + {{current_user.telefonoE}}</p>
+				<h4 class="title_card1">{{ current_user.username | title }} {{current_user.apellido | title}} {{current_user.apellido2 | title}}</h4>
+				<p class="text-center tel_emergencia1"><strong>TELEFONO EMERGENCIA 1: </strong><span class="icon-whatsapp"></span> + {{current_user.telefonoE}}</p>
 
-				<img class="img_card" src="{{ url_for('static', filename='img/card.jpg') }}" alt="">
+				<img class="img_card1" src="{{ url_for('static', filename='img/card.jpg') }}" alt="">
 		
-				<div class="ts_container">	
-					<div class="tipo_sangre"></div>
-					<div class="title_ts">Tipo de Sangre</div> <h1 class="text_ts text-center">{{current_user.tiposangre | upper }}</h1>
+				<div class="ts_container1">	
+					<div class="tipo_sangre1"></div>
+					<div class="title_ts1">Tipo de Sangre</div> <h1 class="text_ts text-center">{{current_user.tiposangre | upper }}</h1>
 				</div>
 
 
 				<hr>
 			
 				
-			<ul class="ul_dash">
+			<ul class="ul_dash1">
 		  		{%if current_user.residencia or current_user.telefono or current_user.celular%}	
 			  		<li><strong>Residencia: </strong>{{current_user.residencia | title }}</li>
 		  			<li><strong>Mi Teléfono: </strong>{{current_user.telefono}}</li>
@@ -29,9 +27,10 @@
 		  		{%else%}
 		  		{%endif%}		
 
-		  		<h4><span class="icon-aid-kit"></span> Perfil de salud:</h4>
-
-		  		<div class="listaSalud">
+		  		<hr>
+		  		<h4 class="text-center"><span class="icon-aid-kit"></span> Perfil de salud:</h4>
+		  		<hr>
+		  		<div class="listaSalud1">
 			  		<li><strong>ALERGIAS: </strong>{{current_user.alergias | title }}</li>
 			  		<!-- <li><strong>TIPO DE SANGRE: </strong>{{current_user.tiposangre | title }}</li> -->
 			  		<li><strong>ENFERMEDADES CRÓNICAS: </strong>{{current_user.cronico | title }}</li>
@@ -40,7 +39,7 @@
 
 			<hr>
 				<div class="">FECHA NACIMIENTO: </strong>{{current_user.nacimiento | title }}</li>	
-				<div class="text_footer">EMAIL: {{current_user.email}}</div>
+				<div class="text_footer1">EMAIL: {{current_user.email}}</div>
 
 
 			</ul>

@@ -352,6 +352,7 @@ def contacts():
 
 # ACTUALIZAR CONTACTOS
 @app.route("/update/<int:id>", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
 def update(id):
 	date = datetime.now(timezone('America/Chicago'))
 	form = formularioRegistro()

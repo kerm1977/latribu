@@ -3,6 +3,7 @@
 <!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
 	formatos etc sin eso sale la etiqueta pura -->
 
+
 <div class="container container_title">
     <h1 class="Display 6 animate__animated animate__swing">Crear un nuevo POST</h1>
    <!--  <h2 class="Display 5 animate__bounceIn"><span class="text-success ">A LA TRIBU</span> <strong>HIKING C.R.</strong></h2> -->
@@ -10,6 +11,8 @@
 
 <div class="container">
 	<div class="column">
+
+	
 		<form action="" method="POST">
 			{{ form.hidden_tag() }}
 
@@ -28,11 +31,17 @@
 			{{ form.submit(class="button is-success is-ligh mt-5")}}
 		</form>
 
+
+
 		{{ckeditor.load()}}
 		{{ckeditor.config(name="titulo", height=100)}}
 		{{ckeditor.config(name="descripcion", height=100)}}
 		{{ckeditor.config(name="content", height=400)}}
 		{{ckeditor.config(name="slug", height=100)}}
+		evitar mensajes de error  de actualizacion de ckE	
+		<style>
+	    	.cke_notifications_area { display: none; }
+		</style>
 	</div>
 </div>
 

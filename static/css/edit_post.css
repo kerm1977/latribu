@@ -1,0 +1,30 @@
+.edit_container{
+	width: 70%;
+	margin:auto;
+}
+
+
+@media(max-width: 1199px){
+	.edit_container{
+		width: 90%;
+		margin:auto;
+	}
+
+ }
+
+
+@media(max-width: 991px){
+	.edit_container{
+		margin:auto;
+		width: 100%;
+	}
+
+ }
+
+@media(max-width: 767px){
+	.edit_container{
+		margin:auto;
+		width: 80%;
+	}
+
+ }

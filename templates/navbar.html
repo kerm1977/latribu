@@ -2,19 +2,22 @@
     <ul class="sidebar">
 
         <li class="mt-5" onclick=cerrarBarra()><a  href="#"><span class="icon-cross"></span></a></li>
-
         {%if current_user.is_authenticated%}
             <hr class="separador">
             <li><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
+            <li ><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
             <li><a  href="{{url_for('dashboard')}}"><span class="icon-meter"></span>Dashboard</a></li>
-            <li><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
             <li><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span>Cerrar</a></li>
         {%else%}
             <li class=""><a  href="{{url_for('login')}}"><span class="icon-user"> </span>Usuario</a></li>
+            <li ><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
             <li class=""><a  href="{{url_for('home')}}"><span class="icon-home"> </span>Inicio</a></li>
         {%endif%}
 
     </ul>
+
+
+
 
     <ul>
         {%if current_user.is_authenticated%}
@@ -25,10 +28,14 @@
             <h1 class="letralogo text-nowrap ">LA TRIBU <small class="hikingNav "></small> <strong class="text-hiking">HIKING</strong> |<strong class=""> Costa Rica</strong></small></h1>
         </div>
 
+
+
+
         {%if current_user.is_authenticated%}
             <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
-            <li class="hideOnMobile"><a  href="{{url_for('dashboard')}}"><span class="icon-meter"></span>Dashboard</a></li>
             <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
+
+            <li class="hideOnMobile"><a  href="{{url_for('dashboard')}}"><span class="icon-meter"></span>Dashboard</a></li>
             <!-- <li class="hideOnMobile"><a href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span></a></li> -->
              <li>
             <button class="switch" id="switch">
@@ -38,7 +45,9 @@
              </li>
         {%else%}
             <li class="hideOnMobile"><a  href="{{url_for('home')}}"><span class="icon-home"> </span> Inicio</a></li>
-            <li class="hideOnMobile"><a  href="{{url_for('login')}}"><span class="icon-user"> </span>Usuario</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('videos')}}"><span class="icon-film"></span>Multimedia</a></li>
+            <li class="hideOnMobile"><a  href="{{url_for('login')}}"><span class="icon-user"> </span></a></li>
+           
         {%endif%}
     
 

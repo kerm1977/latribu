@@ -193,6 +193,20 @@ class Tags(db.Model):
 	atributos			= 	db.Column(db.Text, unique=False,	nullable=True)
 	date_added			= 	db.Column(db.DateTime,	nullable=False,	default=datetime.utcnow)
 
+class multimedia(db.Model):
+	#Al agregar un campo hay que migrarlo a la DB y aquí se crean los campos del usuario
+	id 					=	db.Column(db.Integer, 		primary_key=True)
+	video				= 	db.Column(db.Text,	unique=False, 	nullable=False)
+	usuario 			= 	db.Column(db.Text,	unique=False,	nullable=True)
+	avatar	 			= 	db.Column(db.Text,	unique=False,	nullable=True)
+	detalle				= 	db.Column(db.Text,	unique=False,	nullable=True)
+	date_added			= 	db.Column(db.DateTime,		nullable=False,	default=datetime.utcnow)
+	#Al agregar un campo hay que migrarlo a la DB y también agregarlo en esta fila con la misma sintaxis y orden
+	
+	def __repr__(self):
+		return f"('{self.video}',{self.usuario}',{self.avatar}','{self.detalle}')"
+
+
 # -----------------------
 
 ##########################################################################
@@ -248,10 +262,10 @@ class formularioLogin(FlaskForm):
 
 # Formulario de posteo
 class PostForm(FlaskForm):
-	titulo 				= 	CKEditorField	("Titulo", validators=[DataRequired()])
-	descripcion 		= 	StringField		("Breve Descripción", validators=[DataRequired()], widget=TextArea())	
+	titulo 				= 	StringField		("Titulo", validators=[DataRequired()])
+	descripcion 		= 	StringField		("Breve Descripción", validators=[DataRequired()])	
 	# content 			= 	StringField		("Contenido", validators=[DataRequired()], widget=TextArea())
-	content 			= 	CKEditorField	("Descripción", validators=[DataRequired()])
+	content 			= 	CKEditorField	("Contenido", validators=[DataRequired()])
 	kilometros 			= 	IntegerField	("Distancia | Millas", validators=[DataRequired()])
 	altura 				= 	IntegerField	("Altimetría")
 	lugar				= 	StringField		("Nombre del Lugar", validators=[DataRequired()])
@@ -279,6 +293,14 @@ class TagForm(FlaskForm):
 	etiqueta 			= 	StringField		('etiqueta', validators=[DataRequired()]) 
 	descripcion			= 	CKEditorField	('descripcion', validators=[DataRequired()]) 
 	atributos 			= 	StringField		('atributos', validators=[DataRequired()])			
+	submit 				= 	SubmitField		("Crear")
+
+# Multimedia
+class multimForm(FlaskForm):
+	video				= 	CKEditorField	('video', validators=[DataRequired()])
+	usuario 			= 	StringField		('usuario', validators=[DataRequired()])  
+	avatar 				= 	StringField		('avatar', validators=[DataRequired()])
+	detalle 			= 	StringField		('detalle', validators=[DataRequired()])
 	submit 				= 	SubmitField		("Crear")
 
 # Formulario de búsqueda
@@ -488,13 +510,6 @@ def caminocr():
 	title 	= 	"Camino de Costa Rica"
 	return render_template("caminocr.html", title=title, date=date)
 
-#MULTIMEDIA
-@app.route("/videos")
-def videos():
-	date 	= 	datetime.now(timezone('America/Chicago'))
-	title 	= 	"Camino de Costa Rica"
-	return render_template("videos.html", title=title, date=date)
-
 # REGISTRO
 @app.route("/registro", methods=["GET","POST"]) 
 def registro():
@@ -567,7 +582,7 @@ def login():
 @app.route("/add-post", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def add_post():
-	date 	= 	datetime.now(timezone('America/Chicago'))
+	date = datetime.now(timezone('America/Chicago'))
 	form = PostForm() #PostForm es la clase modelo creada en la parte superior 	
 	if request.method == "POST":
 		poster = current_user.id
@@ -596,11 +611,12 @@ def add_post():
 @app.route("/posts/edit/<int:id>", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def edit_post(id):
+	date 	= 	datetime.now(timezone('America/Chicago'))
 	post = Posts.query.get_or_404(id)
 	form = PostForm() #PostForm es la clase modelo creada en la parte superior 
 	if request.method == "POST":
 		post.titulo			=		form.titulo.data 
-		post.description	=		form.description.data
+		post.descripcion	=		form.descripcion.data
 		post.content		=		form.content.data 
 		post.slug			=		form.slug.data
 		
@@ -611,10 +627,10 @@ def edit_post(id):
 		return redirect(url_for('post', id=post.id))
 	
 	form.titulo.data		= 		post.titulo
-	form.description.data 	= 		post.description
+	form.descripcion.data 	= 		post.descripcion
 	form.content.data 		= 		post.content
 	form.slug.data 			= 		post.slug
-	return render_template("edit_post.html", form=form)
+	return render_template("edit_post.html", form=form, date=date)
 
 # BORRAR POSTS
 @app.route("/posts/delete/<int:id>")
@@ -662,16 +678,6 @@ def html5():
 	date = datetime.now(timezone('America/Chicago'))
 	return render_template("html5.html", values=values, date=date)
 
-# LISTA DE CONTACTOS
-# @app.route("/contacts")
-# @login_required #Solo se puede editar con login
-# def contacts():
-# 	values=User.query.all()
-# 	users= len(values)
-# 	titulo = "Inicio"
-# 	date = datetime.now(timezone('America/Chicago'))
-# 	return render_template("contacts.html", titulo=titulo, values=values, users=users,date=date)
-
 # CREAR ETIQUETA
 @app.route("/tag_post", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
@@ -698,11 +704,40 @@ def tag_post():
 	return render_template("tag_Post.html", form=form, date=date)	
 
 
+#MULTIMEDIA
+@app.route("/videos")
+def videos():
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	title 	= 	"Camino de Costa Rica"
+	form = multimForm()
+	value = multimedia.query.all()
+	return render_template("videos.html", title=title, date=date, value=value, form=form )
 
+#AGREGAR VIDEOS
+@app.route("/add_Video", methods=["GET","POST"])
+def add_Video():
+	form = multimForm() #multimForm es la clase modelo creada en la parte superior 
+	date = datetime.now(timezone('America/Chicago'))
+	title = "Agregar Multimedia" #declarar en html => dentro de h1 como {{title}}
+	value = multimedia.query.all()
+	
 
+	# if form.validate_on_submit() == "POST":
+	if request.method == "POST":
+		tabla_add_Video = multimedia(
+			usuario = form.usuario.data,
+			avatar = form.avatar.data,
+			detalle = form.detalle.data,
+			video = form.video.data
+		)
 
+		#Agregar el formulario a la db
+		db.session.add(tabla_add_Video)
+		db.session.commit() 
 
-
+		flash("Publicado correctamente", "success")
+		return redirect("videos")
+	return render_template("add_Video.html", form=form, date=date, value=value)	
 
 #_______________________
 # ALERTA DE ERRORES
@@ -720,7 +755,6 @@ def server_not_found(e):
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	return render_template('500.html',date=date), 500
 # -----------------------
-
 
 
 

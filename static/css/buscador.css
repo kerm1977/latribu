@@ -143,3 +143,12 @@
 }
 
 
+@media(max-width: 990px){
+  .search__field:focus {
+    border-bottom-color: #ccc;
+    width: 85vw;
+    color: rgba(233,82,30,0.5);
+    cursor: default;
+  }
+
+}

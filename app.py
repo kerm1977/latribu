@@ -704,6 +704,9 @@ def tag_post():
 	return render_template("tag_Post.html", form=form, date=date)	
 
 
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
 #MULTIMEDIA
 @app.route("/videos")
 def videos():
@@ -718,26 +721,89 @@ def videos():
 def add_Video():
 	form = multimForm() #multimForm es la clase modelo creada en la parte superior 
 	date = datetime.now(timezone('America/Chicago'))
-	title = "Agregar Multimedia" #declarar en html => dentro de h1 como {{title}}
-	value = multimedia.query.all()
+	title = "Agregar Videos" #declarar en html => dentro de h1 como {{title}}
+	value = multimedia.query.order_by(multimedia.date_added)
 	
 
 	# if form.validate_on_submit() == "POST":
 	if request.method == "POST":
-		tabla_add_Video = multimedia(
-			usuario = form.usuario.data,
-			avatar = form.avatar.data,
-			detalle = form.detalle.data,
-			video = form.video.data
-		)
 
-		#Agregar el formulario a la db
+		# variable	 	  # multimedia es el modelo
+		tabla_add_Video = multimedia(
+
+			#variable  |  Datos dentro de los modelos
+			usuario 	= form.usuario.data,
+			avatar 		= form.avatar.data,
+			detalle 	= form.detalle.data,
+			video 		= form.video.data,
+			date 		= form.date_added.data 
+			)
+
+		#LIMPIAR EL FORMULARIO DESPUES DE ENVIADO
+		form.usuario.data 	= " "
+		form.avatar.data 	= " "
+		form.detalle.data 	= " "
+		form.video.data 	= " "
+
+
+		#Agregar el formulario a la db a través de la variable tabla_add_Video
 		db.session.add(tabla_add_Video)
 		db.session.commit() 
 
+		#Menaje de publicación
 		flash("Publicado correctamente", "success")
+		
+		#Redirige a la página videos.html cuando agrega el video
 		return redirect("videos")
-	return render_template("add_Video.html", form=form, date=date, value=value)	
+
+	#En caso de no agregarlos abre nuevamente el formulario de agregar video
+	return render_template("add_Video.html", form=form, date=date, value=value, title=title)	
+
+#INDIVIDUAL INFO VIDEOS
+#Cada publicación tiene un id para hacer referencia a una nueva publicación
+@app.route("/individual_vids/<int:id>")
+def individual_vids(id):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	title 	= 	"VIDEO DE LA TRIBU"
+	# varieble nueva para crear una consulta con el id
+	# Si obtiene el id, continua sino sale un error 404
+	
+	#item es llamado dentro de la vista item.xxxx
+	item = multimedia.query.get_or_404(id)
+																
+	return render_template("individual_vids.html", title=title, item=item, date=date)
+
+
+
+
+
+#ACTUALIZAR VIDEOS
+@app.route("/update_Video", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def update_Video():
+	form = multimForm()
+	values = multimedia.query.order_by(multimedia.date_added)
+	date 	= datetime.now(timezone('America/Chicago'))
+	title 	= "Editar Video"
+
+	if request.method == "POST":
+		usuario 		= 	request.form["usuario"]
+		avatar 			= 	request.form["avatar"]
+		detalle 		= 	request.form["detalle"]
+		video 			= 	request.form["video"]
+
+		try:
+			db.session.commit()
+			flash(f"{form.usuario.data.title()} {form.avatar.data.title()} {form.detalle.data.title()} {form.detalle.data.video()} ha sido modificad@", "success")
+			return render_template("update_Video.html", form=form, date=date,  values=values, users=users)
+		except:
+			db.session.commit()
+			flash("Hubo un error al intentar modificar el Video", "warning")
+			return render_template("update_Video.html", form=form, date=date)
+	else:
+		return render_template("update_Video.html", title=title, values=values, form=form, date=date)
+
+
 
 #_______________________
 # ALERTA DE ERRORES

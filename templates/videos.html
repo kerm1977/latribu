@@ -7,23 +7,41 @@
 		<h1 class="text-center">MULTIMEDIA</h1>
 	</div>	
 
+	<br>
 
-	<div class="container">
-		<div class="btn">
-			<a href="{{url_for('add_Video')}}">AGREGAR UN NUEVO VIDEO</a>
-		</div>
+	<div class="container btn_search mt-5">
+	  <form class="search">
+	    <div class="search__wrapper">
+	      <input id="buscador" type="text" name="buscador" placeholder="BUSCAR" class="search__field">
+	      <button type="submit" class="fa fa-search search__icon"></button>
+	    </div>
+	  </form>
 	</div>
 
-
-	{%for item in value%}
+	{%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
 		<div class="container">
-			<p>{{item.usuario | safe}}</p>
-			<p>{{item.avatar | safe}}</p>
-			<p>{{item.detalle | safe}}</p>
-			<p>{{item.video | safe}}</p>
+			<div class="btn">
+				<a href="{{url_for('add_Video')}}">AGREGAR UN NUEVO VIDEO</a>
+			</div>
 		</div>
-	{%endfor%}
+	{%endif%}
 
+
+	
+		<div class="container">
+
+			<div class="row">
+				{%for item in value%}
+					<div class="col-xs-12 col-md-6 search_article">
+						<p class="ratio ratio-16x9 ">{{item.video | safe}}</p>
+						<h3><strong>{{item.detalle | safe}}</strong></h3>
+						<a href="{{url_for('individual_vids', id=item.id)}}">VER MAS</a>
+					</div>
+				{%endfor%}
+
+			</div>
+		</div>
+	
 		
 	</div>
 </div>

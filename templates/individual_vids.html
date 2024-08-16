@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="wrap">
+<div class="container">
+
+
+	
+	  	<p class="ratio ratio-16x9 ">{{item.video | safe}}</p>
+	  	<h3><strong>{{item.detalle | safe}}</strong></h3>
+		<small>{{item.usuario | safe}}</small>
+		<p>{{item.avatar | safe}}</p>
+		<p>{{item.date_added}}</p>
+
+
+		<a href="{{url_for('update_Video')}}">EDITAR</a>
+
+		
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+

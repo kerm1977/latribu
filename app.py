@@ -724,7 +724,6 @@ def add_Video():
 	title = "Agregar Videos" #declarar en html => dentro de h1 como {{title}}
 	value = multimedia.query.order_by(multimedia.date_added)
 	
-
 	# if form.validate_on_submit() == "POST":
 	if request.method == "POST":
 
@@ -736,7 +735,6 @@ def add_Video():
 			avatar 		= form.avatar.data,
 			detalle 	= form.detalle.data,
 			video 		= form.video.data,
-			date 		= form.date_added.data 
 			)
 
 		#LIMPIAR EL FORMULARIO DESPUES DE ENVIADO
@@ -767,45 +765,64 @@ def individual_vids(id):
 	title 	= 	"VIDEO DE LA TRIBU"
 	# varieble nueva para crear una consulta con el id
 	# Si obtiene el id, continua sino sale un error 404
-	
-	#item es llamado dentro de la vista item.xxxx
+	# Item es llamado dentro de la vista item.xxxx
 	item = multimedia.query.get_or_404(id)
 																
 	return render_template("individual_vids.html", title=title, item=item, date=date)
 
-
-
-
-
 #ACTUALIZAR VIDEOS
-@app.route("/update_Video", methods=["GET","POST"])
+@app.route("/edit_video/edit/<int:id>", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
-def update_Video():
-	form = multimForm()
-	values = multimedia.query.order_by(multimedia.date_added)
+def edit_video(id):
 	date 	= datetime.now(timezone('America/Chicago'))
 	title 	= "Editar Video"
+	item 	= multimedia.query.get_or_404(id)
+	form 	= multimForm()
 
-	if request.method == "POST":
-		usuario 		= 	request.form["usuario"]
-		avatar 			= 	request.form["avatar"]
-		detalle 		= 	request.form["detalle"]
-		video 			= 	request.form["video"]
+	if form.validate_on_submit():
+		#variable  		|  Datos dentro de los modelos
+		item.usuario 	= form.usuario.data
+		item.avatar 	= form.avatar.data
+		item.detalle 	= form.detalle.data
+		item.video 		= form.video.data
+				
+		# ENVIAR A LA BASE DE DATOS	
+		db.session.add(item)
+		db.session.commit()
+		flash("Video modificad@ correctamente", "success")
+		return redirect(url_for("individual_vids", id=item.id))
 
-		try:
-			db.session.commit()
-			flash(f"{form.usuario.data.title()} {form.avatar.data.title()} {form.detalle.data.title()} {form.detalle.data.video()} ha sido modificad@", "success")
-			return render_template("update_Video.html", form=form, date=date,  values=values, users=users)
-		except:
-			db.session.commit()
-			flash("Hubo un error al intentar modificar el Video", "warning")
-			return render_template("update_Video.html", form=form, date=date)
-	else:
-		return render_template("update_Video.html", title=title, values=values, form=form, date=date)
+	form.usuario.data 	= item.usuario
+	form.avatar.data 	= item.avatar
+	form.detalle.data 	= item.detalle
+	form.video.data 	= item.video
 
+	
+	return render_template("edit_video.html", form=form, date=date)
 
+#BORRAR VIDEOS
+@app.route("/delete_video/delete/<int:id>", methods=["GET","POST"])
+@login_required #Solo se puede editar con login
+def delete_video(id):
+	date 	= 	datetime.now(timezone('America/Chicago'))
+	vids_To_Delete = multimedia.query.get_or_404(id)
+	try:
+		db.session.delete(vids_To_Delete)
+		db.session.commit()
+		#Regresa un mensaje de confirmación
+		flash("El Video fué eliminado", "success")
+		value = multimedia.query.order_by(multimedia.date_added)
+		#Redirige a la página videos.html cuando agrega el video
+		return render_template("videos.html", value=value, date=date)
 
-#_______________________
+	except:
+		flash("No se pudo borrar el Video", "danger")
+		value = multimedia.query.order_by(multimedia.date_added)
+		return render_template("videos.html", value=value, date=date)
+
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
 # ALERTA DE ERRORES
 # Error URL Invalida
 @app.errorhandler(404)

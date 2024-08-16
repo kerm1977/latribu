@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %} 
+<!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
+	formatos etc sin eso sale la etiqueta pura -->
+
+<div class="wrap">
+<div class="container container_title">
+    <h1 class="Display 6 animate__animated animate__swing">{{title}}</h1>
+   <!--  <h2 class="Display 5 animate__bounceIn"><span class="text-success ">A LA TRIBU</span> <strong>HIKING C.R.</strong></h2> -->
+</div>
+
+<div class="container">
+	<div class="column">
+		<div class="edit_container">
+	
+		<form action="" method="POST">
+			{{ form.hidden_tag() }}
+			
+			{{ form.usuario.label(class="label") }}<br>
+			{{ form.usuario(class="form-control is-normal", maxlength="150") }}
+			<br>
+			{{ form.avatar.label(class="label") }}<br>
+			{{ form.avatar(class="form-control", maxlength="150") }}
+			<br>
+			{{ form.detalle.label(class="label") }}
+			{{ form.detalle(class="form-control is-rounded", maxlength="150") }}
+			<br>
+			{{ form.video.label(class="label") }}
+			{{ form.video(class="input is-normal", rows="5") }}
+			
+			<br>
+			{{ form.submit(class="button is-success is-ligh mt-5")}}
+		</form>
+
+
+
+		{{ckeditor.load()}}
+		<!-- {{ckeditor.config(name="titulo", height=100)}} -->
+		<!-- {{ckeditor.config(name="descripcion", height=100)}} -->
+		{{ckeditor.config(name="content", height=400)}}
+		<!-- {{ckeditor.config(name="slug", height=100)}} -->
+		<!-- evitar mensajes de error  de actualizacion de ckE	 -->
+		<style>
+	    	.cke_notifications_area { display: none; }
+		</style>
+	</div>
+	</div>
+</div>
+</div>
+{% endblock %}

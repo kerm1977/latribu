@@ -3,18 +3,19 @@
 
 <div class="wrap">
 <div class="container">
-
-
-	
-	  	<p class="ratio ratio-16x9 ">{{item.video | safe}}</p>
+	<div class="container">
+	  	<p class="ratio ratio-16x9">
+	  	{{item.video | safe}}</p>
+	  </div>
 	  	<h3><strong>{{item.detalle | safe}}</strong></h3>
 		<small>{{item.usuario | safe}}</small>
 		<p>{{item.avatar | safe}}</p>
 		<p>{{item.date_added}}</p>
 
-
-		<a href="{{url_for('update_Video')}}">EDITAR</a>
-
+		{%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
+			<a href="{{url_for('edit_video', id=item.id)}}">EDITAR VIDEO</a>
+			<a href="{{url_for('delete_video', id=item.id)}}">BORRAR VIDEO</a>
+		{%endif%}
 		
 </div>
 

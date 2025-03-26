@@ -152,7 +152,7 @@ class User(db.Model, UserMixin):
 
 	#Al agregar un campo hay que migrarlo a la DB y también agregarlo en esta fila con la misma sintaxis y orden
 	def __repr__(self):
-		return f"User('{self.username}',{self.apellido}',{self.apellido2}','{self.residencia}','{self.email}','{self.telefono}','{self.celular}','{self.password}','{self.confirmpassword}','{self.alergias}','{self.cronico}','{self.nacimiento}','{self.medicamentos}','{self.imagen_perfil}')"
+		return f"User('{self.username}',{self.apellido}',{self.apellido2}','{self.residencia}','{self.email}','{self.telefono}','{self.celular}','{self.password}','{self.confirmpassword}','{self.alergias}','{self.tiposangre}','{self.cronico}','{self.nacimiento}','{self.medicamentos}','{self.imagen_perfil}')"
 
 class Posts(db.Model):
 	id 					=	db.Column(db.Integer, primary_key=True)
@@ -851,7 +851,7 @@ if __name__ == "__main__":
 	db.create_all()
 	# db.upgrade_all()
 	# db.drop_all()	#Solo se ejecuta para migrar nuevos campos a la db pero borra el contenido
-	app.run(debug = True) 
+	app.run(debug = True, port=3000) 
 
 	# Migraciones Cmder
 		# set FLASK_APP=main.py 	<--Crea un directorio de migraciones

@@ -500,7 +500,6 @@ def delete(id):
 def logout():
    	logout_user()
    	flash("Sesión finalizada","notification is-warning")
-   	session.clear()
    	return redirect(url_for("home"))
 
 #CAMINO DE CR
@@ -515,7 +514,7 @@ def caminocr():
 @app.route("/registro", methods=["GET","POST"]) 
 def registro():
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	titulo="Registro | Inicio"
+	titulo= "Registro"
 	form = formularioRegistro()
 	pw = request.form.get("password")
 
@@ -560,7 +559,7 @@ def registro():
 # LOGIN
 @app.route("/login", methods=["GET","POST"]) 
 def login():
-	titulo="Inicio "
+	titulo = "Inicio "
 	form = formularioLogin()
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	if request.method == "POST":

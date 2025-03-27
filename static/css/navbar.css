@@ -15,24 +15,24 @@
       font-size: 25px;
     }
   
-  ul {
+  .ul-nav {
     display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  ul li {
+  .ul-nav .nav-li {
     margin-right: 20px;
   }
   
-  ul li a {
+  .ul-nav .nav-li .nav-href{
     color: white;
     text-decoration: none;
     transition: color 0.3s;
   }
   
-  ul li a:hover {
+  .ul-nav .nav-li a:hover {
     color: lightgreen;
   }
   
@@ -62,11 +62,11 @@
       box-sizing: border-box;
     }
 
-    li {
+    .nav-li {
       list-style: none;
     }
 
-    a {
+    .nav-href {
       display: block;
       width: 100%;
       height: 10vh;
@@ -95,22 +95,22 @@
       background: #e0e0e0;
     }
     #btn_menu,
-    .btn_menu {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 3;
-    }
+      .btn_menu {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 3;
+      }
 
-    #btn_menu {
-        display: none;
-    }
+      #btn_menu {
+          display: none;
+      }
 
-    .btn_menu {
-      width: 40px;
-      height: 40px;
-      color: red;
-    }
+      .btn_menu {
+        width: 40px;
+        height: 40px;
+        color: red;
+      }
 
 
     .btn_span {
@@ -172,11 +172,11 @@
     .checkbtn {
       display: block;
       order: 1;
-      margin-right: 20px;
+      margin: -4px 10px 10px 10px;
       }
   
   
-    ul {
+    .ul-nav {
       position: fixed;
       top: 55px;
       right: -100%;
@@ -191,25 +191,37 @@
       z-index: 999;
     }
   
-    ul li {
+    .ul-nav .nav-li {
       margin: 20px 0;
     }
   
-    ul li a {
+    .ul-nav .nav-li a {
       font-size: 20px;
     }
   
-    #btn_menu:checked ~ ul {
+    #btn_menu:checked ~ .ul-nav {
       right: 0;
     }
 
     .logo {
       margin-left: 60px;
-      font-size: 2rem;
     }
 
     .icon-user{
       font-size: 40px;
     }
 
-    
+  
+ @media (max-width: 300px) {
+   .logo {
+      display: none;
+    }
+
+    .navcss{
+     /* background-color: green;*/
+      height: 55px;
+    } 
+
+
+
+ }

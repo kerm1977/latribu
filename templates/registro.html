@@ -1,92 +1,96 @@
 {% extends "base.html" %}
 {% block content %} 
 
-	<!-- LOGIN -->
-	{% include 'flash.html' %}
-	<div class="wrap">
-		<div class="container_register">	
-			<div class="container_form">
-		    
 
-	<div class="login form">
-		<header class="text-center header_form">FORMULARIO DE REGISTRO <br>
-		<a class="text-danger text-center" href="{{url_for('login')}}"> Volver a Login</a></header>
-	    
-	    <form class="form-signin needs-validation" id="formulario" action="" method="POST" name="form" novalidate>
-            {{form.hidden_tag()}}
+<div class="wrap">
+	<div class="container is-max-desktop"></div>
+	<div class="container_register">	
+			<div class="login form">
+			
 
-           
-           <!-- INPUT USUARUI -->
-           	<input type="text" placeholder="Ingrese su Usuario" name="username" maxlength="15" pattern="[a-zA-Z]+" required>
-           	<div class="valid-feedback"></div>
-           	<div class="invalid-feedback">El Usuario no puede quedar vacio y solo se aceptan letras</div>
-           	<br>
+		   	{% if current_user.is_authenticated %}
+		    	<a class="text-success text-center" href="{{url_for('dashboard')}}"><h5>VOLVER A DASHBOARD</h5></a></header>
+				<p class="text-center">
+		     		<h5 class="text-center">Estás logeado con {{current_user.email}}</h5> 
+		     	</p>
+		     	<hr>
 
 
-
-           	<!-- INPUT EMAIL -->
-            <!-- <input type="text" placeholder="Ingrese su email" name="email" id="email"> -->
-            {{form.email(placeholder="Email",  id="email").lower()}}
-            <div class="valid-feedback"></div>
-            <div class="invalid-feedback">El Email no puede quedar vacio <br></div>
-            <br>
+		     	<br>
+		     	<a class="a_dash" href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span><strong> Cerrar Sesion</strong></a>
 
 
-            <!-- INPUT APELLIDO1 -->
-            <input type="text" placeholder="Ingrese su Primer Apellido" name="apellido" class="d-none"  pattern="[a-zA-Z]+" maxlength="10">
+		    {%else%}
+		      	<header class="text-center header_form">REGISTRO<a class="text-danger" href="{{url_for('login')}}"><h5>Iniciar</h5></a></header>
+
+				<form class="form-signin" action="" method="POST" name="form">
+			        {{form.hidden_tag()}}
+
+			        <div class="field">
+				        <div class="control">
+				        	{{form.username(placeholder="Usuario",  id="username", class="input").lower()}}
+				    	</div>
+			    	</div>
 
 
-            <!-- INPUT APELLIDO2 -->
-            <input type="text" placeholder="Ingrese su Segundo Apellido" name="apellido2" class="d-none"  pattern="[a-zA-Z]+" maxlength="10">
-            <input type="text" placeholder="Residencia" name="residencia" class="d-none">
+			    	<div class="field">
+				        <div class="control">
+			        {{form.email(placeholder="Email",  id="email", class="input").lower()}}
+			          	</div>
+			    	</div>
+
+			    	<div class="field">
+				        <div class="control">
+					        <input type="text" class="input" placeholder="Celular" name="celular" id="txtNumero"
+							minlength="8" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)"  required>
+					    	</div>
+			    	</div>	
+			    	
+
+			    	<div class="field">
+				        <div class="control">	
+				           		{{form.password(class="input", placeholder="Password", id="password1", type="password", required='required')}}
+				        </div>
+			    	</div>	
 
 
-            <!-- INPUT TELÉFONO 1 -->
-            <input type="text" placeholder="Teléfono" name="telefono" class="d-none" id="txtNumero" 
-			  maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)">
-		
-             <!-- INPUT TELÉFONO 2 -->	
-            <input type="text" placeholder="Teléfono de Emergencia" name="telefono2" class="d-none" id="txtNumero" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)">
-	
-			<!-- INPUT TELÉFONO 3 -->
-            <input type="text" placeholder="Celular" name="celular" id="txtNumero"
-			minlength="8" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)"  required>
-			<div class="valid-feedback"></div>
-            <div class="invalid-feedback">Este Celular parece ser invalido<br></div>
-            <br>
+					<div class="field">
+				        <div class="control">
+							{{form.confirmpassword (class="input", placeholder="Confirmar el password", id="password2", type="password", required='required')}}
+					   	</div>
+			    	</div>
+
+			    	<div class="field">
+				        <div class="control">
+							<i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostrar</i>
+	      				</div>
+			    	</div>
 
 
-            <input type="text" placeholder="Alergias" name="alergias" class="d-none">
-            <input type="text" placeholder="Enfermedades Crónicas" name="cronico" class="d-none">
-            <input type="text" placeholder="Medicamentos" name="medicamentos" class="d-none">
-            <input type="text" placeholder="Nacimiento" name="nacimiento" class="d-none">
-	        
-	        <input type="password" placeholder="Ingrese su password" id="password1" name="password" required>
-		        <div class="valid-feedback"></div>
-		        <div class="invalid-feedback">
-		        	El Password no puede quedar vacio <br>
-		        </div>
-		        <br>
 
-
-	        <input type="password" placeholder="Confirmar el password" id="password2" name="confirmpassword" required>
-		       	<div class="valid-feedback"></div>
-		        <div class="invalid-feedback"> La confirmación no puede quedar vacia <br>
-		        </div>
-		        <br>
-	
-
-	        <i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostrar</i>
-
-
-	        <hr>
-	        <input type="submit" class="button" value="Registrarse" name="Registrarme">
-	       <!--  <button type="submit" name="Registrarme" >Registrarme</button> -->
-	      </form>
-	    </div>
-	  </div>
+	        		<input type="submit" class="button" value="Iniciar" name="submit">
+				    <a href="#">Olvidó la Contraseña?</a>
+				</form>
+			{%endif%}
+		</div>
+	 	</div>
 	</div>
-</div>
+</div> 
+</div> 
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- LOGIN -->

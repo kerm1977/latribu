@@ -235,8 +235,8 @@ class formularioRegistro(FlaskForm):
 	telefono			= 	StringField		('telefono', [validators.NumberRange(message="Digite un Teléfono")])
 	telefonoE			= 	StringField		('emergencia', [validators.NumberRange(message="Digite un Teléfono de emergencia")])
 	celular				= 	StringField		('celular', [validators.NumberRange(message="Digite un Celular")])
-	password 			= 	PasswordField	('password',validators=[DataRequired(message='Se Requiere Password'), Length(min=8, max=20)]) 
-	confirmpassword 	= 	PasswordField	('confirmpassword',validators=[DataRequired(message='Se Requiere Confirmación de Password'), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
+	password 			= 	PasswordField	('password', name="password",validators=[DataRequired(message='Se Requiere Password'), Length(min=8, max=20)]) 
+	confirmpassword 	= 	PasswordField	('confirmpassword', name="confirmpassword", validators=[DataRequired(message='Se Requiere Confirmación de Password'), EqualTo('password', message='Password No Coincide')], id="confirmpassword")
 	alergias			= 	StringField		('alergias', validators=[Length(min=3, max=100)])
 	tiposangre 			= 	SelectField		("sangre", validators=[DataRequired()], choices=[("No Indico"),("No Recibo Transfuciones"),("A+"),("A-"),("B+"),("B-"),("AB+"),("AB-"),("O+"),("O-")],)
 	cronico				= 	StringField		('cronica', validators=[ Length(min=3, max=100)])
@@ -397,15 +397,15 @@ def update(id):
 		actualizar_registro.nacimiento 		= request.form["nacimiento"]
 		try:
 			db.session.commit()
-			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "success")
+			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "notification is-success")
 			return render_template("contacts.html", form=form, date=date, actualizar_registro=actualizar_registro, values=values, users=users)
 		except IntegrityError:
 			db.session.rollback()
-			flash(f"{form.email.data} YA EXISTE", "danger")
+			flash(f"{form.email.data} YA EXISTE", "notification is-danger")
 			return render_template("update_profile.html", form=form, date=date, actualizar_registro=actualizar_registro)	
 		except:
 			db.session.commit()
-			flash("Hubo un error al intentar modificar el registro", "warning")
+			flash("Hubo un error al intentar modificar el registro", "notification is-warning")
 			return render_template("update.html", form=form, date=date, actualizar_registro=actualizar_registro)
 	else:
 		return render_template("update.html", form=form, date=date, actualizar_registro=actualizar_registro)
@@ -437,13 +437,13 @@ def update_profile(id):
 	
 		try:
 			db.session.commit()
-			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "success")
+			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "notification is-success")
 		except IntegrityError:
 			db.session.rollback()
-			flash(f"{form.email.data} YA EXISTE", "danger")
+			flash(f"{form.email.data} YA EXISTE", "notification is-danger")
 			return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
 		except:
-			flash("Hubo un error al intentar modificar el registro", "warning")
+			flash("Hubo un error al intentar modificar el registro", "notification is-warning")
 			return render_template("update_profile.html", form=form, actualizar_registro=actualizar_registro,date=date)
 		return render_template("dashboard.html", date=date, form=form, actualizar_registro=actualizar_registro, values=values, users=users)	
 	else:
@@ -459,18 +459,18 @@ def card():
 	date = datetime.now(timezone('America/Chicago'))
 	if request.method == "POST":
 		actualizar_registro.username 		= 	request.form["username"]
-		actualizar_registro.apellido 		= 	request.form["apellido"]
-		actualizar_registro.apellido2 		= 	request.form["apellido2"]
-		actualizar_registro.residencia 		= 	request.form["residencia"]
+		# actualizar_registro.apellido 		= 	request.form["apellido"]
+		# actualizar_registro.apellido2 		= 	request.form["apellido2"]
+		# actualizar_registro.residencia 		= 	request.form["residencia"]
 		actualizar_registro.email 			= 	request.form["email"]
-		actualizar_registro.telefono 		= 	request.form["telefono"]
-		actualizar_registro.telefonoE 		= 	request.form["telefonoE"]
+		# actualizar_registro.telefono 		= 	request.form["telefono"]
+		# actualizar_registro.telefonoE 		= 	request.form["telefonoE"]
 		actualizar_registro.celular 		= 	request.form["celular"]
-		actualizar_registro.alergias 		= 	request.form["alergias"]
-		actualizar_registro.tiposangre 		= 	request.form["tiposangre"]
-		actualizar_registro.cronico 		= 	request.form["cronico"]
-		actualizar_registro.medicamentos 	= 	request.form["medicamentos"]
-		actualizar_registro.nacimiento 		= 	request.form["nacimiento"]
+		# actualizar_registro.alergias 		= 	request.form["alergias"]
+		# actualizar_registro.tiposangre 		= 	request.form["tiposangre"]
+		# actualizar_registro.cronico 		= 	request.form["cronico"]
+		# actualizar_registro.medicamentos 	= 	request.form["medicamentos"]
+		# actualizar_registro.nacimiento 		= 	request.form["nacimiento"]
 	else:
 		return render_template("card.html", form=form, date=date)
 
@@ -484,12 +484,12 @@ def delete(id):
 	try:
 		db.session.delete(borrar_registro)
 		db.session.commit()
-		flash(f"El usuario fué Eliminado", "warning")
+		flash(f"El usuario fué Eliminado", "notification is-warning")
 		return redirect(url_for("contacts"))
 		return render_template("contacts.html", borrar_registro = borrar_registro)
 	except:
 		db.session.commit()
-		flash("Hubo un error al intentar borrar este registro", "danger")
+		flash("Hubo un error al intentar borrar este registro", "notification is-danger")
 		return render_template("delete.html", borrar_registro=borrar_registro, id_delete=id_delete)
 	
 	return render_template("delete.html")
@@ -499,8 +499,9 @@ def delete(id):
 @login_required #Solo se puede editar con login
 def logout():
    	logout_user()
-   	flash("Sesión finalizada","warning")
-   	return redirect(url_for("login"))
+   	flash("Sesión finalizada","notification is-warning")
+   	session.clear()
+   	return redirect(url_for("home"))
 
 #CAMINO DE CR
 @app.route("/caminocr")
@@ -523,36 +524,36 @@ def registro():
 		email = User.query.filter_by(email=request.form["email"]).first()	
 
 		if {form.password.data} is None and {form.confirmpassword.data} is None:
-			flash(f"El password no puede quedar vacio", "danger")
+			flash(f"El password no puede quedar vacio", "notification is-danger")
 		elif {form.password.data} != {form.confirmpassword.data}:
-			flash(f"La contraseña y la verificación NO son iguales", "danger")
+			flash(f"La contraseña y la verificación NO son iguales", "notification is-danger")
 		elif email:
-			flash("""Email ya existen. intente con otro""", "warning")
+			flash("""Email ya existen. intente con otro""", "notification is-warning")
 		else:
 			hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 	
 			# CADA CAMBIO QUE SE REALICE EN FLASKFORM Y DB.MODELS HAY QUE ELIMINARLO O AGREGARLO AQUI	
 			user = User(
 				username 			=		form.username.data.title(), 
-				apellido			=		form.apellido.data.title(),
-				apellido2			=		form.apellido2.data.title(),
-				residencia			=		form.residencia.data,
+				# apellido			=		form.apellido.data.title(),
+				# apellido2			=		form.apellido2.data.title(),
+				# residencia			=		form.residencia.data,
 				email 				=		form.email.data.lower(), 
-				telefono			=		form.telefono.data,
-				telefonoE			=		form.telefonoE.data,
+				# telefono			=		form.telefono.data,
+				# telefonoE			=		form.telefonoE.data,
 				celular				=		form.celular.data,
 				password 			=		hashed_password, 
 				confirmpassword 	=		hashed_password,
-				alergias			=		form.alergias.data.title(),
-				cronico				=		form.cronico.data.title(),
-				medicamentos		=		form.medicamentos.data.title(),
-				nacimiento			=		form.nacimiento.data,
+				# alergias			=		form.alergias.data.title(),
+				# cronico				=		form.cronico.data.title(),
+				# medicamentos		=		form.medicamentos.data.title(),
+				# nacimiento			=		form.nacimiento.data,
 				#  nombre			= 			campo
 				)
 
 			db.session.add(user)
 			db.session.commit()
-			flash(f"Cuenta creada por {form.username.data.upper()} {form.apellido.data.upper()}", "success")
+			flash(f"Cuenta creada por {form.username.data.upper()}", "notification is-success")
 			return redirect(url_for("login"))
 	return render_template("registro.html", titulo=titulo, form=form, date=date)
 
@@ -570,12 +571,12 @@ def login():
 			app.permanent_session_lifetime = timedelta(minutes=5)
 			session.modified = True
 			login_user(user)
-			flash(f"Hola {user.username.upper()}", "alert-primary")
+			flash(f"Hola {user.username.upper()}", "notification is-success")
 			return redirect(url_for("home"))
 		else:
-			flash("El Usuario o Contraseña están mal escritos o ya existe otro igual", "warning")
+			flash("El Usuario o Contraseña están mal escritos o ya existe otro igual", "notification is-warning")
 			return redirect("login")
-		flash("Contraseña o Usuario invalidos", "danger")
+		flash("Contraseña o Usuario invalidos", "notification is-danger")
 	return render_template("login.html", titulo=titulo, form=form, date=date)
 
 # CREAR POSTS
@@ -603,7 +604,7 @@ def add_post():
 		db.session.add(post)
 		db.session.commit() 
 
-		flash("Publicado correctamente", "success")
+		flash("Publicado correctamente", "notification is-success")
 		return redirect("post")
 	return render_template("add_Post.html", form=form, date=date)	
 
@@ -641,12 +642,12 @@ def delete_post(id):
 	try:
 		db.session.delete(borrar_post)
 		db.session.commit()
-		flash(f"El Post fué Eliminado", "success")
+		flash(f"El Post fué Eliminado", "notification is-success")
 		return redirect(url_for("post"))
 		return render_template("post.html", borrar_post = borrar_post)
 	except:
 		db.session.commit()
-		flash("Hubo un error al intentar borrar este Post", "danger")
+		flash("Hubo un error al intentar borrar este Post", "notification is-danger")
 		return render_template("post.html", borrar_registro=borrar_registro, id_delete=id_delete)
 	else:
 		return render_template("post.html")
@@ -699,7 +700,7 @@ def tag_post():
 		db.session.add(tag)
 		db.session.commit() 
 
-		flash("Publicado correctamente", "success")
+		flash("Publicado correctamente", "notification is-success")
 		return redirect("html5")
 	return render_template("tag_Post.html", form=form, date=date)	
 
@@ -749,7 +750,7 @@ def add_Video():
 		db.session.commit() 
 
 		#Menaje de publicación
-		flash("Publicado correctamente", "success")
+		flash("Publicado correctamente", "notification is-success")
 		
 		#Redirige a la página videos.html cuando agrega el video
 		return redirect("videos")
@@ -789,7 +790,7 @@ def edit_video(id):
 		# ENVIAR A LA BASE DE DATOS	
 		db.session.add(item)
 		db.session.commit()
-		flash("Video modificad@ correctamente", "success")
+		flash("Video modificad@ correctamente", "notification is-success")
 		return redirect(url_for("individual_vids", id=item.id))
 
 	form.usuario.data 	= item.usuario
@@ -810,13 +811,13 @@ def delete_video(id):
 		db.session.delete(vids_To_Delete)
 		db.session.commit()
 		#Regresa un mensaje de confirmación
-		flash("El Video fué eliminado", "success")
+		flash("El Video fué eliminado", "notification is-success")
 		value = multimedia.query.order_by(multimedia.date_added)
 		#Redirige a la página videos.html cuando agrega el video
 		return render_template("videos.html", value=value, date=date)
 
 	except:
-		flash("No se pudo borrar el Video", "danger")
+		flash("No se pudo borrar el Video", "notification is-danger")
 		value = multimedia.query.order_by(multimedia.date_added)
 		return render_template("videos.html", value=value, date=date)
 

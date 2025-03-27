@@ -1,20 +1,10 @@
 <!-- MENSAJES FLASK -->
-<div class="container-main">  
-<!-- id msn es quien trabaja con onclick del botón cerrar de flash.html y cerrar.js -->
-    <div class="position">
-        <div  class="flash-msn" id="msn"> 
-            <div class="hide" onclick="closeWin()">
-            <!-- Estos son mensajes flashed que vienen desde main.py -->
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                      {% if messages %}
-                            <div class="alert alert-{{ messages.0.0 }}" role="alert"  id="msn">
-                          {% for category, message in messages %}
-                            {{ message }} </br>
-                          {% endfor %}
-                        </div>
-                      {% endif %}
-                    {% endwith %}
-                </div>
-         </div>
-    </div>
-</div> 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}

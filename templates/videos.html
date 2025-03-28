@@ -9,14 +9,7 @@
 
 	<br>
 
-	<div class="container btn_search mt-5">
-	  <form class="search">
-	    <div class="search__wrapper">
-	      <input id="buscador" type="text" name="buscador" placeholder="BUSCAR" class="search__field">
-	      <button type="submit" class="fa fa-search search__icon"></button>
-	    </div>
-	  </form>
-	</div>
+	
 
 	{%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
 		<div class="container">
@@ -29,7 +22,6 @@
 
 	
 		<div class="container">
-
 			<div class="row">
 				{%for item in value%}
 					<div class="col-xs-12 col-md-6 search_article">
@@ -38,7 +30,6 @@
 						<a href="{{url_for('individual_vids', id=item.id)}}">VER MAS</a>
 					</div>
 				{%endfor%}
-
 			</div>
 		</div>
 	

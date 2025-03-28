@@ -4,58 +4,82 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,user-scalable=no">
-    
-	
-	<link rel="shortcut icon" href="{{url_for('static', filename='img/favicon.ico')}}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='fonts/style.css') }}">
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='webfonts') }}"> -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/p.png') }}">      
 </head>
 
 <body>   
+
+
+<!-- /***********************************************************/
+INCLUYE EL NAVBAR QUE SE ENCUENTRA EN templates/navbar.html
+/************************************************************/-->
     {% include "navbar.html" %}
-    
+<!-- /***********************************************************/
+/************************************************************/-->
+
+
+
+<!-- /***********************************************************/
+INCLUYE LOS MENSAJES QUE SE ENCUENTRA EN templates/flash.html
+/************************************************************/-->    
     <div class="container is-fluid">  
         {% include 'flash.html' %}
     </div>  
+<!-- /***********************************************************/
+/************************************************************/-->
 
 
-     {%block title%}
-        {%if titulo%}
-        <div class="main-title">
-            <h1 class="title is-1 has-text-centered mt-6">
-               {{titulo}}
-           </h1>
-        </div>
-        {%else%}
-            <!-- Este title es por default -->
-            <h2>Flask</h2>
-        {%endif%}
-    {%endblock%}
+<!-- /***********************************************************/
+ESTE ES EL TITULO QUE SE VA A MOSTRAR EN TODAS LAS PÁGINAS
+/************************************************************/-->
+<div class="container -is-fluid">
+    <div class="main-title">
+        {%block title%}
+            {%if titulo%}
+                <!-- main-title está en base.css -->
+               
+                    <!-- estas clases son de bulma.css -->
+                    <h1 class="title is-1 has-text-centered mt-6">
+                       {{titulo}}
+                   </h1>
+                
+            {%else%}
+                <!-- Este title es por default -->
+                <h2>Flask</h2>
+            {%endif%}
+        {%endblock%}
+    </div>
+</div>
+<!-- /***********************************************************/
+/*************************************************************/-->
+
 
 
   
-
+<!-- /***********************************************************/
+CONTENIDO HEREDADO DE OTRAS PLANTILLAS
+/************************************************************/-->
     <div class="container is-fluid">
         {% block content %}
         {% endblock %}
     </div> 
-       <div class="titles">
-   
-    </div>
-    {% include "footer.html" %}        
+<!-- /***********************************************************/
+/************************************************************/-->
+  
+
+
+
+{% include "footer.html" %}        
      
 
    
     <!-- js scripts no borrar -->
-        <script src="{{ url_for('static', filename='js/popper.js')}}"></script>
-        <script src="{{ url_for('static', filename='js/bootstrap.js')}}"></script>
         <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/passError.js') }}"></script>
         <script src="{{ url_for('static', filename='js/buscador.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/cerrar.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/eye.js') }}"></script>
 
-    <!-- fin bootstrap js scripts no borrar -->
 
     <!--Scroll arriba -->
         <a href="#0" class="cd-top">Top</a>
@@ -63,18 +87,8 @@
         <script src="{{url_for('static', filename='js/main.js')}}"></script>
     <!--Fin scroll arriba -->
 
-    <!-- js -->
-        
-        <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/ionicons.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/eye.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/btndark.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/buscador.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/tabla.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/deleteUsers.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/navsticky.js') }}"></script> 
-        <!-- <script src="{{ url_for('static', filename='js/cerrar.js') }}"></script>  -->
-    <!-- <script src="{{ url_for('static', filename='js/inhabilitar.js') }}"></script>  -->
+       
+  
 </body>
 
 </html>

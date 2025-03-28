@@ -317,7 +317,7 @@ class SearchForm(FlaskForm):
 ##########################################################################
 # #VIEWS ------------------
 # Viables que se pueden utilizar en jinja
-# safe, capitalize, lower, upper, title,trim,striptags
+# safe, capitalize, lower, upper, titulo,trim,striptags
 #trim Elimina los espacios finales
 
 # HOME
@@ -329,8 +329,8 @@ def home():
 	user 	= 	{"username":"Kenneth"}
 	lname 	= 	{"lastname":"Ruiz"}
 	enlaces = 	["python","flask","bootstrap","vue"]
-	title 	= 	"INICIO"
-	return render_template("index.html",user=user, title=title, lname=lname, enlaces=enlaces, date=date)
+	titulo 	= 	"INICIO"
+	return render_template("index.html",user=user, titulo=titulo, lname=lname, enlaces=enlaces, date=date)
 
 #PERMANENCIA
 # @app.before_request
@@ -343,17 +343,17 @@ def home():
 @app.route("/dashboard", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def dashboard():
-	title = "Configuración"
+	titulo = "Configuración"
 	date = datetime.now(timezone('America/Chicago'))
-	return render_template("dashboard.html", title=title, date=date)
+	return render_template("dashboard.html", titulo=titulo, date=date)
 
 # DESCRIPCION DEL SITIO
 @app.route("/siteDescript")
 @login_required #Solo se puede editar con login
 def siteDescript():
-	title = "Configuración"
+	titulo = "Configuración"
 	date = datetime.now(timezone('America/Chicago'))
-	return render_template("siteDescript.html", title=title, date=date)
+	return render_template("siteDescript.html", titulo=titulo, date=date)
 
 # ADVANCE SEARCH
 @app.route("/advanceSearch")
@@ -397,7 +397,7 @@ def update(id):
 		actualizar_registro.nacimiento 		= request.form["nacimiento"]
 		try:
 			db.session.commit()
-			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "notification is-success")
+			flash(f"{form.username.data.titulo()} {form.apellido.data.titulo()} {form.apellido2.data.titulo()} ha sido modificad@", "notification is-success")
 			return render_template("contacts.html", form=form, date=date, actualizar_registro=actualizar_registro, values=values, users=users)
 		except IntegrityError:
 			db.session.rollback()
@@ -437,7 +437,7 @@ def update_profile(id):
 	
 		try:
 			db.session.commit()
-			flash(f"{form.username.data.title()} {form.apellido.data.title()} {form.apellido2.data.title()} ha sido modificad@", "notification is-success")
+			flash(f"{form.username.data.titulo()} {form.apellido.data.titulo()} {form.apellido2.data.titulo()} ha sido modificad@", "notification is-success")
 		except IntegrityError:
 			db.session.rollback()
 			flash(f"{form.email.data} YA EXISTE", "notification is-danger")
@@ -507,8 +507,8 @@ def logout():
 #@login_required #Solo se puede editar con login
 def caminocr():
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	title 	= 	"Camino de Costa Rica"
-	return render_template("caminocr.html", title=title, date=date)
+	titulo 	= 	"Camino de Costa Rica"
+	return render_template("caminocr.html", titulo=titulo, date=date)
 
 # REGISTRO
 @app.route("/registro", methods=["GET","POST"]) 
@@ -534,8 +534,8 @@ def registro():
 			# CADA CAMBIO QUE SE REALICE EN FLASKFORM Y DB.MODELS HAY QUE ELIMINARLO O AGREGARLO AQUI	
 			user = User(
 				username 			=		form.username.data.title(), 
-				# apellido			=		form.apellido.data.title(),
-				# apellido2			=		form.apellido2.data.title(),
+				# apellido			=		form.apellido.data.titulo(),
+				# apellido2			=		form.apellido2.data.titulo(),
 				# residencia			=		form.residencia.data,
 				email 				=		form.email.data.lower(), 
 				# telefono			=		form.telefono.data,
@@ -543,9 +543,9 @@ def registro():
 				celular				=		form.celular.data,
 				password 			=		hashed_password, 
 				confirmpassword 	=		hashed_password,
-				# alergias			=		form.alergias.data.title(),
-				# cronico				=		form.cronico.data.title(),
-				# medicamentos		=		form.medicamentos.data.title(),
+				# alergias			=		form.alergias.data.titulo(),
+				# cronico				=		form.cronico.data.titulo(),
+				# medicamentos		=		form.medicamentos.data.titulo(),
 				# nacimiento			=		form.nacimiento.data,
 				#  nombre			= 			campo
 				)
@@ -711,17 +711,17 @@ def tag_post():
 @app.route("/videos")
 def videos():
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	title 	= 	"Camino de Costa Rica"
+	titulo 	= 	"Camino de Costa Rica"
 	form = multimForm()
 	value = multimedia.query.all()
-	return render_template("videos.html", title=title, date=date, value=value, form=form )
+	return render_template("videos.html", titulo=titulo, date=date, value=value, form=form )
 
 #AGREGAR VIDEOS
 @app.route("/add_Video", methods=["GET","POST"])
 def add_Video():
 	form = multimForm() #multimForm es la clase modelo creada en la parte superior 
 	date = datetime.now(timezone('America/Chicago'))
-	title = "Agregar Videos" #declarar en html => dentro de h1 como {{title}}
+	titulo = "Agregar Videos" #declarar en html => dentro de h1 como {{titulo}}
 	value = multimedia.query.order_by(multimedia.date_added)
 	
 	# if form.validate_on_submit() == "POST":
@@ -755,27 +755,27 @@ def add_Video():
 		return redirect("videos")
 
 	#En caso de no agregarlos abre nuevamente el formulario de agregar video
-	return render_template("add_Video.html", form=form, date=date, value=value, title=title)	
+	return render_template("add_Video.html", form=form, date=date, value=value, titulo=titulo)	
 
 #INDIVIDUAL INFO VIDEOS
 #Cada publicación tiene un id para hacer referencia a una nueva publicación
 @app.route("/individual_vids/<int:id>")
 def individual_vids(id):
 	date 	= 	datetime.now(timezone('America/Chicago'))
-	title 	= 	"VIDEO DE LA TRIBU"
+	titulo 	= 	"VIDEO DE LA TRIBU"
 	# varieble nueva para crear una consulta con el id
 	# Si obtiene el id, continua sino sale un error 404
 	# Item es llamado dentro de la vista item.xxxx
 	item = multimedia.query.get_or_404(id)
 																
-	return render_template("individual_vids.html", title=title, item=item, date=date)
+	return render_template("individual_vids.html", titulo=titulo, item=item, date=date)
 
 #ACTUALIZAR VIDEOS
 @app.route("/edit_video/edit/<int:id>", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def edit_video(id):
 	date 	= datetime.now(timezone('America/Chicago'))
-	title 	= "Editar Video"
+	titulo 	= "Editar Video"
 	item 	= multimedia.query.get_or_404(id)
 	form 	= multimForm()
 

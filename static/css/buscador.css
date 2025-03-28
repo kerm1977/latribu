@@ -3,13 +3,14 @@
  	left: 50%;
   	-webkit-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
-
+  margin-top: 20px;
 }
+
 .search * {
   outline: none;
   box-sizing: border-box;
-
 }
+
 .search__wrapper {
   position: relative;
 }
@@ -18,6 +19,7 @@
   width: 50px;
   height: 50px;
   color: transparent;
+  background-color: transparent;
   font-family: Lato, sans-serif;
   font-size: 1.35em;
   padding: 0.35em 50px 0.35em 0;
@@ -29,13 +31,15 @@
 .search__field:focus {
   border-bottom-color: #ccc;
   width: 50vw;
-  color: rgba(233,82,30,0.5);
+  color: orange;
   cursor: default;
 }
 
 .search__field:focus ~ .search__icon {
-  background-color: transparent;
-  color: rgba(233,82,30,0.5);
+  
+  background-color: transparent; /*color del botón fondo donde está el icono*/
+  color:orange ; /*Color del icono cuando se expande*/
+  
   cursor: pointer;
   pointer-events: auto;
 }
@@ -46,13 +50,13 @@
   color:white; /*color del icono*/
   top: 0;
   right: 0;
-  background-color: rgba(233,82,30,0.5);
-  width: 52px; /*tamaño del botón*/
+  background-color: orange;
+  width: 50px; /*tamaño del botón*/
   height: 50px; /*tamaño del botón*/
   font-size: 1.35em;
   text-align: center;
   border-color: transparent;
-  border-radius: 10%;
+  border-radius: 10%; /*forma del botón encogido*/
   pointer-events: none;
   display: inline-block;
   transition: background-color 0.2s ease-in-out;
@@ -110,15 +114,15 @@
   perspective: 1000;
 }
 .search__field::-webkit-input-placeholder[style*=hidden] {
-  color: rgba(233,82,30,0.5);
-  font-size: .65em;
+  color: orange;
+  font-size: 80px;
   font-weight: normal;
   top: -20px;
   opacity: 1;
   visibility: visible !important;
 }
 .search__field:-moz-placeholder[style*=hidden] {
-  color: rgba(233,82,30,0.5);
+  color: orange;
   font-size: .65em;
   font-weight: normal;
   top: -20px;
@@ -126,7 +130,7 @@
   visibility: visible !important;
 }
 .search__field::-moz-placeholder[style*=hidden] {
-  color: rgba(233,82,30,0.5);
+  color: orange;
   font-size: .65em;
   font-weight: normal;
   top: -20px;
@@ -134,7 +138,7 @@
   visibility: visible !important;
 }
 .search__field:-ms-input-placeholder[style*=hidden] {
-  color: rgba(233,82,30,0.5);
+  color: wj;
   font-size: .65em;
   font-weight: normal;
   top: -20px;
@@ -147,8 +151,22 @@
   .search__field:focus {
     border-bottom-color: #ccc;
     width: 85vw;
-    color: rgba(233,82,30,0.5);
+    color: orange;
     cursor: default;
   }
+}
 
+
+@media(max-width: 768px){
+  .search {
+    margin-top: 20px;
+    z-index: 999;
+    color: white;
+    position: fixed;
+  }
+
+  .search__icon {
+    width: 100px;
+    border-radius: 0% 0% 100% 100%; /*forma del botón encogido*/
+  }
 }

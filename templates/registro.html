@@ -14,21 +14,23 @@
 
 
 		    {%else%}
+
+		    <div class="Form_container">
 		      	<header class="text-center header_form">{{titulo}}<a class="text-danger" href="{{url_for('login')}}"> | Iniciar</a></header>
 
-				<form class="form-signin" action="" method="POST" name="form">
+				<form class="form-signin mt-5" action="" method="POST" name="form ">
 			        {{form.hidden_tag()}}
 
 			        <div class="field">
 				        <div class="control">
-				        	{{form.username(placeholder="Usuario",  id="username", class="input").lower()}}
+				        	{{form.username(placeholder="Usuario",  id="username", class="input").capitalize()}}
 				    	</div>
 			    	</div>
 
 
 			    	<div class="field">
 				        <div class="control">
-			        {{form.email(placeholder="Email",  id="email", class="input").lower()}}
+			        {{form.email(placeholder="Email",  id="email", class="input").capitalize()}}
 			          	</div>
 			    	</div>
 
@@ -64,8 +66,9 @@
 	        		<input type="submit" class="button" value="Iniciar" name="submit">
 				    <a href="#">Olvidó la Contraseña?</a>
 				</form>
+			</div>	
 			{%endif%}
-		</div>
+		
 	 	</div>
 	</div>
 </div> 

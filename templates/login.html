@@ -5,6 +5,7 @@
 <div class="columns">
 	<div class="column">
 	<!-- LOGIN -->
+
 		   	{% if current_user.is_authenticated %}
 		    	<a class="text-success text-center" href="{{url_for('dashboard')}}"><h5>VOLVER A DASHBOARD</h5></a></header>
 				<p class="text-center">
@@ -14,40 +15,43 @@
 		     	<br>
 		     	<a class="a_dash" href="{{url_for('logout')}}"><span class="icomoon-dash-ico icon-switch"></span><strong> Cerrar Sesion</strong></a>
 		    {%else%}
-		      	<header class="text-center header_form">{{titulo}}<a class="text-danger" href="{{url_for('registro')}}">Registro</a></header>
+
+		    	<div class="Form_container">
+			      	<header class="text-center header_form">{{titulo}}<a class="text-danger" href="{{url_for('registro')}}">Registro</a></header>
 
 
 
-				<form class="form-signin" action="" method="POST" name="form">
-			        {{form.hidden_tag()}}
-			          
+					<form class="form-signin mt-5" action="" method="POST" name="form">
+				        {{form.hidden_tag()}}
+				          
 
-			        <div class="field">
-				        <div class="control">  
-			        		{{form.email(placeholder="Usuario",  id="email", class="input").lower()}}
-			        	</div>		
-			        </div>	
+				        <div class="field">
+					        <div class="control">  
+				        		{{form.email(placeholder="Usuario",  id="email", class="input").lower()}}
+				        	</div>		
+				        </div>	
 
-			        <div class="field">
+				        <div class="field">
+					        <div class="control">
+		        				{{form.password(placeholder="Password",  id="password", type="password" , class="input")}}
+		        		   	</div>		
+				        </div>
+
+
+		        		<i class="icon is-small is-right icon-eye" onclick="myFunction1()"> Mostrar</i>
+
+		        	<div class="field">
 				        <div class="control">
-	        				{{form.password(placeholder="Password",  id="password", type="password" , class="input")}}
-	        		   	</div>		
-			        </div>
+	        				<input type="submit" class="button" value="Iniciar" name="submit">
+	        			</div>
+				    </div>
 
+					 <a href="#">Olvidó la Contraseña?</a>
+					</form>
 
-	        		<i class="icon is-small is-right icon-eye" onclick="myFunction1()"> Mostrar</i>
-
-	        	<div class="field">
-			        <div class="control">
-        				<input type="submit" class="button" value="Iniciar" name="submit">
-        			</div>
-			    </div>
-
-				 <a href="#">Olvidó la Contraseña?</a>
-				</form>
-
-			    <div class="signup">
-				    <a class="texr-dark" href="{{url_for('registro')}}"><span class="text-dark">Aun no tienes cuenta?</span></a>
+				    <div class="signup">
+					    <a class="texr-dark" href="{{url_for('registro')}}"><span class="text-dark">Aun no tienes cuenta?</span></a>
+					</div>
 				</div>
 			{%endif%}
 
@@ -58,14 +62,20 @@
 	<h2>Datos de Privacidad</h2>
 		<hr>
 
-		<strong>¿Porque necesito registrarme para ver el contenido?</strong>
-			<p class="container_justify">El grupo de La Tribu Hiking a pesar de ser un grupo sin fines de lucro y es decisión de cada quien participar libremente sea en esta o demás agrupaciones,  intentamos conocer a las personas que van a integrar nuestra familia, con el fin de mantener el orden y un clima armonía y un ambiente libre de negativismo.  </p>
+		<p class="is-size-5 has-text-black-ter  mt-5">¿Porque necesito registrarme para ver el contenido?
+		</p>
 
-		<strong>¿Que debo hacer para formar parte de La Tribu Hiking?</strong>
-			<p class="container_justify">Puedes contactarte con alguno de los coordinadores a los teléfonos <span class="icon-whatsapp"></span> <strong class="text-warning"> 86227500 | 8652 9837</strong> o bien registrarte directamente en este sitio donde nosotros revisamos y nos pondremos en contacto con cada nuevo miembro. Este paso es importante ya que evitamos se filtre información del grupo a manos de antisociales que monitore donde se encuentra el grupo.</p>
+			<p class="has-text-justified has-text-grey mt-5">El grupo de La Tribu Hiking a pesar de ser un grupo sin fines de lucro y es decisión de cada quien participar libremente sea en esta o demás agrupaciones,  intentamos conocer a las personas que van a integrar nuestra familia, con el fin de mantener el orden y un clima armonía y un ambiente libre de negativismo.  </p>
 
-		<strong>¿Es seguro registarme y Quien maneja mis datos?</strong>
-			<p class="container_justify">Este sitio web fue construido con módulos que encriptan la información sensible, de tal forma que ni el desarrollador, puede conocer la contraseña de ingreso. Los datos son administrados en una base de datos en la nube del hosting que se comprometen a resguardar todo el contenido. La Tribu, administrará esos datos únicamente para situaciones de emergencia y/o notificar al usuario de actividades.</p>
+		<p class="is-size-5 has-text-black-ter  mt-5">¿Que debo hacer para formar parte de La Tribu Hiking?
+		</p>	
+
+			<p class="has-text-justified has-text-grey mt-5">Puedes contactarte con alguno de los coordinadores a los teléfonos <span class="icon-whatsapp"></span> <strong class="text-warning"> 86227500 | 8652 9837</strong> o bien registrarte directamente en este sitio donde nosotros revisamos y nos pondremos en contacto con cada nuevo miembro. Este paso es importante ya que evitamos se filtre información del grupo a manos de antisociales que monitore donde se encuentra el grupo.</p>
+
+		<p class="is-size-5 has-text-black-ter  mt-5">¿Es seguro registarme y Quien maneja mis datos?
+		</p>	
+
+			<p class="has-text-justified has-text-grey mt-5">Este sitio web fue construido con módulos que encriptan la información sensible, de tal forma que ni el desarrollador, puede conocer la contraseña de ingreso. Los datos son administrados en una base de datos en la nube del hosting que se comprometen a resguardar todo el contenido. La Tribu, administrará esos datos únicamente para situaciones de emergencia y/o notificar al usuario de actividades.</p>
 
 		<a href=""><strong class="text-danger">Información Técnica del sitio</strong></a>
 	</div>			

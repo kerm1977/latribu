@@ -14,11 +14,15 @@
     </div>
 
     <ul class="menu">
+      {% include "buscador.html" %}
       <li class="menu__item"><a class="menu__link" href="{{url_for('home')}}">Inicio</a></li>
       <li class="menu__item"><a class="menu__link" href="#">About</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+    
+
+
 
     </ul>
     <p class="copyRight">&copy;2024 | <strong class="copyRight">La Tribu</strong> | <strong class="text-secondary copyRight">HIKING-TREKKING</strong> <a href="{{url_for('siteDescript')}}"><i>versión 1.0</i></a></p>

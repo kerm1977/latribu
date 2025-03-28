@@ -1,12 +1,47 @@
+
+* p{
+	font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+	font-weight: 100 !important;
+	font-style: lighter !important;
+	font-size: 16px;
+}
+
 .main-title{
-	/*background-color: red;*/
+	margin-top: 50px;
 	margin-bottom: 50px;
+	font-family: ronda !important;
 }
 
  @media (max-width: 768px) {
-   .main-title{
+ 	.main-title{
 		margin-top: 100px;
-		/*background-color: green;*/
-		margin-bottom: 50px;
 	}
+
 }
+
+.Form_container{
+	margin:auto;
+	width: 300px;
+}
+
+
+
+/*ESTE ES EL CONTENIDO DE LOS PLACEHOLDER*/
+/*------------------------------------------*/
+::placeholder {
+  color: #FFA07A !important;
+  font-size: 15px;
+  text-transform: capitalize;
+  opacity: 0.6;
+}
+/*------------------------------------------*/
+
+
+
+
+
+
+
+
+
+

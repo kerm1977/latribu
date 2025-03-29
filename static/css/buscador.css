@@ -3,7 +3,7 @@
  	left: 50%;
   	-webkit-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .search * {
@@ -156,17 +156,3 @@
   }
 }
 
-
-@media(max-width: 768px){
-  .search {
-    margin-top: 20px;
-    z-index: 999;
-    color: white;
-    position: fixed;
-  }
-
-  .search__icon {
-    width: 100px;
-    border-radius: 0% 0% 100% 100%; /*forma del botón encogido*/
-  }
-}

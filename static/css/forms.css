@@ -1,0 +1,20 @@
+.forgot_Pass{
+	margin-top: 30px;
+	color:red;
+}
+
+.icon_show{
+	margin-top: -10px;
+}
+
+.mr-100{
+	display: flex;
+	left: 85%;
+}
+
+ @media (max-width: 768px) {
+ 	.forgot_Pass{
+	margin-top: 20px;
+	color:red;
+}
+}

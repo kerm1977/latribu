@@ -30,14 +30,14 @@
 
 			    	<div class="field">
 				        <div class="control">
-			        {{form.email(placeholder="Email",  id="email", class="input").capitalize()}}
+			        		{{form.email(placeholder="Email",  id="email", class="input").capitalize()}}
 			          	</div>
 			    	</div>
 
 			    	<div class="field">
 				        <div class="control">
 					        <input type="text" class="input" placeholder="Celular" name="celular" id="txtNumero"
-							minlength="8" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)"  required>
+							minlength="8" maxlength="8" onkeyup="limpiarNumero(this)" onchange="limpiarNumero(this)" required>
 					    	</div>
 			    	</div>	
 			    	
@@ -55,16 +55,11 @@
 					   	</div>
 			    	</div>
 
-			    	<div class="field">
-				        <div class="control">
-							<i class="icon is-small is-right icon-eye" onclick="myFunction()"> Mostrar</i>
-	      				</div>
-			    	</div>
-
-
-
-	        		<input type="submit" class="button" value="Iniciar" name="submit">
-				    <a href="#">Olvidó la Contraseña?</a>
+			    	<button class="button mr-100" type="button">
+   						 	<span class="icon is-small">	
+				    			<i class="icon is-small is-right icon-eye" onclick="myFunction()"></i>
+	      			 		</span>
+  					</button>
 				</form>
 			</div>	
 			{%endif%}

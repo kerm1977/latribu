@@ -1,29 +1,14 @@
-<footer>
-    <div class="text-center">
-      <div class="time text-center text-light">{{date | fecha | capitalize}}</div>  
-       <span class="text-light">Hecho con <span class="icon-heart text-danger"></span> por <a class="text-light" href="">La Tribu CR</a></span>
-       <br>
-       <!-- <div class="tecnology">          
-         <code class="codeTecnology">TECNOLOGY</code>  
-         <a href="https://flask.palletsprojects.com/en/3.0.x/"><img class="tec_Ico" src="{{ url_for('static', filename='img/flask.svg') }}" alt=""></a>
-         <a href="https://getbootstrap.com/docs/4.0/components/navbar/"><img class="tec_Ico" src="{{ url_for('static', filename='img/bootstrap.svg') }}" alt=""></a>
-         <img class="tec_Ico" src="{{ url_for('static', filename='img/python.svg') }}" alt="">
-         <img class="tec_Ico" src="{{ url_for('static', filename='img/git.svg') }}" alt="">
-         <img class="tec_Ico" src="{{ url_for('static', filename='img/vue.svg') }}" alt="">
-      </div> -->
-    </div>
+<footer class="footer mt-5">
 
-    <ul class="menu">
-      {% include "buscador.html" %}
-      <li class="menu__item"><a class="menu__link" href="{{url_for('home')}}">Inicio</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-    
+  <div class="content has-text-centered">
 
+      <p>
+      <strong>Hecho con </strong> <span class="icon-heart text-danger"></span> por La Tribu Hiking CR.
+      <div class="time text-center text-light"></div> 
+     </p>
 
-
-    </ul>
-    <p class="copyRight">&copy;2024 | <strong class="copyRight">La Tribu</strong> | <strong class="text-secondary copyRight">HIKING-TREKKING</strong> <a href="{{url_for('siteDescript')}}"><i>versión 1.0</i></a></p>
+     <p class="copyRight">{{date | fecha | capitalize}} | <strong class="copyRight">&copy; lthiking</strong> |<a href="{{url_for('siteDescript')}}"><i>versión 1.0</i></a></p>
+  </div>
+  <hr>
+         {% include "buscador.html" %}
 </footer>

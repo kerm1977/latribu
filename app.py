@@ -326,11 +326,9 @@ class SearchForm(FlaskForm):
 @app.route("/index")
 def home():
 	date = datetime.now(timezone('America/Chicago'))
-	user 	= 	{"username":"Kenneth"}
-	lname 	= 	{"lastname":"Ruiz"}
-	enlaces = 	["python","flask","bootstrap","vue"]
-	titulo 	= 	"INICIO"
-	return render_template("index.html",user=user, titulo=titulo, lname=lname, enlaces=enlaces, date=date)
+	titulo = "Bienvenid@s"
+	sbtitulo ="La Tribu Hiking"
+	return render_template("index.html", titulo=titulo, sbtitulo=sbtitulo, date=date)
 
 #PERMANENCIA
 # @app.before_request
@@ -559,7 +557,7 @@ def registro():
 # LOGIN
 @app.route("/login", methods=["GET","POST"]) 
 def login():
-	titulo = "Inicio "
+	titulo = "Login"
 	form = formularioLogin()
 	date 	= 	datetime.now(timezone('America/Chicago'))
 	if request.method == "POST":

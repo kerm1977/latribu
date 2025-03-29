@@ -1,9 +1,25 @@
 {% extends "base.html" %}
 {% block content %} 
-
-
-<div class="wrap">
-	<div class="container">
+	{%block title%}
+            {%if titulo%}
+                <!-- main-title está en base.css -->
+               <div class="container -is-fluid">
+                    <div class="main-title">
+                    <section class="hero">
+                      <div class="hero-body">
+                        <p class="title has-text-centered">{{titulo}}</p>
+                        <p class="subtitle has-text-centered">{{sbtitulo}}</p>
+                      </div>
+                    </section>
+                    </div>
+                </div>    
+                
+            {%else%}
+                <!-- Este title es por default -->
+                <h2>Flask</h2>
+            {%endif%}
+        {%endblock%}
+        
 		<h2 class="text-center">Acerca de Este Sitio</h2>
 		<h3>Versión 1.0</h3>
 
@@ -15,7 +31,7 @@
 
 		<p>Este sitio utiliza paquetes y tecnologías que respaldan proyectos muy grandes como SPOTIFY, netflix, pinterest, Nasa, google entre otros. Esto se debe a que el uso y los conectores de la base de datos sea más sencillo de administrar debido a los modelos relacionales a través <a href="https://www.sqlalchemy.org/">sqlachemy</a> y facilidad de migraciones mientras que la parte grafica se administra con el motor de plantillas <a href="https://jinja.palletsprojects.com/en/3.1.x/">JINJA 3.1</a> y <a href="https://flask.palletsprojects.com/en/3.0.x/">Flask.</a></p>
 
-		<p>En gran parte del sitio se utiliza el framework de <a href="https://getbootstrap.com/">Bootstrap</a> o <a href="https://bulma.io/">Bulma(No JS)</a> para manejar el área responsiva, <a href="https://icomoon.io/app/#/select">Icoomon</a> para todo lo relacionado con íconos, <a href="https://vuejs.org/">VUE</a> y Javascripts para la dinámica del sitio. Cuenta además con los conectores a Mysql y Sqlite que es una base de datos pequeña para pruebas aunque no es recomendada utilizar esta última para producción. Pero no menos importante una copia de respaldo o control de versiones en <a href="https://trello.com/">trello</a> y git con <a href="https://github.com/">Github</a> que permite ir llevando el paso a paso desde el nacimiento de este sitio web.</p>
+		<p>En gran parte del sitio se utiliza el framework de <a href="https://https://bulma.io/.com/">Bulma CSS (No JS)</a>  para manejar el área responsiva, <a href="https://icomoon.io/app/#/select">Icoomon</a> para todo lo relacionado con íconos, Javascripts para la dinámica del sitio. Cuenta además con los conectores a Mysql y Sqlite que es una base de datos pequeña para pruebas aunque no es recomendada utilizar esta última para producción. Pero no menos importante una copia de respaldo o control de versiones en <a href="https://trello.com/">trello</a> y git con <a href="https://github.com/">Github</a> que permite ir llevando el paso a paso desde el nacimiento de este sitio web.</p>
 
 		<code>LA TRIBU</code>
 

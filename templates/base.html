@@ -30,31 +30,6 @@ INCLUYE LOS MENSAJES QUE SE ENCUENTRA EN templates/flash.html
 /************************************************************/-->
 
 
-<!-- /***********************************************************/
-ESTE ES EL TITULO QUE SE VA A MOSTRAR EN TODAS LAS PÁGINAS
-/************************************************************/-->
-<div class="container -is-fluid">
-    <div class="main-title">
-        {%block title%}
-            {%if titulo%}
-                <!-- main-title está en base.css -->
-               
-                    <!-- estas clases son de bulma.css -->
-                    <h1 class="title is-1 has-text-centered mt-6">
-                       {{titulo}}
-                   </h1>
-                
-            {%else%}
-                <!-- Este title es por default -->
-                <h2>Flask</h2>
-            {%endif%}
-        {%endblock%}
-    </div>
-</div>
-<!-- /***********************************************************/
-/*************************************************************/-->
-
-
 
   
 <!-- /***********************************************************/

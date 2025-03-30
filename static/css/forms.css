@@ -12,9 +12,35 @@
 	left: 85%;
 }
 
+
+
+/*boton de crear cuenta desde el loguin*/
+.login_account_create{
+	margin-top: 40px;
+	font-size: 15px;
+	border-radius: 20px;
+	padding:20px;
+	display:flex;
+	color:white;
+
+}
+
+
+.login_account_create:hover {
+	margin-top: 40px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 20px;
+	padding:25px;
+	display:flex;
+	color:white;
+}
+/*fin boton de crear cuenta desde el loguin*/
+
+
  @media (max-width: 768px) {
  	.forgot_Pass{
 	margin-top: 20px;
 	color:red;
-}
+	}
 }

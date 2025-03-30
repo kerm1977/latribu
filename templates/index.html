@@ -1,27 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-        {%block title%}
-            {%if titulo%}
-                <!-- main-title está en base.css -->
-               <div class="container -is-fluid">
-                    <div class="main-title">
-                    <section class="hero">
-                      <div class="hero-body">
-                        <p class="title has-text-centered">{{titulo}}</p>
-                        <p class="subtitle has-text-centered">{{sbtitulo}}</p>
-                      </div>
-                    </section>
-                    </div>
-                </div>    
-                
-            {%else%}
-                <!-- Este title es por default -->
-                <h2>Flask</h2>
-            {%endif%}
-        {%endblock%}
 
+<div class="container is-fluid">
+    <div class="main-title has-text-centered">
+    <h1 class="title ">{{titulo}}</h1>
+   </div>
+</div> 
 
-    
 
 
 {% endblock %}

@@ -1,3 +1,10 @@
+.flex_container{
+	/*background-color:red;*/
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
 
 * p{
 	font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
@@ -31,6 +38,13 @@
 
 
 
+.card-info{
+	width: 80%;
+	margin: auto;
+}
+
+
+
 /*ESTE ES EL CONTENIDO DE LOS PLACEHOLDER*/
 /*------------------------------------------*/
 ::placeholder {
@@ -40,6 +54,8 @@
   opacity: 0.6;
 }
 /*------------------------------------------*/
+
+
 
 
 

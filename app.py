@@ -325,10 +325,12 @@ class SearchForm(FlaskForm):
 @app.route("/home")
 @app.route("/index")
 def home():
+	form = PostForm()
+	post = Posts.query.order_by(Posts.date_posted)
 	date = datetime.now(timezone('America/Chicago'))
 	titulo = "Bienvenid@s"
 	sbtitulo ="La Tribu Hiking"
-	return render_template("index.html", titulo=titulo, sbtitulo=sbtitulo, date=date)
+	return render_template("post.html", titulo=titulo, sbtitulo=sbtitulo, date=date, form=form, post=post)
 
 #PERMANENCIA
 # @app.before_request
@@ -560,8 +562,10 @@ def login():
 	titulo = "Login"
 	form = formularioLogin()
 	date 	= 	datetime.now(timezone('America/Chicago'))
+	
 	if request.method == "POST":
 		user = User.query.filter_by(email=form.email.data.lower()).first()
+		
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			# Caducidad de sesion con timedelta (from datetime import datetime, timedelta) para que funcione
 			session.permanent = True
@@ -574,12 +578,14 @@ def login():
 			flash("El Usuario o Contraseña están mal escritos o ya existe otro igual", "notification is-warning")
 			return redirect("login")
 		flash("Contraseña o Usuario invalidos", "notification is-danger")
+	
 	return render_template("login.html", titulo=titulo, form=form, date=date)
 
 # CREAR POSTS
 @app.route("/add-post", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def add_post():
+	titulo = "Crear un nuevo Evento"
 	date = datetime.now(timezone('America/Chicago'))
 	form = PostForm() #PostForm es la clase modelo creada en la parte superior 	
 	if request.method == "POST":
@@ -602,8 +608,9 @@ def add_post():
 		db.session.commit() 
 
 		flash("Publicado correctamente", "notification is-success")
-		return redirect("post")
-	return render_template("add_Post.html", form=form, date=date)	
+		# return redirect("post") ESTA RUTA ES LA CORRECTA
+		return redirect("index")
+	return render_template("add_Post.html", form=form, date=date, titulo=titulo)	
 
 # EDITAR POSTS
 @app.route("/posts/edit/<int:id>", methods=["GET","POST"])
@@ -653,9 +660,10 @@ def delete_post(id):
 @app.route("/post")
 @login_required #Solo se puede editar con login
 def post():
+	titulo="Posts Creados"
 	date = datetime.now(timezone('America/Chicago')) 
 	post = Posts.query.order_by(Posts.date_posted)
-	return render_template("post.html", post=post, date=date)
+	return render_template("post.html", post=post, date=date, titulo=titulo)
 
 # LEER POST INDIVIDUALMENTE
 @app.route("/posts/<int:id>")

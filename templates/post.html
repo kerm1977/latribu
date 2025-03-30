@@ -1,81 +1,91 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
-			formatos etc sin eso sale la etiqueta pura -->
+
+<div class="container is-fluid">
+    <div class="main-title has-text-centered">
+    <h1 class="title ">{{titulo}}</h1>
+   </div>
+</div> 
 
 
 
-<div class="container container-post">
-	{%for post in post%}
+  <!-- si el mail es cualquiera de los 2 muestra las dos opciones  -->
+  {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
+    <button class="button is-rounded "><a class="has-text-warning" href="{{url_for('add_post')}}">Crear un nuevo Post</a>
+    </button>
+  <hr>
+  {%else%}
+  {%endif%}
+          
 
 
 
-		<div class="box">
-	  <article class="media">
-	    <div class="media-left">
-	      <figure class="image is-64x64">
-	        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-	      </figure>
-	    </div>
-	    <div class="media-content">
-	      <div class="content">
-	  	      	{{post.titulo|safe}}
-	        <p>
-	          <strong>{{post.user.username}}</strong> <small>{{post.slug|safe}}</small> 
-	          <br>
-	        {{post.content|safe}}
-	        </p>
 
-	      <br>{{post.date_posted.strftime('%d-%m-%Y')}}<br>
 
-	      </div>
-	      <span class="level is-mobile">
-	        <div class="level-left">
-	          <a class="level-item" aria-label="reply">
-	            <span class="icon is-small">
-	              <i class="fas fa-reply" aria-hidden="true"></i>
-	            </span>
-	          </a>
-	          <a class="level-item" aria-label="retweet">
-	            <span class="icon is-small">
-	              <i class="fas fa-retweet" aria-hidden="true"></i>
-	            </span>
-	          </a>
-	          <a class="level-item" aria-label="like">
-	            <span class="icon is-small">
-	              <i class="fas fa-heart" aria-hidden="true"></i>
-	            </span>
-	          </a>
-	          <a class="level-item" aria-label="">
-	          	<a href="{{url_for('posts', id=post.id)}}">
-		            <i class="" aria-hidden="true">VER MAS</i>
-	             </a>
-	          </a>
 
-	           <a class="level-item" aria-label="">
-	          	<a href="{{url_for('add_post', id=post.id)}}">
-		            <i class="" aria-hidden="true">CREAR POST</i>
-	             </a>
-	          </a>
-	          
-	          	          <a class="level-item" aria-label="">
-	          	<a href="{{url_for('edit_post', id=post.id)}}">
-		            <i class="" aria-hidden="true">EDITAR</i>
-	             </a>
-	          </a>
 
-	          <a class="level-item" aria-label="">
-	          	<a href="{{url_for('delete_post', id=post.id)}}">
-		            <i class="" aria-hidden="true">BORRAR</i>
-	             </a>
-	          </a>
+<div class="flex_container">
+ 
 
-	        </div>
-	      </span>
-	    </div>
-	  </article>
-	</div>
-	{%endfor%}
+{%for post in post%}
+<div class="tarjetas_caminatas flex_container_box">
+    <div class="">
+      <!-- Aqui viene el contenido desde la base de datos post -->
+      <!-- También está configurado en index o home dentro de app -->
+   <div class="">
+          
+          <div class="card-image">
+              <img class="img_card_Tarjeta"
+                src="{{ url_for('static', filename='img/3.jpg')}}"
+                alt="Placeholder image"
+              />
+           
+          
+
+
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img
+                    src="https://bulma.io/assets/images/placeholders/96x96.png"
+                    alt="Placeholder image"
+                  />
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{post.titulo|safe}}
+        </p>
+              </div>
+            </div>
+
+            <div class="content">
+              {{post.content|safe}}
+              iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+              <a href="#">#responsive</a>
+              <br />
+           
+            </div>
+          </div>
+
+          {%if current_user.email == "kenth1977@gmail.com" or current_user.email == "jceciliano69@gmail.com"%}  
+          <div class="card mt-4">
+          <footer class="card-footer">
+          <a href="{{url_for('add_post', id=post.id)}}" class="card-footer-item">Ver más</a>
+          <a href="{{url_for('edit_post', id=post.id)}}" class="card-footer-item">Edit</a>
+          <a href="{{url_for('delete_post', id=post.id)}}" class="card-footer-item">Delete</a>
+          </footer>
+          </div>
+          {%else%}
+          {%endif%}
+        
+        </div>
+      </div>
+  </div> 
+
+    {%endfor%}
+  
 </div>
 
 

@@ -50,23 +50,37 @@
   						</button>
 
 
+
 		        	
 				        <div class="control mt-5">
 	        				<input type="submit" class="button is-fullwidth is-rounded " value="Iniciar" name="submit">
 	        			</div>
+
+
+
+	  					<hr>		
+
+						<label class="checkbox">
+						  <input type="checkbox" />
+						  No preguntar más
+						</label>
+
+
 						
 						<div class="forgot_Pass" >
 							<span class="icon-heart-broken"></span>
 						 	<a href="#">Olvidó la Contraseña?</a>
 						</div>
-					<hr>
+			
 
 					
 					</form>
 
-				    <div class="tag is-danger ">
-					    <a class="has-text-white" href="{{url_for('registro')}}">Aun no tienes cuenta?</a>
-					</div>
+				    
+					    <a class="has-text-white" href="{{url_for('registro')}}">
+					    	<div class="login_account_create tag is-danger ">Aun no tienes cuenta?	</div>
+					    </a>
+				
 				</div>
 			{%endif%}
 

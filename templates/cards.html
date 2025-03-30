@@ -1,0 +1,50 @@
+{%for post in post%}
+
+<div class="card-info">
+  <div class="card ">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img
+          src="https://bulma.io/assets/images/placeholders/1280x960.png"
+          alt="Placeholder image"
+        />
+      </figure>
+    </div>
+
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img
+              src="https://bulma.io/assets/images/placeholders/96x96.png"
+              alt="Placeholder image"
+            />
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{post.titulo|safe}}</p>
+          <p class="subtitle is-6">@johnsmith</p>
+        </div>
+
+      </div>
+
+
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
+        iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
+        <a href="#">#responsive</a>
+        <br />
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      </div>
+    </div>
+
+      <footer class="card-footer">
+      <a href="#" class="card-footer-item has-text-info-dark">Guardar</a>
+      <a href="#" class="card-footer-item has-text-info-dark">Editar</a>
+      <a href="#" class="card-footer-item has-background-danger has-text-white">Borrar</a>
+    </footer>
+  </div>
+</div>
+
+{% endfor %}

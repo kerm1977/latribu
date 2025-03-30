@@ -3,10 +3,10 @@
 <!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
 	formatos etc sin eso sale la etiqueta pura -->
 
-
-<div class="container container_title">
-    <h1 class="Display 6 animate__animated animate__swing">Crear un nuevo POST</h1>
-   <!--  <h2 class="Display 5 animate__bounceIn"><span class="text-success ">A LA TRIBU</span> <strong>HIKING C.R.</strong></h2> -->
+<div class="container is-fluid">
+    <div class="main-title has-text-centered">
+		<h1 class="title ">{{titulo}}</h1>
+   </div>
 </div>
 
 <div class="container">
@@ -16,19 +16,30 @@
 		<form action="" method="POST">
 			{{ form.hidden_tag() }}
 			
-			{{ form.titulo.label(class="label") }}<br>
-			{{ form.titulo(class="form-control is-normal", maxlength="150") }}
-			<br>
-			{{ form.descripcion.label(class="label") }}<br>
-			{{ form.descripcion(class="form-control", maxlength="150") }}
-			<br>
-			{{ form.slug.label(class="label") }}
-			{{ form.slug(class="form-control is-rounded", maxlength="150") }}
-			<br>
-			{{ form.content.label(class="label") }}
-			{{ form.content(class="input is-normal", rows="5") }}
+		<div class="field">
+			<div class="control"> 
+			{{ form.titulo(class="input", maxlength="150", placeholder="Titulo") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">	
+			{{ form.descripcion(class="input", maxlength="150", placeholder="Descripción") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">			
+			{{ form.slug(class="input", maxlength="150", placeholder="Slug") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">			
+			{{ form.content(class="input", rows="5") }}
+			</div>
+		</div>		
 			
-			<br>
 			{{ form.submit(class="button is-success is-ligh mt-5")}}
 		</form>
 

@@ -9,36 +9,182 @@
    </div>
 </div>
 
-<div class="container">
-	<div class="column">
+<div class="container is-fluid">
+
+	<div class="add_post_form">
 		<div class="edit_container">
 	
 		<form action="" method="POST">
 			{{ form.hidden_tag() }}
 			
 		<div class="field">
-			<div class="control"> 
-			{{ form.titulo(class="input", maxlength="150", placeholder="Titulo") }}
+			<div class="control">
+			{{ form.titulo.label}} <br> 
+			{{ form.titulo(class="input", maxlength="150", placeholder="Nombre de la Caminata") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">
+			{{ form.descripcion.label}} <br>	
+			{{ form.descripcion(class="input", maxlength="150", placeholder="Dato relacionado alternativa") }}
+			</div>
+		</div>
+
+
+
+	<div class="columns is-mobile is-centered">	
+		
+			<div class="column is-narrow is-one-third">
+			{{ form.kilometros.label}} <br>
+			{{ form.kilometros(class="input is-warning", maxlength="150", placeholder="Kilómetros", style="width: 100") }}
+			</div>
+		
+			<div class="column is-narrow is-one-third">
+			{{ form.altura.label}} <br>
+			{{ form.altura(class="input is-warning", maxlength="150", placeholder="Altura", style="width: 100") }}
+			</div>
+
+			<div class="column is-narrow is-one-third">
+			{{ form.dificultad.label}}<br>		
+			{{ form.dificultad(class="input is-warning", maxlength="150", placeholder="Dificultad", style="width: 100") }}
+			</div>
+		
+	</div>	
+
+
+
+
+
+		<div class="field">
+			<div class="control">	
+			{{ form.lugar(class="input", maxlength="150", placeholder="Lugar") }}
+			</div>
+		</div>
+
+
+		<div class="field">
+			<div class="control">
+			{{ form.etapa.label}}<br>			
+			{{ form.etapa(class="input is-warning is-rounded", maxlength="150", placeholder="Etapa", style="width: 150px") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">			
+			{{ form.finaliza(class="input", maxlength="150", placeholder="Finaliza") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">			
+			{{ form.capacidad(class="input", maxlength="150", placeholder="Capacidad de Buseta") }}
 			</div>
 		</div>
 
 		<div class="field">
 			<div class="control">	
-			{{ form.descripcion(class="input", maxlength="150", placeholder="Descripción") }}
+			{{ form.hora(class="input timePicker", id="timePicker", style="width: 150px") }}
 			</div>
 		</div>
 
 		<div class="field">
-			<div class="control">			
-			{{ form.slug(class="input", maxlength="150", placeholder="Slug") }}
+			<div class="control">	
+			{{ form.salida(class="input", maxlength="150", placeholder="Salimos de: ") }}
+			</div>
+		</div>
+
+
+		<div class="field">
+			<div class="control">
+			{{ form.sinpe.label}}<br>		
+			{{ form.sinpe(class="input is-warning is-rounded", maxlength="150", placeholder="SINPE JENNY CECILIANO CORDOBA", style="width: 350px") }}
+			<span class=""></span>
 			</div>
 		</div>
 
 		<div class="field">
-			<div class="control">			
-			{{ form.content(class="input", rows="5") }}
+			<div class="control">	
+			{{ form.coordinador.label}}<br>	
+			{{ form.coordinador(class="input is-warning is-rounded", maxlength="150", placeholder="Guía",style="width: 350px") }}
 			</div>
-		</div>		
+		</div>
+
+		<div class="field">
+			<div class="control">	
+			{{ form.precio(class="input", maxlength="150", placeholder="Precio ¢", style="width: 150px") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">	
+			{{ form.limite_pago(class="input", maxlength="150", placeholder="Pago") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">
+			{{ form.parqueo.label}}	
+			{{ form.parqueo(class="input", maxlength="150", placeholder="Parqueo") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">
+			{{ form.mascotas.label}}		
+			{{ form.mascotas(class="input", maxlength="150", placeholder="Mascotas") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">
+			{{ form.duchas.label}}	
+			{{ form.duchas(class="input", maxlength="150", placeholder="Duchas") }}
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="control">
+			{{ form.banos.label}}	
+			{{ form.banos(class="input", maxlength="150", placeholder="Baños") }}
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="field mt-5">
+			<div class="control">
+			{{ form.content.label}}	
+			{{ form.content(class="input", maxlength="150", placeholder="Nota") }}
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			
 			{{ form.submit(class="button is-success is-ligh mt-5")}}
 		</form>
@@ -59,3 +205,31 @@
 </div>
 
 {% endblock %}
+
+
+
+
+<!-- id 					=	db.Column(db.Integer, primary_key=True)
+								titulo 				= 	db.Column(db.String(255))
+								descripcion			=	db.Column(db.Text)
+								content				=	db.Column(db.Text)
+								kilometros			=	db.Column(db.Float)
+								altura				=	db.Column(db.Float)
+								lugar				=	db.Column(db.Text)
+								finaliza			=	db.Column(db.Text)
+								etapa				=	db.Column(db.Integer)
+								capacidad			=	db.Column(db.Integer)
+								hora				=	db.Column(db.Integer)
+								salida				=	db.Column(db.Text)
+								dificultad			=	db.Column(db.Text)
+								sinpe				=	db.Column(db.Integer)
+								coordinador			=	db.Column(db.Text)
+								precio				=	db.Column(db.Text)
+								limite_pago			=	db.Column(db.DateTime)
+								parqueo				= 	db.Column(db.Text)
+								mascotas			=	db.Column(db.Text)
+								duchas				= 	db.Column(db.Text)
+								banos				= 	db.Column(db.Text)
+	date_posted			=	db.Column(db.DateTime, default=datetime.utcnow)
+	slug 				= 	db.Column(db.String(255))
+ -->

@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, TimeField, SubmitField, BooleanField, HiddenField, EmailField, IntegerField
+from wtforms import StringField, DecimalField, PasswordField, SelectField, TimeField, SubmitField, BooleanField, HiddenField, EmailField, IntegerField
 from wtforms.validators import DataRequired, Length, Email,  EqualTo, ValidationError
 from wtforms.widgets import TextArea
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -165,7 +165,7 @@ class Posts(db.Model):
 	finaliza			=	db.Column(db.Text)
 	etapa				=	db.Column(db.Integer)
 	capacidad			=	db.Column(db.Integer)
-	hora				=	db.Column(db.Integer)
+	hora				=	db.Column(db.Text)
 	salida				=	db.Column(db.Text)
 	dificultad			=	db.Column(db.Text)
 	sinpe				=	db.Column(db.Integer)
@@ -262,28 +262,28 @@ class formularioLogin(FlaskForm):
 
 # Formulario de posteo
 class PostForm(FlaskForm):
-	titulo 				= 	StringField		("Titulo", validators=[DataRequired()])
+	titulo 				= 	StringField		("Nombre de la Caminata", validators=[DataRequired()])
 	descripcion 		= 	StringField		("Breve Descripción", validators=[DataRequired()])	
 	# content 			= 	StringField		("Contenido", validators=[DataRequired()], widget=TextArea())
-	content 			= 	CKEditorField	("Contenido", validators=[DataRequired()])
-	kilometros 			= 	IntegerField	("Distancia | Millas", validators=[DataRequired()])
-	altura 				= 	IntegerField	("Altimetría")
-	lugar				= 	StringField		("Nombre del Lugar", validators=[DataRequired()])
+	content 			= 	CKEditorField	("Recomendaciones", validators=[DataRequired()])
+	kilometros 			= 	DecimalField	("Distancia", validators=[DataRequired()])
+	altura 				= 	DecimalField	("Altimetría")
+	lugar				= 	SelectField		("Tipo de Caminata", validators=[DataRequired()], choices=[("Caminata"),("El Camino de Costa Rica"),("Parques Nacionales"),("Tribu Extrema"),("Intenacionales"),("Romería"),("Actividad Social")])
 	finaliza			= 	StringField		("Finaliza", validators=[DataRequired()])
-	etapa				= 	SelectField		("Etapa #", validators=[DataRequired()], choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11"),("12"),("13"),("14"),("15"),("16")])
+	etapa				= 	SelectField		("Seleccione la Etapa #", validators=[DataRequired()], choices=[("1"),("2"),("3"),("4"),("5"),("6"),("7"),("8"),("9"),("10"),("11"),("12"),("13"),("14"),("15"),("16")])
 	capacidad			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
-	hora				= 	TimeField		("Hora de Inicio", validators=[DataRequired()])
-	salida				= 	StringField		("Salimos de:", validators=[DataRequired()]) 
-	dificultad			= 	StringField		("Dificultad:", validators=[DataRequired()])
+	hora				= 	StringField		("Hora de Inicio", validators=[DataRequired()])
+	salida				= 	SelectField		("Salimos de:", validators=[DataRequired()], choices=[("Parque de Tres Ríos"),("Plaza de San Diego"),("Iglesia de San Diego")]) 
+	dificultad			= 	SelectField		("Dificultad:", validators=[DataRequired()], choices=[("BASICO"),("INTERMEDIO-BASICO"),("INTERMEDIO"),("INTERMEDIO-DIFICIL"),("DIFICIL"),("MUY DIFICIL"),("TÉCNICO")])
 	capacidad			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
-	sinpe				= 	IntegerField    ("Número Sinpe Autorizado", validators=[DataRequired()])
-	coordinador 		= 	StringField		("Guía", validators=[DataRequired()])	
+	sinpe				= 	SelectField	    ("SINPE", validators=[DataRequired()], choices=[("Jenny Ceciliano Cordoba - 87984232"),("Jenny Ceciliano Cordoba - 86529837"),("Kenneth Ruiz Matamoros - 86227500")])
+	coordinador 		= 	SelectField		("COORDINADOR", validators=[DataRequired()], choices=[("Jenny Ceciliano"),("Kenneth Ruiz")])	
 	precio				= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
-	limite_pago			= 	IntegerField	("Capacidad de Transporte", validators=[DataRequired()])
-	parqueo 			= 	SelectField		("Parqueo", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
-	mascotas			= 	SelectField		("Acepta Mascotas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])				
-	duchas				= 	SelectField		("Hay Duchas", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
-	banos				= 	SelectField		("Servicios Sanitarios", validators=[DataRequired()], choices=[("SI"),("NO"),("NO APLICA")])
+	limite_pago			= 	IntegerField	("Pagar antes de", validators=[DataRequired()])
+	parqueo 			= 	SelectField		("Parqueo", validators=[DataRequired()], choices=[("NO APLICA"),("SI"),("NO")])
+	mascotas			= 	SelectField		("Acepta Mascotas", validators=[DataRequired()], choices=[("NO APLICA"),("SI"),("NO")])				
+	duchas				= 	SelectField		("Hay Duchas", validators=[DataRequired()], choices=[("NO APLICA"),("SI"),("NO")])
+	banos				= 	SelectField		("Servicios Sanitarios", validators=[DataRequired()], choices=[("NO APLICA"),("SI"),("NO")])
 	poster_id 			= 	StringField		("Autor", validators=[DataRequired()])
 	slug 				= 	StringField		("Detalle", validators=[DataRequired()])
 	submit 				= 	SubmitField		("Crear")
@@ -590,10 +590,38 @@ def add_post():
 	form = PostForm() #PostForm es la clase modelo creada en la parte superior 	
 	if request.method == "POST":
 		poster = current_user.id
+		# titulo
+		# descripcion
+		# content
+		# kilometros
+		# altura
+		# lugar
+		# finaliza
+		# etapa
+		# capacidad
+		# hora
+		# salida
+		# dificultad
+		# sinpe
+		# coordinador
+		# precio
+		# limite_pago
+		# parqueo
+		# mascotas
+		# duchas
+		# banos
+		# date_posted
 		post = Posts(
 			titulo				=		form.titulo.data, 
 			descripcion			=		form.descripcion.data, 
-			content				=		form.content.data, 
+			content				=		form.content.data,
+			kilometros 			=		form.kilometros.data,
+			altura 				=		form.altura.data,
+			finaliza			=		form.finaliza.data,
+			etapa				=		form.etapa.data,
+			capacidad			=		form.capacidad.data,
+			hora 				=		form.hora.data,
+			lugar				=		form.lugar.data,
 			poster_id 			=		poster, 
 			slug				=		form.slug.data)
 
@@ -601,6 +629,13 @@ def add_post():
 		form.titulo.data 		= 		""
 		form.descripcion.data 	= 		""
 		form.content.data 		= 		""
+		form.kilometros.data 	=		""
+		form.altura.data 		=		""
+		form.finaliza.data 		=		""
+		form.etapa.data 		=		""
+		form.capacidad.data 	=		""
+		form.hora.data 			=		""
+		form.lugar.data 		=		""
 		form.slug.data 			= 		""
 
 		#Agregar el formulario a la db
@@ -622,8 +657,32 @@ def edit_post(id):
 	if request.method == "POST":
 		post.titulo			=		form.titulo.data 
 		post.descripcion	=		form.descripcion.data
-		post.content		=		form.content.data 
+		post.content		=		form.content.data
+		post.kilometros		=		form.kilometros.data 
 		post.slug			=		form.slug.data
+
+
+		# titulo
+		# descripcion
+		# content
+		# kilometros
+		# altura
+		# lugar
+		# finaliza
+		# etapa
+		# capacidad
+		# hora
+		# salida
+		# dificultad
+		# sinpe
+		# coordinador
+		# precio
+		# limite_pago
+		# parqueo
+		# mascotas
+		# duchas
+		# banos
+		# date_posted
 		
 		#Actualizar la base de datos
 		db.session.add(post)
@@ -634,6 +693,7 @@ def edit_post(id):
 	form.titulo.data		= 		post.titulo
 	form.descripcion.data 	= 		post.descripcion
 	form.content.data 		= 		post.content
+	form.kilometros.data 	= 		post.kilometros
 	form.slug.data 			= 		post.slug
 	return render_template("edit_post.html", form=form, date=date)
 
@@ -865,5 +925,10 @@ if __name__ == "__main__":
 		# $ flask db stamp head
 		# $ flask db migrate
 		# $ flask db migrate -m "mensaje x"
+		# $ flask db upgrade
+
+		# ERROR [flask_migrate] Error: Target database is not up to date.
+		# $ flask db stamp head
+		# $ flask db migrate
 		# $ flask db upgrade
 # -----------------------

@@ -24,21 +24,10 @@ import pymysql.cursors
 # print(now_time.strftime('%I:%M:%S %p'))
 # pip uninstall -y -r  fichero
 
-
-# CÓDIGO PARA IMAGENES BORRAR SINO FUNCIONA
-from random import sample
-#Para subir archivo tipo foto al servidor
-from werkzeug.utils import secure_filename 
-#El módulo os en Python proporciona los detalles y la funcionalidad del sistema operativo.
-import os 
-from os import remove #Modulo  para remover archivo
-from os import path #Modulo para obtener la ruta o directorios
-
 ##########################################################################
 ##########################################################################
 ##########################################################################
 
-#Declarando nombre de la aplicación e inicializando
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=1)
 
@@ -341,70 +330,6 @@ class SearchForm(FlaskForm):
 
   	
 # -----------------------
-##########################################################################
-##########################################################################
-##########################################################################
-# ESTE FRAGMENTO CORRESPONDE AL UPLOAD DE IMAGENES
-
-def stringAleatorio():
-    #Generando string aleatorio
-    string_aleatorio = "0123456789abcdefghijklmnopqrstuvwxyz_"
-    longitud         = 20
-    secuencia        = string_aleatorio.upper()
-    resultado_aleatorio  = sample(secuencia, longitud)
-    string_aleatorio     = "".join(resultado_aleatorio)
-    return string_aleatorio
-  
-  
-#Funcion que recorre todos los archivos almacenados en la carpeta (archivos)  
-def listaArchivos():
-    urlFiles = 'static/archivos'
-    return (os.listdir(urlFiles))
-
-
-@app.route('/guardar-foto', methods=['GET', 'POST'])
-def registarArchivo():
-	date = datetime.now(timezone('America/Chicago'))
-	if request.method == 'POST':
-		if(request.files['archivo']):
-			#Script para archivo
-			file     = request.files['archivo']
-			basepath = path.dirname (__file__) #La ruta donde se encuentra el archivo actual
-			filename = secure_filename(file.filename) #Nombre original del archivo
-
-			#capturando extensión del archivo ejemplo: (.png, .jpg, .pdf ...etc)
-			extension           = path.splitext(filename)[1]
-			nuevoNombreFile     = stringAleatorio() + extension
-
-			upload_path = path.join (basepath, 'static/archivos', nuevoNombreFile) 
-			file.save(upload_path)
-	return render_template('index.html', list_Photos = listaArchivos(), date=date)
-    
-
-@app.route('/<string:nombreFoto>', methods=['GET','POST'])
-def EliminarFoto(nombreFoto=''):
-    if request.method == 'GET':
-    	date = datetime.now(timezone('America/Chicago'))
-    	#print(nombreFoto) #Nombre del archivo subido
-    	basepath = path.dirname (__file__) #C:\xampp\htdocs\elmininar-archivos-con-Python-y-Flask\app
-    	url_File = path.join (basepath, 'static/archivos', nombreFoto)
-    	#print(url_File)
-    	#verifcando si existe el archivo, con la funcion (path.exists) antes de de llamar remove 
-    	# para eliminarlo, con el fin de evitar un error si no existe.
-    	if path.exists(url_File):
-        	remove(url_File) #Borrar foto desde la carpeta
-        	#os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
-    return render_template('index.html', list_Photos = listaArchivos(), date=date)
-        
-    
-    
-    
-#Redireccionando cuando la página no existe
-@app.errorhandler(404)
-def not_found(error):
-    return 'Ruta no encontrada'
-
-
 
 ##########################################################################
 ##########################################################################
@@ -415,7 +340,7 @@ def not_found(error):
 #trim Elimina los espacios finales
 
 # HOME
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/")
 @app.route("/home")
 @app.route("/index")
 def home():
@@ -424,7 +349,7 @@ def home():
 	date = datetime.now(timezone('America/Chicago'))
 	titulo = "Bienvenid@s"
 	sbtitulo ="La Tribu Hiking"
-	return render_template("post.html", list_Photos = listaArchivos(), titulo=titulo, sbtitulo=sbtitulo, date=date, form=form, post=post)
+	return render_template("post.html", titulo=titulo, sbtitulo=sbtitulo, date=date, form=form, post=post)
 
 #PERMANENCIA
 # @app.before_request

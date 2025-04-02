@@ -14,7 +14,13 @@
 	<div class="add_post_form">
 		<div class="edit_container">
 	
-		<form action="" method="POST">
+		<!-- <form action="" method="POST" enctype="multipart/form-data">
+ -->
+		<!-- borrar sino funciona	 -->
+		<form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+
+
+
 			{{ form.hidden_tag() }}
 			
 		<div class="field">
@@ -58,17 +64,21 @@
 
 		<div class="field">
 			<div class="control">	
-			{{ form.lugar(class="input", maxlength="150", placeholder="Lugar") }}
+			{{ form.lugar(class="input",  maxlength="150", placeholder="Lugar") }}
 			</div>
 		</div>
 
 
+	
 		<div class="field">
 			<div class="control">
-			{{ form.etapa.label}}<br>			
-			{{ form.etapa(class="input is-warning is-rounded", maxlength="150", placeholder="Etapa", style="width: 150px") }}
+				
+				{{ form.etapa.label}}<br>			
+				{{ form.etapa(class="input is-warning is-rounded",   maxlength="150", placeholder="Etapa", style="width: 400px") }}
+
 			</div>
 		</div>
+		
 
 		<div class="field">
 			<div class="control">			
@@ -151,15 +161,6 @@
 		</div>
 
 
-
-
-
-
-
-
-
-
-
 		<div class="field mt-5">
 			<div class="control">
 			{{ form.content.label}}	
@@ -169,11 +170,22 @@
 
 
 
-
-
-
-
-
+	<!-- 	<div class="field mt-5">
+			<div class="control">
+				<div class="file">
+					  <label class="file-label">
+					    <input class="file-input" id="file" type="file" name="file" />
+					    <span class="file-cta">
+					      <span class="file-icon">
+					        <span class="icon-cloud-upload"></span>
+					      </span>
+					      <span class="file-label"> Ingresar Flyer… </span>
+					    </span>
+					  </label>
+				</div>
+			</div>
+		</div>
+ -->
 
 
 

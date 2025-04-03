@@ -1,2 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container is-fluid">
+    <div class="main-title has-text-centered">
+    <h1 class="title ">{{titulo}}</h1>
+   </div>
+</div> 
 
 
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+    <div class="col-md-3" style="padding:50px 50px;">
+      {% include 'form.html' %}
+    </div>
+
+    <div class="col-md-8" style="border-left: 1px solid #999; padding:50px 50px;">
+      {% set path = 'static/archivos/' %}
+      {% for foto in list_Photos %}
+        <div class="media">
+          <img src="{{ path }}{{ foto }}" class="mr-3" alt="{{ foto }}">
+          <div class="media-body">
+            <h5 class="mt-0">
+              <p>
+                <span class="index">{{loop.index}}</span>
+                <span class="namePhone">{{ foto }}</span>
+              </p>
+            </h5>
+            <p>
+              <a href="{{ url_for('EliminarFoto', nombreFoto = foto ) }}" type="button" class="btn btn-danger" style="margin-top: 40px;">Eliminar Archivo</a>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+</div>
+<br><br>
+
+
+{% endblock %}

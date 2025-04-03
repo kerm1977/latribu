@@ -29,9 +29,7 @@ INCLUYE LOS MENSAJES QUE SE ENCUENTRA EN templates/flash.html
 <!-- /***********************************************************/
 /************************************************************/-->
 
-<div class="container is-fluid">  
-        {% include 'form.html' %}
-    </div>
+
 
   
 <!-- /***********************************************************/
@@ -41,57 +39,11 @@ CONTENIDO HEREDADO DE OTRAS PLANTILLAS
         {% block content %}
         {% endblock %}
     </div> 
+    </div>
+</div>  
+</div> 
 <!-- /***********************************************************/
 /************************************************************/-->
-  
-
-
-
-
-
-<div class="" style="border-left: 1px solid #999; padding:50px 50px;">
-      {% set path = 'static/archivos/' %}
-      {% for foto in list_Photos %}
-        <div class="media">
-          <img src="{{ path }}{{ foto }}" class="mr-3" alt="{{ foto }}">
-          <div class="media-body">
-            <h5 class="mt-0">
-              <p>
-                <span class="index">{{loop.index}}</span>
-                <span class="namePhone">{{ foto }}</span>
-              </p>
-            </h5>
-            <p>
-              <a href="{{ url_for('EliminarFoto', nombreFoto = foto ) }}" type="button" class="btn btn-danger" style="margin-top: 40px;">Eliminar Archivo</a>
-            </p>
-          </div>
-        </div>
-      {% endfor %}
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

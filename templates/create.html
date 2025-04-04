@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %} 
+<!-- |safe se encarga de reconocer caracteres como negritas, itálicas h1-h6 
+	formatos etc sin eso sale la etiqueta pura -->
+
+<div class="container is-fluid">
+    <div class="main-title has-text-centered">
+		<h1 class="title ">{{titulo}}</h1>
+   </div>
+</div>
+
+
+
+
+<form action="{{url_for('create_blog')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+
+<input type="text" class="input" id="title" name="title" placeholder="Titulo"><br>
+<br>
+<textarea type="text" class="input" id="content" name="content" placeholder="Area"></textarea>
+
+
+			<div class="control">
+		<!-- UPLOADER IMAGEN CON NOMBRE PRE CARGADO Y JS -->
+		
+				<div id="file-js-example" class="file has-name mt-5">
+				  <label class="file-label">
+				    <input class="file-input" type="file" id="image_file" name="image_file" />
+				    <span class="file-cta">
+				      <span class="file-icon">
+				        <span class="icon-cloud-upload"></span>
+				      </span>
+				      <span class="file-label"> Selecciones una Imagen </span>
+				    </span>
+				    <span class="file-name"> No hay archivo Cargado </span>
+				  </label>
+				</div>
+				  
+				<script>
+				  const fileInput = document.querySelector("#file-js-example input[type=file]");
+				  fileInput.onchange = () => {
+				    if (fileInput.files.length > 0) {
+				      const fileName = document.querySelector("#file-js-example .file-name");
+				      fileName.textContent = fileInput.files[0].name;
+				    }
+				  };
+				</script>
+
+			</div>
+
+
+	<!-- FIN UPLOADER IMAGEN CON NOMBRE PRE CARGADO Y JS -->
+    <div class="form-group mb-5 text-center mt-5">
+     <button type="submit" class="btn btn-primary btn-sm">Enviar Archivo</button>
+    </div>
+
+
+
+
+{% endblock %}

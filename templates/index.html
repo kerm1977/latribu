@@ -8,4 +8,26 @@
 </div> 
 
 
+<a href="{{url_for('create_blog')}}">Nuevo Blog</a>
+<div class="columns">
+
+{% for blog in blogs %}
+	<div class="column">
+
+
+	<figure class="image is-128x128">
+ 	 			<img src="{{url_for('static', filename='img/' + blog.image_file)}}" alt="{{blog.title}}" width="400px">
+				<!-- posted_date {{blog.date_posted}} -->
+				<hr>
+	</figure>
+			{{blog.title}}
+				<br>
+			{{blog.content}}
+	</div>
+{% endfor %}
+
+</div>
+
+
+
 {% endblock %}

@@ -42,6 +42,11 @@ from os import path #Modulo para obtener la ruta o directorios
 app = Flask(__name__)
 # app.permanent_session_lifetime = timedelta(minutes=1)
 
+
+
+
+
+
 #Editor enriquecido
 ckeditor = CKEditor(app)
 
@@ -67,10 +72,14 @@ ckeditor = CKEditor(app)
 	#password = "latribu1977",
 	#database = "LaTribuHiking$db"
 
-
 #DB MYSQL LOCAL
 				 #-U  -P  -UBICACION -NOMBRE DB
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost/db"
+
+# SECCIÓN PARA EL UPLOADER DE IMAGENES
+app.config["UPLOAD_FOLDER"] = os.path.join(os.getcwd(), "static/img")
+app.config["ALLOWED_EXTENSIONS"] = set(["png", "jpg", "jpeg", "git"])	
+
 
 
 
@@ -218,7 +227,25 @@ class multimedia(db.Model):
 		return f"('{self.video}',{self.usuario}',{self.avatar}','{self.detalle}')"
 
 
+
+# IMAGENES
 # -----------------------
+class Blog(db.Model):
+	__Tablename__ = "blogs"
+	id 					=	db.Column(db.Integer, primary_key=True)
+	title 				=	db.Column(db.String(200))
+	content				=	db.Column(db.Text)
+	image_file			=	db.Column(db.String(200), default="default.jpg") #IMAGEN
+	date_posted			=	db.Column(db.DateTime, default=datetime.utcnow)
+
+	def __repr__(self):
+		return f"Blog('{self.title}',{self.content}', {self.date_posted}')"
+
+def allowed_file(filename):
+	return "." in filename and filename.rsplit(".", 1)[1].lower() in app.config["ALLOWED_EXTENSIONS"]
+# -----------------------
+
+
 
 ##########################################################################
 ##########################################################################
@@ -315,9 +342,6 @@ class PostForm(FlaskForm):
 	submit 				= 	SubmitField		("Crear")
 
 
-
-
-
 # Formulario de Registro
 class TagForm(FlaskForm):
 	etiqueta 			= 	StringField		('etiqueta', validators=[DataRequired()]) 
@@ -346,7 +370,7 @@ class SearchForm(FlaskForm):
 #trim Elimina los espacios finales
 
 # HOME
-@app.route('/', methods=['GET', 'POST'])
+
 @app.route("/home")
 @app.route("/index")
 def home():
@@ -356,6 +380,7 @@ def home():
 	titulo = "Bienvenid@s"
 	sbtitulo ="La Tribu Hiking"
 	return render_template("post.html",titulo=titulo, sbtitulo=sbtitulo, date=date, form=form, post=post)
+
 
 #PERMANENCIA
 # @app.before_request
@@ -744,7 +769,7 @@ def delete_post(id):
 		return render_template("post.html")
 			
 # VISUALIZAR POSTS
-@app.route("/post")
+@app.route("/post", methods=["GET","POST"])
 @login_required #Solo se puede editar con login
 def post():
 	titulo="Posts Creados"
@@ -912,6 +937,59 @@ def delete_video(id):
 		flash("No se pudo borrar el Video", "notification is-danger")
 		value = multimedia.query.order_by(multimedia.date_added)
 		return render_template("videos.html", value=value, date=date)
+
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+# -------------------------------------------------------------------
+#BLOG
+
+@app.route("/blogs")
+def blogs():
+	date = datetime.now(timezone('America/Chicago'))
+	blogs = Blog.query.order_by(Blog.date_posted.desc()).all()
+	return render_template("index.html",blogs=blogs, date=date)
+
+@app.route("/blogs/new", methods=["GET","POST"])
+def create_blog():
+	date = datetime.now(timezone('America/Chicago'))
+	
+	if request.method == "POST":
+		title = request.form["title"]
+		content = request.form["content"]
+		
+		file = request.files["image_file"]
+		
+		if file and allowed_file(file.filename):
+			filename = file.filename
+			file.save(os.path.join(app.config["UPLOAD_FOLDER"],filename))
+		else:
+			filename = "default.jpg"
+
+		new_blog = Blog(title=title, content=content, image_file=filename)
+		db.session.add(new_blog)
+		db.session.commit()
+
+
+		return redirect(url_for("blogs"))
+	return render_template("create.html",date=date)
+
+
+
+
+# title
+# content
+# image_file
+# date_posted
+
+
+
+
+
+
+
+
+
+
 
 # -------------------------------------------------------------------
 # -------------------------------------------------------------------
